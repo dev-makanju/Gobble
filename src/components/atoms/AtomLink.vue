@@ -1,6 +1,6 @@
 <template>
     <div>
-        <router-link :to="{name:`${url.name}`}"></router-link>
+        <router-link :style="url.styleObjects" :to="{name:`${url.compName}`}">{{ url.linkTitle }}</router-link>
     </div>
 </template>
 

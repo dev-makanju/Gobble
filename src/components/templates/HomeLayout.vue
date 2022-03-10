@@ -5,7 +5,7 @@
         <font-awesome-icon icon="cart-shopping"/>
     <div class="item">
         <div class="item__photo">
-            <PuSkeleton circle height="50px" width="50px">
+            <PuSkeleton height="50px" width="50px">
     
             </PuSkeleton>
         </div>

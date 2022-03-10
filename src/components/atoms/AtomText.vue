@@ -1,12 +1,10 @@
 <template>
-    <component :is="tags">
-       {{ text.name }}
-    </component>
+    <component :is='tag'>{{ content }}</component>
 </template>
 
 <script>
     export default{
         name:"AtomText",
-        props:['text']
+        props:['tag' , 'content']
     }
 </script>

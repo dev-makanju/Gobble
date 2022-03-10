@@ -6,6 +6,7 @@ import { Skeleton } from 'vue-loading-skeleton';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faHatWizard } from '@fortawesome/free-solid-svg-icons'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -13,7 +14,8 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 library.add( faHatWizard );
 library.add(faCartShopping);
 library.add(faPlus);
-library.add(faTrash );
+library.add(faTrash);
+library.add(faHeart);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.component('PuSkeleton' , Skeleton)

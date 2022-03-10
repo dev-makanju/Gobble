@@ -1,12 +1,26 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+        <!--Header--->
+        <HeaderOrganism/>
+        
     </div>
+    <FooterOrganism/>
     <router-view/>
   </div>
 </template>
+
+<script>
+import HeaderOrganism from './components/organisms/HeaderOrganism.vue'
+import FooterOrganism from './components/organisms/FooterOrganism.vue'
+
+export default {
+    components:{
+       HeaderOrganism,
+       FooterOrganism,
+    },  
+}
+</script>
 
 <style lang="scss">
 /*****

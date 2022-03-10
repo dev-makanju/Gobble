@@ -1,12 +1,15 @@
 <template>
     <div>
-        <font-awesome-icon :icon="icon.name"/>
+        <font-awesome-icon :icon="content"/>
     </div>
 </template>
 
 <script>
     export default {
         name:"AtonIcon",
-        props:['icon'],
+        props:['content'],
+        methods:{
+            
+        }
     }
 </script>
