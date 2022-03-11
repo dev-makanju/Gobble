@@ -15,7 +15,6 @@
 
 <style lang="scss" scoped>
     .cart-buttons{
-        color: #eee;
-        cursor: pointer;
+        color: #eee ;
     }
 </style>

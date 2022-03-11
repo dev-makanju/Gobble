@@ -3,10 +3,10 @@
     <div id="nav">
         <!--Header--->
         <HeaderOrganism/>
-        
+        <router-view/>
+        <!---Footer---->
     </div>
     <FooterOrganism/>
-    <router-view/>
   </div>
 </template>
 
@@ -30,12 +30,58 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English&family=Lora:ital@1&display=swap');//landing page font-family: 'Lora', serif;
 @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English&family=Lora:ital@1&family=Mochiy+Pop+P+One&display=swap');//Texts font-family: 'IM Fell English', serif;
 
-#app{
 
-$primary-color: #70B77E ;
+$primary-color: #70B77E;
 $secondary-color:#A8B087;
 $tertiary-color: #065143;
+$error-color: #e74e3c;
 
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box ;
+}
+
+html{
+  min-height: 100vh ;
+}
+
+#nav{
+  min-height: 100vh ;
+}
+
+#app{
+  max-width: 1440px ;
+  margin: 0px auto ;
+  min-height: 100vh ;
+  width: 100% ;
+}
+
+body{
+  display: flex;
+}
+
+h1 , h2 , h3 , h4 , h5 , h6 , p{
+  color: #000;
+  font-family: 'IM Fell English', serif;
+}
+
+ul , li , ol {
+  font-family: 'IM Fell English', serif;
+}
+
+input{
+   border: $secondary-color;
+   box-sizing: border-box;
+   font-family: 'Mochiy Pop P One', sans-serif;
+   width: 100%;
+   padding: 7px;
+   font-size: 16px;
+   border-radius: 5px;
+}
+
+.error{
+   color: $error-color;
 }
 
 </style>

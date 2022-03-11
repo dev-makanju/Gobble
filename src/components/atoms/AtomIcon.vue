@@ -8,8 +8,5 @@
     export default {
         name:"AtonIcon",
         props:['content'],
-        methods:{
-            
-        }
     }
 </script>

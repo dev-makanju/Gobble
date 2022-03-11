@@ -3,7 +3,7 @@
         <ul class="nav-link-cart" v-for="( cartList , index) in cartLists" :key="index">
             <li>
                 <atom-cart-link :cartList="cartList">
-                   <AtomIcon :content="cartList.linkIcon"/>
+                   <AtomIcon class="" :content="cartList.linkIcon"/>
                 </atom-cart-link>
             </li>
         </ul>
@@ -31,9 +31,10 @@
            list-style-type: none ;
            padding: 7px ;
            border-radius: 50%;
-           background: #065143;
+           background: #065143 ;
            color: #000;
            box-shadow: 0px 2px 33px 5px rgba(0 , 0 , 0 , .3);
+           margin: 0px 7px ;
         }
     }
 </style>

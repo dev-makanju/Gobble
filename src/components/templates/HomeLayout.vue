@@ -1,8 +1,5 @@
 <template>
     <div>
-        <h1>Hello world</h1>
-        <font-awesome-icon icon="hat-wizard"/>
-        <font-awesome-icon icon="cart-shopping"/>
     <div class="item">
         <div class="item__photo">
             <PuSkeleton height="50px" width="50px">
