@@ -6,7 +6,9 @@
         <router-view/>
         <!---Footer---->
     </div>
-    <FooterOrganism/>
+    <div v-if="!isMarketPlace">
+         <FooterOrganism/>
+    </div>
   </div>
 </template>
 
@@ -19,6 +21,28 @@ export default {
        HeaderOrganism,
        FooterOrganism,
     },  
+    data(){
+      return{
+         isMarketPlace: null,
+      }
+    },
+    created(){
+        this.isMarketRoute();
+    },
+    methods:{
+      isMarketRoute(){
+        if(this.$route.name === "MarketPlace"){
+            this.isMarketPlace = true;
+            return;
+        }
+        this.isMarketPlace = false;
+      }
+    },
+      watch:{
+            $route(){
+                this.isMarketRoute;
+            }
+      }
 }
 </script>
 
@@ -48,6 +72,7 @@ html{
 
 #nav{
   min-height: 100vh ;
+  margin-bottom: 6rem;
 }
 
 #app{

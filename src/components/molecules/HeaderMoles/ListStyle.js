@@ -5,6 +5,7 @@ const  styleObjects = {
     fontFamily:"'IM Fell English', serif",
     fontWeight: '300',
     letterSpacing:'2px',
+    outline:'none',
 }
 
 export default styleObjects;

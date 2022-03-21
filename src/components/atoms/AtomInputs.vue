@@ -3,7 +3,8 @@
         <input 
             :type="inputs.type" 
             :id="inputs.id"  
-            :placeholder="inputs.placeHolder">
+            :placeholder="inputs.placeHolder"
+            :style="inputs.painting">
     </div>
 </template>
 

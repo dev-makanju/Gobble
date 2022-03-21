@@ -1,15 +1,15 @@
 <template>
     <div class>
         <img 
-           :src="image.url"  
-           :alt="image.alt" 
-           :style="image.styleObjects"
+           :src="`../assets/${url}`"  
+           :alt="alt"
+           loading="lazy"
         >
     </div>
 </template>
 
 <script>
     export default {
-        props:['image'],
+        props:['url' , 'alt' ],
     }
 </script>

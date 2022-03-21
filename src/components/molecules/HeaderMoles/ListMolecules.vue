@@ -23,6 +23,9 @@
 <style lang="scss" scoped>
     .nav-link-wrapper{
         display: inline-flex;
+        @media (max-width: 500px) {
+            display: none ;
+        }
 
         & li{
            list-style-type: none ;

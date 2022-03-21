@@ -159,14 +159,18 @@ footer{
     border-radius: 10px 10px 0px 0px;
 
     .footer{
-        width: 80%;
+        width: 90%;
         margin: 0px auto;
         display: flex;
         flex-direction: row ;
         flex-wrap: wrap;
         justify-content: space-between ;
         align-items: center;
-        padding: 10px;
+        
+        @media (min-width:768px) {      
+            width: 80%;
+            padding: 10px;   
+        }
 
         & .footer-link{
            min-height: 250px;
