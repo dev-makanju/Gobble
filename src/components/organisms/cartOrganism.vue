@@ -111,7 +111,7 @@
         },
         watch:{
             returnTotalPrice: function(){
-                this.$store.dispatch('setPrice' ,this.returnTotalPrice )
+                this.$store.dispatch('setPrice' ,this.returnTotalPrice );
             }
         }
     }

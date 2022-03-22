@@ -46,9 +46,6 @@
             removeItem(value){
                 this.$emit('remove-from-store' , value)
                 this.isCartActive = this.isCartActive.filter( card => card.id !== value );
-                if(this.isCartActive.length === 0){
-                    this.$store.dispatch('cartUpdated' , 0 )
-                }
             }
         },
         created(){
@@ -58,10 +55,11 @@
             isCartActive: function(){
                 if(this.isCartActive.length === 0){
                     this.isEmpty = true
+                    this.$store.dispatch('cartUpdated' , 0)
                 }else{
                     this.isEmpty = false;
                     const count = this.isCartActive.length
-                    this.$store.dispatch('cartUpdated' , count);
+                    this.$store.dispatch('cartUpdated' , count)
                 }
             },
         }
@@ -70,7 +68,6 @@
 </script>
 
 <style lang="scss" scoped>
-
 .market__place{
     display: grid ;
     grid-template-columns: 1fr ;

@@ -10,6 +10,7 @@ export default new Vuex.Store({
     isCartActive:[],
     price:'0'
   },
+
   mutations: {
     open(state){
       state.isOpen = true;
@@ -22,8 +23,12 @@ export default new Vuex.Store({
     },
     setGlobalPrice(state , payload){
       state.price = payload
+    },
+    setCartData(state , payload){
+      state.isCartActive = payload
     }
   },
+  
   actions: {
     cartUpdated({commit} , payload){
         commit('updateCount' , payload );
@@ -32,14 +37,13 @@ export default new Vuex.Store({
         commit('open'); 
     },
     closeCart({commit}){
-      commit('close') 
+        commit('close') 
     },
-    addToCart( ){
-        //  
+    addToCart({commit} , payload ){
+        commit('setCartData' , payload)
     },
     setPrice({commit}, payload){
-        commit('setGlobalPrice' , payload)
-        console.log(payload);
+        commit('setGlobalPrice' , payload );
     }
   },
   modules: {

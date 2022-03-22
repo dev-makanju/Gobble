@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <HomePage/>
-    <CardTemplate :isFilterCard="isReturnCardsRatings"/>
+    <slider/>
     <bannerOrg/>
   </div>
 </template>
@@ -11,15 +11,15 @@
 // @ is an alias to /src
 
 import HomePage from '@/components/templates/HomeLayout.vue'
-import CardTemplate from '../components/templates/cardTemplate.vue'
 import bannerOrg from '../components/organisms/HomeOrgs/bannerOrganism.vue'
+import slider from '../components/templates/sliderTemplate.vue'
 
 export default {
   name: 'Home',
   components:{
     HomePage,
     bannerOrg,
-    CardTemplate,
+    slider
   },
   data(){
     return{

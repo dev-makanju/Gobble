@@ -70,8 +70,7 @@
         methods:{
             updateCount(){
                 this.cartLists.forEach((element) => {
-                    element.count = this.getCount
-                    console.log(element.count)
+                    element.count = this.getCount;
                 });
             }
         },
@@ -79,13 +78,12 @@
             ...mapState(['cartCount']),
 
             getCount: function(){
-                return this.$store.state.cartCount
+               return this.$store.state.cartCount
             }
-    
         },
         watch:{
             '$store.state.cartCount': function(){
-                this.updateCount()
+               this.updateCount()
             }
         }
     }

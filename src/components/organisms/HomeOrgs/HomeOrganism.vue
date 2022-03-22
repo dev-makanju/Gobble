@@ -6,7 +6,7 @@
             <div class="search_form">
                 <input type="text" 
                        name=""
-                       id=""
+                       id=  ""
                        class="search"
                        placeholder="" 
                        v-model.trim="searchInput">
@@ -102,6 +102,7 @@
                background: #065143;
                color: #eee;
             }
+
         }
      }
 </style>

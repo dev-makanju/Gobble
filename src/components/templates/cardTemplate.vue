@@ -5,28 +5,20 @@
             <router-link class="button-btn" :to="{name:'MarketPlace'}">Explore More</router-link>
         </div>
         <div v-if="isMarketPlace" class="button-wrapper">
-            <div>
-                <ul class="pagination">
-                    <li>
-                        <a class="page-no" href="">1</a>
-                    </li>
-                    <li>
-                        <a  class="page-no" href="">2</a>
-                    </li>
-                </ul>
-            </div>
+            <Pagination/>
         </div>
     </div>
 </template>
 
 <script>
     import CardOrganism from '../organisms/CardOrgansim.vue'
+    import Pagination from '../templates/pagination.vue'
 
     export default {
         name:"cardTemplate",
         props:['isFilterCard'],
         components:{
-            CardOrganism,
+            CardOrganism,Pagination
         },
         data(){
             return{
@@ -240,11 +232,13 @@
                         qty:1
                     },
                 ],
-                isMarketPlace:null
+                isMarketPlace:null,
+                page: 10 ,
             }
         },
         created(){
             this.isMarketRoute();
+            this.getProductByPage()
         },
         methods:{
             isMarketRoute(){
@@ -259,7 +253,16 @@
             },
             addToCart(value){
                 this.$emit('add-to-cart' , value)
+            },
+
+            //pagination system
+            //perPage
+    
+            getProductByPage(){
+               const result = this.cards.length / this.page
+               console.log(Math.floor(result));
             }
+            //totalPage
         },
         watch:{
             $route(){
@@ -275,28 +278,6 @@
 </script>
 
 <style lang="scss" scoped>
-
-.pagination{
-    display: flex;
-    flex-direction: row;
-    gap: 4px;
-    padding: 30px;
-    
-    li{
-        list-style-type: none;
-        outline: none ;
-    }
-
-    .page-no{
-        padding: 10px;
-        border-radius: 4px ;
-        border: 1px solid #065143;
-        color: #065143 ;   
-        font-size: 16px;
-        text-decoration: none;
-        outline: none;
-    }
-}
 
 .button-btn{
     padding: 10px ;

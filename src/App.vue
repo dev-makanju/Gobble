@@ -84,6 +84,7 @@ html{
 
 body{
   display: flex;
+  background: rgb(241, 236, 236);
 }
 
 h1 , h2 , h3 , h4 , h5 , h6 , p{
