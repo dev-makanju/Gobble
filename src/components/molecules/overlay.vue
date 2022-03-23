@@ -31,7 +31,7 @@
         justify-content: center ;
     
         &__alert{
-           width: 400px ;
+           width: 300px ;
            height: 200px;
            border-radius: 5px ;
            background: #eee ;

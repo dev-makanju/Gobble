@@ -18,6 +18,10 @@
         </slide>
         </carousel-3d>
 
+        <div class="swipe">
+            <p>&lt;</p>&nbsp;&nbsp;&nbsp;<p>&gt;</p>
+        </div>
+
     </div>
 </template>
 
@@ -58,6 +62,19 @@
                 color: #065143;
             }
         }
+         
+        @media (max-width: 450px) {
+            .swipe{
+               display: flex;
+               justify-content: center ;
+               align-items: center;
+
+                p{
+                   color:#065143;
+                   font-size: 20px;
+                }
+            }  
+        } 
     }
 
 </style>
