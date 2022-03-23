@@ -19,11 +19,11 @@
         display: flex;
         justify-content: center;
         align-items: center ;
-        height: 100%;
-        flex-direction: column;
+        height: 100% ;
+        flex-direction: column ;
 
         h1{
-            font-size: 200px;
+            font-size: 200px ;
         }
         p{
             color: #506b66;

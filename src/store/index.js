@@ -29,6 +29,7 @@ export default new Vuex.Store({
     },
     clear(state){
       state.cartCount = 0;
+      state.price = 0;
     }
   },
   
