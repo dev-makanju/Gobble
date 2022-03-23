@@ -5,20 +5,19 @@
             <router-link class="button-btn" :to="{name:'MarketPlace'}">Explore More</router-link>
         </div>
         <div v-if="isMarketPlace" class="button-wrapper">
-            <Pagination/>
+            
         </div>
     </div>
 </template>
 
 <script>
     import CardOrganism from '../organisms/CardOrgansim.vue'
-    import Pagination from '../templates/pagination.vue'
 
     export default {
         name:"cardTemplate",
         props:['isFilterCard'],
         components:{
-            CardOrganism,Pagination
+            CardOrganism
         },
         data(){
             return{
@@ -147,86 +146,6 @@
                         id:16,
                         image:'f-image.jpg',
                         rating:'4.5',
-                        description:'rice , fried rice , jollof rice',
-                        price:'300',
-                        qty:1
-                    },
-                    {
-                        id:17,
-                        image:'f-image.jpg',
-                        rating:'4.5',
-                        description:'rice , fried rice , jollof rice',
-                        price:'300',
-                        qty:1
-                    },
-                    {
-                        id:18,
-                        image:'f-image.jpg',
-                        rating:'4.5',
-                        description:'rice , fried rice , jollof rice',
-                        price:'300',
-                        qty:1
-                    },
-                    {
-                        id:19,
-                        image:'f-image.jpg',
-                        rating:'4.5',
-                        description:'rice , fried rice , jollof rice',
-                        price:'300',
-                        qty:1
-                    },
-                    {
-                        id:20,
-                        image:'f-image.jpg',
-                        rating:'4.5',
-                        description:'rice , fried rice , jollof rice',
-                        price:'300',
-                        qty:1
-                    },
-                    {
-                        id:21,
-                        image:'f-image.jpg',
-                        rating:'4.5',
-                        description:'rice , fried rice , jollof rice',
-                        price:'300',
-                        qty:1
-                    },
-                    {
-                        id:22,
-                        image:'f-image.jpg',
-                        rating:'4.5',
-                        description:'rice , fried rice , jollof rice',
-                        price:'300',
-                        qty:1
-                    },
-                    {
-                        id:23,
-                        image:'f-image.jpg',
-                        rating:'4.5',
-                        description:'rice , fried rice , jollof rice',
-                        price:'300',
-                        qty:1
-                    },
-                    {
-                        id:24,
-                        image:'f-image.jpg',
-                        rating:'4.5',
-                        description:'rice , fried rice , jollof rice',
-                        price:'300',
-                        qty:1
-                    },
-                    {
-                        id:25,
-                        image:'f-image.jpg',
-                        rating:'4.5',
-                        description:'rice , fried rice , jollof rice',
-                        price:'300',
-                        qty:1
-                    },
-                    {
-                        id:26,
-                        image:'f-image.jpg',
-                        rating:'4.7',
                         description:'rice , fried rice , jollof rice',
                         price:'300',
                         qty:1

@@ -156,6 +156,7 @@ export default {
         toggleOverlay(){
            this.isModalActive = !this.isModalActive;
            this.$router.push('/')
+           this.$store.dispatch('clearCart');
         }
 
     }
@@ -166,8 +167,13 @@ export default {
     .checkout{
         width: 400px ;
         margin: 40px  auto ;
+        min-width:350px;
         box-shadow: 0px 2px 45px 4px rgba(0 , 0 , 0 , .1);
 
+        @media (max-width: 450px){
+            width: 90%;
+        }
+        
         .checkout__header{
             display: flex ;
             flex-direction: row ;

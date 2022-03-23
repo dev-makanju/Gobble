@@ -6,18 +6,42 @@
             </router-link>
         </div>
 
+        <carousel-3d>
+        <slide :index="0">
+            <img src="@/assets/mobile/people-g.jpg" alt="">
+        </slide>
+        <slide :index="1">
+            <img src="@/assets/mobile/tomato-g.jpg" alt="">
+        </slide>
+        <slide :index="2">
+            <img src="@/assets/mobile/dinner.jpg" alt="">
+        </slide>
+        </carousel-3d>
+
     </div>
 </template>
 
 <script>
+    import { Carousel3d, Slide } from 'vue-carousel-3d';
+
     export default {
         name:"sliderTemplate",
+        components:{
+            Carousel3d, 
+            Slide
+        },
+        data(){
+            return{
+                slide:{
+                    src:'',
+                }
+            }
+        }
     }
 </script>
 
 <style lang="scss" scoped>
     .slider{
-        height: 400px;
         margin-top: 20px;
 
         .router-link{

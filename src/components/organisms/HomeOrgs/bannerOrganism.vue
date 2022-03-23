@@ -26,10 +26,10 @@
 
 <style lang="scss" scoped>
     .banner{
-        width: 90%;
+        width: 100%;
         margin: 0px auto;
         height: 300px;
-        border-radius: 17px;
+        border-radius: 5px;
         position: relative ;
         box-shadow: 0px 0px 30px 12px rgba(0 , 0 , 0 , .3) ;
         margin-top: 5rem;
@@ -38,7 +38,7 @@
             width: 80%;
             margin: 0px auto;
             height: 300px;
-            border-radius: 17px;
+            border-radius: 5px;
             position: relative ;
         }
 
@@ -51,13 +51,13 @@
             height: 100%;
             width: 100%;
             object-fit: cover;
-            border-radius: 17px;
+            border-radius: 5px;
         }
 
         &__overlay{
             height: 300px;
             width: 100% ;
-            border-radius: 17px ;
+            border-radius: 5px ;
             background: #000 ;
             opacity: .7;
             position: absolute ;

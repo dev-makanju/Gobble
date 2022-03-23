@@ -14,6 +14,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import { faHome } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import Carousel3d from 'vue-carousel-3d';
 
 library.add( faHatWizard );
 library.add(faCartShopping);
@@ -28,6 +29,7 @@ library.add(faHome)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.component('PuSkeleton' , Skeleton)
 Vue.config.productionTip = false
+Vue.use(Carousel3d);
 
 new Vue({
   router,

@@ -26,6 +26,9 @@ export default new Vuex.Store({
     },
     setCartData(state , payload){
       state.isCartActive = payload
+    },
+    clear(state){
+      state.cartCount = 0;
     }
   },
   
@@ -44,6 +47,9 @@ export default new Vuex.Store({
     },
     setPrice({commit}, payload){
         commit('setGlobalPrice' , payload );
+    },
+    clearCart({commit}){
+        commit('clear')
     }
   },
   modules: {
