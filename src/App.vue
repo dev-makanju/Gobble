@@ -2,12 +2,12 @@
   <div id="app">
     <div id="nav">
         <!--Header--->
-        <HeaderOrganism/>
+        <HeaderOrganism v-if="isNavActive"/>
         <router-view/>
         <!---Footer---->
     </div>
     <div v-if="!isMarketPlace">
-         <FooterOrganism/>
+         <FooterOrganism v-if="isNavActive"/>
     </div>
   </div>
 </template>
@@ -24,10 +24,11 @@ export default {
     data(){
       return{
          isMarketPlace: null,
+         isNavActive: null,
       }
     },
     created(){
-        this.isMarketRoute();
+      this.isMarketRoute();
     },
     methods:{
       isMarketRoute(){
@@ -36,13 +37,20 @@ export default {
             return;
         }
         this.isMarketPlace = false;
+      },
+      showNavbar(){
+        if(this.$route.name === "Login" || 
+          this.$route.name === "Register" ||
+          this.$route.name === "ForgotPassword" ){
+          this.isNavActive = true;
+        }this.isNavActive = false;
       }
     },
-      watch:{
-            $route(){
-                this.isMarketRoute;
-            }
+    watch:{
+      $route(){
+        this.isMarketRoute;
       }
+    }
 }
 </script>
 
@@ -55,10 +63,10 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English&family=Lora:ital@1&family=Mochiy+Pop+P+One&display=swap');//Texts font-family: 'IM Fell English', serif;
 
 
-$primary-color: #70B77E;
-$secondary-color:#A8B087;
-$tertiary-color: #065143;
-$error-color: #e74e3c;
+$primary-color: #70B77E ;
+$secondary-color:#A8B087 ;
+$tertiary-color: #065143 ;
+$error-color: #e74e3c ;
 
 *{
   margin: 0;
@@ -72,7 +80,6 @@ html{
 
 #nav{
   min-height: 100vh ;
-  margin-bottom: 6rem;
 }
 
 #app{
