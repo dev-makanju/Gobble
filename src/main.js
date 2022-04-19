@@ -6,6 +6,7 @@ import { Skeleton } from 'vue-loading-skeleton';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faHatWizard } from '@fortawesome/free-solid-svg-icons'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
+import vuelidate from 'vuelidate'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { faSubtract } from '@fortawesome/free-solid-svg-icons'
@@ -30,6 +31,7 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.component('PuSkeleton' , Skeleton)
 Vue.config.productionTip = false
 Vue.use(Carousel3d);
+Vue.use(vuelidate);
 
 new Vue({
   router,

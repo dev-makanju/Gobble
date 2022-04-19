@@ -23,10 +23,13 @@
                id="card-number" 
                @focus="isEmailInput=true"
                @blur="isFocusedEmail"
-               v-model.trim="data.email" 
+               v-model.trim="$v.email.$model" 
             >
             <div class="validate-error">
-              <p v-if="error">input fields are required!</p>
+                <span v-if="$v.email.$error">
+                    <p v-if="!$v.email.required">email is required</p> 
+                    <p v-if="!$v.email.email">email is not valid</p>
+                </span>
             </div>
         </div>
         <!--password-->
@@ -36,14 +39,22 @@
                Password
             </label>
             <input 
-               type="text" 
+               type="password" 
                id="card-number" 
                @focus="isPasswordInput=true"
                @blur="isFocusedPass"
-               v-model.trim="data.password" 
-            >
-            <div  class="validate-error">
-               <p v-if="error">input fields are required!</p>
+               v-model.trim="$v.password.$model">
+            <div class="validate-error">
+               <span v-if="$v.password.$error">
+                    <p 
+                        v-if="!$v.password.required">
+                        password is required
+                    </p>
+                    <p
+                        v-if="!$v.password.minLength">
+                        password must have at least {{ $v.password.$params.minLength.min }} numbers
+                    </p>
+               </span>
             </div>
         </div>
 
@@ -66,7 +77,7 @@
 
 import Logo from '../atoms/AppLogo.vue'
 import Loading from '../../molecules/Loading.vue'
-import { required , minLength , maxLength  ,  email , sameAs}  from 'vuelidate/lib/validators'
+import { required , minLength  ,  email }  from 'vuelidate/lib/validators'
 
 
 export default {
@@ -74,6 +85,17 @@ export default {
    components:{
        Logo , Loading
    },
+   data(){
+        return{
+            email:'',
+            password:'',
+            error: null,
+            isEmailInput: null,
+            isPasswordInput:null,
+            loading:null,
+            modalMessage:''
+        }   
+    },
     validations:{
         email:{
             required,
@@ -84,22 +106,9 @@ export default {
             minLength: minLength(8),
         },
     },
-   data(){
-        return{
-            data:{
-               email:'',
-               password:'',
-            },
-            error: null,
-            isEmailInput: null,
-            isPasswordInput:null,
-            loading:null,
-            modalMessage:''
-        }   
-    },
     methods:{
         isFocusedEmail(){
-            if(this.data.email !== ''){
+            if(this.email !== ''){
                 this.isEmailInput = true
             }else{
                 this.isEmailInput = false
@@ -107,7 +116,7 @@ export default {
         },
 
         isFocusedPass(){
-            if(this.data.password !== ''){
+            if(this.password !== ''){
                 this.isPasswordInput = true
             }else{
                 this.isPasswordInput = false
@@ -118,8 +127,8 @@ export default {
             if(this.$v.$invalid !== true){
                //
                const data = {
-                   cardNumber: this.data.email,
-                   cardName: this.data.password, 
+                   email: this.email,
+                   password: this.password, 
                 }
                 this.loading = true;
                 setTimeout( () => {
