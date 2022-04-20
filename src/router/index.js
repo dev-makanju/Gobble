@@ -94,7 +94,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to , from , next) => {
-  let documentTitle = `Gobble | ${to.meta.title}`;
+  let documentTitle = `Gobble - ${to.meta.title}`;
   document.title = documentTitle;
   next()
 });

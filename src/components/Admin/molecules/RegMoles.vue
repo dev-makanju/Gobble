@@ -3,17 +3,39 @@
     <div class="form__container">  
       <Logo class="logo"/>
       <form class="form__wrapper" action="">
-        <div class="form__wrapper__header">
-            <h2>Log in.</h2>
-            <p>Login with your data that you entered during your registration</p>
-        </div>
-        <!--app error-->
-        <div class="app-error">
+         <div class="form__wrapper__header">
+            <h2>Sign Up.</h2>
+            <p>Create an account with us to enjoy more customers benefits.</p>
+         </div>
+         <!--app error-->
+         <div class="app-error">
             <p v-if="error">invalid user!</p>
-        </div>
+         </div>
 
-        <!--email-->
-        <div class="form__control">
+         <!--username-->
+         <div class="form__control">
+            <label for="username"  
+               :class="isUserInput ? 'label active':'label' ">
+               Username
+            </label>
+            <input 
+               type="text" 
+               id="username" 
+               @focus="isUserInput=true"
+               @blur="isFocusedUser"
+               v-model.trim="$v.username.$model" 
+            >
+            <div class="validate-error">
+               <span v-if="$v.username.$error">
+                    <p v-if="!$v.username.required">username is required</p>
+                    <p v-if="!$v.username.minLength">username must have at least {{ $v.username.$params.minLength.min }} letters</p>
+                    <p v-if="!$v.username.maxLength">username must have at most {{ $v.username.$params.maxLength.max }} letters</p>
+               </span>
+            </div>
+         </div>
+
+         <!--email-->
+         <div class="form__control">
             <label for="email"  
                :class="isEmailInput ? 'label active':'label' ">
                Email
@@ -31,7 +53,8 @@
                     <p v-if="!$v.email.email">email is not valid</p>
                 </span>
             </div>
-        </div>
+         </div>
+
         <!--password-->
         <div class="form__control">
             <label for="password"  
@@ -58,17 +81,37 @@
             </div>
         </div>
 
+        <!--confirm password-->
+        <div class="form__control">
+            <label for="confirm_pass"  
+               :class="isConfPassInput ? 'label active':'label' ">
+               Confirm Password
+            </label>
+            <input 
+               type="password" 
+               id="confirm_pass" 
+               @focus="isConfPassInput=true"
+               @blur="isFocusedConfPass"
+               v-model.trim="$v.confirmPass.$model" 
+            >
+            <div class="validate-error">
+                <span v-if="$v.confirmPass.$error">
+                    <p v-if="!$v.password.required">confirm password is required</p>
+                    <p v-if="!$v.password.sameAsPassword">confirm password is not a match!</p>
+                </span>
+            </div>
+        </div>
+
         <div class="log">
             <div class="button">
                 <Loading v-if="loading"/>
-                <button class="btn-class" @click.prevent="login()">Log In</button>
+                <button class="btn-class" @click.prevent="login()">Sign Up</button>
             </div>
         </div>
         <div class="login__link">
-            <h4>Don't have an account? <router-link class="log__link" :to="{name:'Register'}">Sign up</router-link> </h4>
-            <p><router-link class="log__link" :to="{name:'Register'}">Forgot Password</router-link> </p>
+            <h4>Already a member? <router-link class="log__link" :to="{name:'Login'}">Sign in</router-link> </h4>
         </div>
-    </form>
+        </form>
    </div>
 </div>
 </template>
@@ -77,22 +120,26 @@
 
 import Logo from '../atoms/AppLogo.vue'
 import Loading from '../../molecules/Loading.vue'
-import { required , minLength  ,  email }  from 'vuelidate/lib/validators'
+import { required , minLength , maxLength  ,  email , sameAs }  from 'vuelidate/lib/validators'
 
 
 export default {
-   name:"LoginMoles",
+   name:"RegMoles",
    components:{
        Logo , Loading
    },
    data(){
         return{
             email:'',
+            username:'',
             password:'',
+            confirmPass:'',
             error: null,
             isEmailInput: null,
-            isPasswordInput:null,
-            loading:null,
+            isConfPassInput: null,
+            isPasswordInput: null,
+            isUserInput: null,
+            loading: null,
             modalMessage:''
         }   
     },
@@ -101,10 +148,19 @@ export default {
             required,
             email,
         },
+        username:{
+            required,
+            minLength: minLength(3),
+            maxLength: maxLength(10),
+        },
         password:{
             required,
             minLength: minLength(8),
         },
+        confirmPass:{
+            required,
+            sameAsPassword: sameAs('password')
+        }
     },
     methods:{
         isFocusedEmail(){
@@ -115,6 +171,14 @@ export default {
             }
         },
 
+        isFocusedUser(){
+            if(this.username !== ''){
+                this.isUserInput = true
+            }else{
+                this.isUserInput = false
+            }
+        },
+
         isFocusedPass(){
             if(this.password !== ''){
                this.isPasswordInput = true
@@ -122,10 +186,18 @@ export default {
                this.isPasswordInput = false
             }
         },
+
+        isFocusedConfPass(){
+            if(this.confirmPass !== ''){
+                this.isConfPassInput = true
+            }else{
+                this.isConfPassInput = false
+            }
+        },
+
         login(){
             this.$v.$touch()
             if(this.$v.$invalid !== true){
-               //
                const data = {
                    email: this.email,
                    password: this.password, 
@@ -221,7 +293,7 @@ export default {
     .form__control{
         font-family: 'IM Fell English', serif;
         position: relative ;
-        padding: 10px 0px ;
+        padding: 5px 0px ;
 
         .validate-error{
             height: 20px;
@@ -229,6 +301,7 @@ export default {
             p{
                color: red;
                font-weight: 300;
+               font-size: 13px;
             }
         }
 
@@ -248,7 +321,7 @@ export default {
             padding: 4px 2rem ;
             color: #506b66 ;
             position: absolute;
-            bottom: 40px;
+            bottom: 35px;
             transition: .5s ease;
             font-size: 14px;
         }
@@ -258,7 +331,7 @@ export default {
             padding: 0px  2rem ;
             color: #506b66;
             position: absolute ;
-            bottom: 60px;
+            bottom: 55px;
             transform: scale(0.7);
             transition: .5s ease;   
         }   
