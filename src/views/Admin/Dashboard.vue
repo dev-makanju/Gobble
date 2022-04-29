@@ -1,13 +1,20 @@
 <template>
     <div>
-       
+        <AdminTemplate/>
     </div>
 </template>
 
 <script>
-export default {
 
+import  AdminTemplate from '../../components/Admin/templates/DashboardTemp.vue'
+
+export default {
+    name: "AdminTemp",
+    components:{
+        AdminTemplate
+    }
 }
+
 </script>
 
 <style>

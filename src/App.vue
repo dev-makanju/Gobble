@@ -2,12 +2,12 @@
   <div id="app">
     <div id="nav">
         <!--Header--->
-        <HeaderOrganism v-if="isNavActive"/>
+        <HeaderOrganism v-if="!isNavActive"/>
         <router-view/>
         <!---Footer---->
     </div>
     <div v-if="!isMarketPlace">
-         <FooterOrganism v-if="isNavActive"/>
+         <FooterOrganism v-if="!isNavActive"/>
     </div>
   </div>
 </template>
@@ -29,6 +29,7 @@ export default {
     },
     created(){
       this.isMarketRoute();
+      this.showNavbar()
     },
     methods:{
       isMarketRoute(){
@@ -41,14 +42,17 @@ export default {
       showNavbar(){
         if(this.$route.name === "Login" || 
           this.$route.name === "Register" ||
-          this.$route.name === "ForgotPassword" ){
+          this.$route.name === "ForgotPassword" ||
+          this.$route.name === "Dashboard"){
           this.isNavActive = true;
+          return;
         }this.isNavActive = false;
       }
     },
     watch:{
       $route(){
         this.isMarketRoute;
+        this.showNavbar()
       }
     }
 }
@@ -61,6 +65,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English&display=swap');//cards only font-family: 'Mochiy Pop P One', sans-serif;
 @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English&family=Lora:ital@1&display=swap');//landing page font-family: 'Lora', serif;
 @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English&family=Lora:ital@1&family=Mochiy+Pop+P+One&display=swap');//Texts font-family: 'IM Fell English', serif;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
 
 $primary-color: #70B77E ;

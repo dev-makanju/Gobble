@@ -1,11 +1,12 @@
 <template>
+
 <div>
-    <div class="form__container">  
+   <div class="form__container">  
       <Logo class="logo"/>
       <form class="form__wrapper" action="">
         <div class="form__wrapper__header">
-            <h2>Log in.</h2>
-            <p>Login with your data that you entered during your registration</p>
+            <h2>Forgot Password.</h2>
+            <p>Submit your email, if valid you will receive a mail containing your password.</p>
         </div>
         <!--app error-->
         <div class="app-error">
@@ -32,41 +33,15 @@
                 </span>
             </div>
         </div>
-        <!--password-->
-        <div class="form__control">
-            <label for="password"  
-               :class="isPasswordInput ? 'label active':'label' ">
-               Password
-            </label>
-            <input 
-               type="password" 
-               id="password" 
-               @focus="isPasswordInput=true"
-               @blur="isFocusedPass"
-               v-model.trim="$v.password.$model">
-            <div class="validate-error">
-               <span v-if="$v.password.$error">
-                    <p 
-                        v-if="!$v.password.required">
-                        password is required
-                    </p>
-                    <p
-                        v-if="!$v.password.minLength">
-                        password must have at least {{ $v.password.$params.minLength.min }} numbers
-                    </p>
-               </span>
-            </div>
-        </div>
 
         <div class="log">
             <div class="button">
                 <Loading v-if="loading"/>
-                <button class="btn-class" @click.prevent="login()">Log In</button>
+                <button class="btn-class" @click.prevent="login()">Submit</button>
             </div>
         </div>
         <div class="login__link">
-            <h4>Don't have an account? <router-link class="log__link" :to="{name:'Register'}">Sign up</router-link> </h4>
-            <p><router-link class="log__link" :to="{name:'ForgotPassword'}">Forgot Password</router-link> </p>
+            <h4>Already a member? <router-link class="log__link" :to="{name:'Login'}">Sign In</router-link> </h4>
         </div>
     </form>
    </div>
@@ -77,18 +52,17 @@
 
 import Logo from '../atoms/AppLogo.vue'
 import Loading from '../../molecules/Loading.vue'
-import { required , minLength  ,  email }  from 'vuelidate/lib/validators'
+import { required ,  email }  from 'vuelidate/lib/validators'
 
 
 export default {
-   name:"LoginMoles",
+   name:"AuthForgotMoles",
    components:{
        Logo , Loading
    },
    data(){
         return{
             email:'',
-            password:'',
             error: null,
             isEmailInput: null,
             isPasswordInput:null,
@@ -101,10 +75,6 @@ export default {
             required,
             email,
         },
-        password:{
-            required,
-            minLength: minLength(8),
-        },
     },
     methods:{
         isFocusedEmail(){
@@ -115,13 +85,6 @@ export default {
             }
         },
 
-        isFocusedPass(){
-            if(this.password !== ''){
-               this.isPasswordInput = true
-            }else{
-               this.isPasswordInput = false
-            }
-        },
         login(){
             this.$v.$touch()
             if(this.$v.$invalid !== true){

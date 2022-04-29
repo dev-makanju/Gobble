@@ -41,6 +41,7 @@ export default {
          height: 30px;
          border-radius: 50%;
          background: #A8B087;
+         box-shadow: 0px 2px 5px 4px rgba(0 , 0 , 0 , .2);
       }
 
       &__white{
