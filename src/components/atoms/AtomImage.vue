@@ -1,7 +1,7 @@
 <template>
     <div class>
         <img 
-           :src="`../assets/${url}`"  
+           :src="url"  
            :alt="alt"
            loading="lazy"
         >

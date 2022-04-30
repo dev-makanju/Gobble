@@ -1,57 +1,55 @@
 <template>
     <div class="slider">
         <div class="router-link">
-            <router-link class="link" :to="{name:'MarketPlace'}">
-                 Get Started
-            </router-link>
+            <h2 class="text">Latest Products</h2>
         </div>
-
-        <carousel-3d>
-        <slide :index="0">
-            <img src="@/assets/mobile/people-g.jpg" alt="">
-        </slide>
-        <slide :index="1">
-            <img src="@/assets/mobile/tomato-g.jpg" alt="">
-        </slide>
-        <slide :index="2">
-            <img src="@/assets/mobile/dinner.jpg" alt="">
-        </slide>
-        </carousel-3d>
-
-        <div class="swipe">
-            <p>&lt;</p>&nbsp;&nbsp;&nbsp;<p>&gt;</p>
+        <div class="router-link card-slider">
+            <!--cards-->
+            <div class="cards">
+                <slidercard :card="card"/>
+            </div>
         </div>
-
     </div>
 </template>
 
 <script>
-    import { Carousel3d, Slide } from 'vue-carousel-3d';
+
+    import slidercard from '../../components/organisms/sliderCard.vue' 
 
     export default {
         name:"sliderTemplate",
         components:{
-            Carousel3d, 
-            Slide
+            slidercard,    
         },
+        props:['cards'],
         data(){
             return{
-                slide:{
-                    src:'',
-                }
+                isVisible:null,
             }
-        }
+        },
     }
 </script>
 
 <style lang="scss" scoped>
+    .text{
+        padding: 30px 10px;
+    }
+
     .slider{
-        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        width: 90%;
+        margin: 0px auto;
+        
+        @media(max-width: 768px){
+            width: 100%;
+        }
 
-        .router-link{
-            display: flex ;
-            justify-content: center ;
-
+        .router-link.card-slider{
+            padding:5px 0px;
+            min-height: 250px;
+            
             .link{
                 padding: 10px;
                 border-radius: 17px ;

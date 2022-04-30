@@ -150,7 +150,7 @@ export default {
    &__details{
       &>h1{
          font-family: 'Mochiy Pop P One', sans-serif;
-         color: #A8B087;    
+         color: #065143;    
       }
 
       &>h5{

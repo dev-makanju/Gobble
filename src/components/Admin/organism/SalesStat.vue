@@ -58,11 +58,7 @@
     .border-bottom{
         border-bottom: 1px solid;
     }
-
-    .chart{
-        
-    }
-
+    
     .table-container{
         border-radius: 7px;
         background: #fff ;
@@ -97,7 +93,7 @@
 
             .order{
             padding: 10px 20px;
-            color: #A8B087;
+            color: #065143;
             font-family: 'Poppins' , sans-serif;
             font-weight: bolder;
         } 
@@ -108,7 +104,7 @@
             &>thead{ 
 
                &>th{
-                  color: #A8B087; 
+                  color: #065143; 
                   padding: 20px 20px;
                   font-family: 'Poppins', sans-serif;
                   border-bottom: 1px solid #d0d6b6 ;
@@ -123,7 +119,7 @@
 
                }
                &>td{
-                  color: #A8B087; 
+                  color: #065143 ; 
                   padding: 10px 2px;
                   font-family: 'Poppins', sans-serif;
                   text-align: center ;

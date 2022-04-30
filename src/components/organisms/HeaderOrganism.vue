@@ -96,11 +96,11 @@ header{
         margin: 0px auto;
         display: flex;
         justify-content: space-between ;
-        align-items: center;
-        padding: 20px 4px;
+        align-items: center ;
+        padding: 10px 0px;
 
         @media (min-width:768px) {              
-            width: 80%;
+            width: 90%;
         }
     }
 }

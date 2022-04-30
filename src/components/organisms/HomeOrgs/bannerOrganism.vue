@@ -4,7 +4,7 @@
          <img class="banner-image" src="@/assets/mobile/a-image.jpg" alt="">
          <div class="banner__overlay"></div>
          <div class="banner__text">
-              <h1>Join Our Menber and get discount to 35% </h1>
+              <h1>Join Our Member and get discount to 35% </h1>
               <div class="banner__input">
                   <input type="text" placeholder="Enter your mail">
                   <button class="btn-class">Sign In</button>
@@ -35,7 +35,7 @@
         margin-top: 5rem;
 
         @media (min-width:768px) {
-            width: 80%;
+            width: 90%;
             margin: 0px auto;
             height: 300px;
             border-radius: 5px;
@@ -43,7 +43,7 @@
         }
 
         &__banner{
-            width: 80% ;
+            width: 90% ;
             height: 300px;
         }
 

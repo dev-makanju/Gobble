@@ -97,21 +97,22 @@ html{
 body{
   display: flex;
   background: rgb(241, 236, 236);
+  font-family: 'Poppins' , sans-serif;
 }
 
 h1 , h2 , h3 , h4 , h5 , h6 , p{
   color: #000;
-  font-family: 'IM Fell English', serif;
+  font-family: 'Poppins' , sans-serif;
 }
 
 ul , li , ol {
-  font-family: 'IM Fell English', serif;
+  font-family: 'Poppins' , sans-serif;
 }
 
 input{
    border: $secondary-color;
    box-sizing: border-box;
-   font-family: 'Mochiy Pop P One', sans-serif;
+   font-family: 'Poppins' , sans-serif;
    width: 100%;
    padding: 7px;
    font-size: 16px;

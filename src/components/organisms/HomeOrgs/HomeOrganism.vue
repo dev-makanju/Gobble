@@ -1,108 +1,132 @@
 <template>
-    <div>
-        <div>
-            <AtomText :tag="'h1'" :content="'Be the fastest in dilivering your food.'" :myStyle="hStyles"/>
-            <AtomText :tag="'p'" :content="'we are capable of making 24hours food dilivering services in your local enviroment.'" :myStyle="pStyles"/>
-            <div class="search_form">
-                <input type="text" 
-                       name=""
-                       id=  ""
-                       class="search"
-                       placeholder="" 
-                       v-model.trim="searchInput">
-                <div class="search__buttom">
-                    <div class="search__buttom_flex">
-                         <button class="home__btn active">Delivery</button>
-                    </div>
-                    <AtomText :tag="'p'" :content="'or'" :myStyle="pSty"/>
-                    <div class="search__buttom_flex">
-                         <button class="home__btn">Pick Up</button>
-                    </div>
-                </div>
+    <div class="carousel-main">
+        <transition-group name="fade" tag="div">
+            <div v-for="i in [currentIndex]" :key="i">
+                <img class="img" :src="currentImg" alt="">
             </div>
+        </transition-group>
+        <div class="overlay__link">
+            <font-awesome-icon 
+                class="prev" 
+                @click="prev" 
+                icon="angle-left"/>
+            <font-awesome-icon 
+                class="next" 
+                @click="next" 
+                icon="angle-right"/>
         </div>
     </div>
 </template>
 
 <script>
 
-    import AtomText from '../../atoms/AtomText.vue'
-
     export default {
         name:"HomeOrganism",
-        components:{
-            AtomText, 
-        },
         data(){
             return{
-                searchInput:'',
-                hStyles:{
-                    fontSize:'40px',
-                },
-                pStyles:{
-                    marginTop:'20px',
-                    fontSize:'16px',
-                    fontWeight:'500',
-                },
-                pSty:{
-                    color: '#065143',
-                    padding:'5px',
-                }
+                images: [
+                   "https://cdn.pixabay.com/photo/2018/03/07/18/42/menu-3206748_960_720.jpg",
+                   "https://cdn.pixabay.com/photo/2019/03/31/07/48/food-4092617_960_720.jpg",
+                   "https://cdn.pixabay.com/photo/2022/01/28/12/17/fast-food-6974507_960_720.jpg",
+                   "https://cdn.pixabay.com/photo/2018/11/04/16/12/morocco-3794323_960_720.jpg"
+                ],
+                timer: null,
+                currentIndex: 0,
             }
-        }   
+        },
+        mounted(){
+            this.startSlide()
+        },
+        methods:{
+            startSlide(){
+                this.timer = setInterval(this.next , 5000)
+            },
+            next(){
+                this.currentIndex += 1
+            },
+            prev(){
+                this.currentIndex -= 1
+            }
+        },
+        computed:{
+            currentImg: function(){
+                return this.images[Math.abs(this.currentIndex) % this.images.length]
+            }
+        } 
     }
 </script>
 
 <style lang="scss" scoped>
-        .search_form{
-            margin-top: 45px;
-        }
-
-      .search{
-        outline: none ;
-        padding: 10px 25px;
-        border-radius: 20px;
-        background: #b9bdaa ;  
-        font-family: 'IM Fell English', serif;  
-      }
-
-     .search__buttom{
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
+    .carousel-main{
+        height: 500px;
         width: 100%;
-        margin-top: 16px;
+        position: relative;
 
-
-        &_flex{
-            flex: 1 ;
+        .overlay__link{
+            position: absolute;
+            top: 0;
             display: flex;
             align-items: center;
-            justify-content:center;
-        }
-
-        .home__btn{
-            padding: 10px ;
-            border-radius: 17px ;
-            min-width: 100%;
-            background: #b9bdaa ;
-            border: 1px solid #065143 ;
-            outline: none ;
-            font-size: 16px;
-            font-family: 'IM Fell English', serif;
-            cursor: pointer ;
-
-            &.active{
-               background: #065143 ;
-               color: #eee;
-            }
+            height: 500px;
+            width: 100%;
+            margin:0px auto;
+            background: rgba(0, 0, 0, 0.37);
 
             &:hover{
-               background: #065143;
-               color: #eee;
+                .next,.prev{
+                    opacity: 1;
+                }
             }
-
         }
-     }
+    }
+
+    .fade-enter-active,
+    .fade-leave-active{
+        transition: all 0.9s ease;
+        overflow: hidden;
+        visibility: visible;
+        position: absolute;
+        width: 100%;
+        opacity: 1;   
+    }
+
+    .fade-enter,
+    .fade-leave-to{
+        visibility: hidden;
+        width: 100%;
+        opacity: 0;
+    }
+
+    .img{
+        height: 500px;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .prev, .next {
+        cursor: pointer;
+        position: absolute;
+        padding: 15px;
+        border: 1px solid rgb(185, 185, 185);
+        border-radius: 17px;
+        color: #eee;
+        transition: .8s ease-in-out;
+        opacity: 0;
+
+        &:hover{
+            background: #eee;
+            color: #065143;
+            scale: 2px;
+        }
+    }
+
+    .next{
+        right: 0;
+        margin-right: 20px;
+    }
+
+    .prev{
+        left: 0;
+        margin-left: 20px;
+    }
 </style>

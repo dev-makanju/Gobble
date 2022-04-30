@@ -86,7 +86,7 @@
     .card{
         width: 300px;
         min-width: 300px;
-        height: 420px;
+        min-height: 420px;
         border-radius: 5px;
         box-shadow: 0px 2px 30px 1px rgba(0 , 0 , 0 , .1);
         overflow: hidden;

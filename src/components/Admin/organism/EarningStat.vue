@@ -79,7 +79,7 @@
 
             .order{
             padding: 10px 20px;
-            color: #A8B087;
+            color: #065143;
             font-family: 'Poppins' , sans-serif;
             font-weight: bolder;
         } 
@@ -92,7 +92,7 @@
             }
 
             p{
-               color: #A8B087;
+               color: #065143;
                font-family: 'Poppins' , sans-serif;
                font-weight: bold; 
                margin-top: .5rem;
@@ -103,11 +103,11 @@
                padding-left: 10px;
 
                h4{
-                 color: #A8B087;
+                 color: #065143;
                  font-family: 'Poppins' , sans-serif;
                }
                p{
-                 color: #A8B087;
+                 color: #065143;
                  font-family: 'Poppins' , sans-serif;
                  font-weight: bold;
                }

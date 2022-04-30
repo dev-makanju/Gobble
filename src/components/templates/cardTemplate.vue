@@ -11,6 +11,7 @@
 </template>
 
 <script>
+
     import CardOrganism from '../organisms/CardOrgansim.vue'
 
     export default {

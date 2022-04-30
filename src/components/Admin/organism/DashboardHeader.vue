@@ -75,7 +75,7 @@ export default {
 .angle{
    cursor: pointer;
    transition: .5s ease;
-   color: #A8B087;
+   color: #065143;
 
    &.active{
       transform: rotate(90deg);
@@ -85,7 +85,7 @@ export default {
 .thu{
    margin: 10px;
    font-family: 'Poppins', sans-serif;
-   color: #A8B087;
+   color: #065143;
    font-weight: 600;
 }
 
@@ -130,7 +130,7 @@ export default {
 
             ul li{
                list-style-type: none;
-               color: #A8B087;
+               color: #065143;
                font-family: 'Poppins' , sans-serif ;
                font-weight: bold;
             }
@@ -159,7 +159,7 @@ export default {
 
       &.add{       
          padding: 5px 10px;
-         background: #A8B087;
+         background: #065143;
          display: flex;
          justify-content: center;
          align-items: center;
@@ -186,7 +186,7 @@ export default {
             background: #eee ;
             border-radius: 8px;
             padding: 7px;
-            outline: 1px solid #A8B087;
+            outline: 1px solid #065143;
             font-family: 'Poppins' , sans-serif;
          }
 
@@ -197,7 +197,7 @@ export default {
             padding: 10px;
             border-radius: 8px;
             cursor: pointer;
-            color: #A8B087;
+            color: #065143;
          }
       }
    }

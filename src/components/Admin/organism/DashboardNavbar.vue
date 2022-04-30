@@ -92,7 +92,7 @@ export default {
       .nav-link{
          text-decoration: none;
          font-weight: 500;
-         color: #A8B087;
+         color: #065143;
          font-family: 'Poppins', sans-serif;
 
          &:hover{
@@ -108,7 +108,7 @@ export default {
       padding: 20px 0px 20px 0px;
       
       &:hover{
-         background: #A8B087;
+         background: #065143;
       }
 
       .navbar.child{

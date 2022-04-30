@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 import { Skeleton } from 'vue-loading-skeleton';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
+import { faAngleLeft, faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import vuelidate from 'vuelidate'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
@@ -19,6 +19,7 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
 import { faDashboard } from '@fortawesome/free-solid-svg-icons'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import { faUserFriends } from '@fortawesome/free-solid-svg-icons'
+import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { faCommentDollar } from '@fortawesome/free-solid-svg-icons'
 import { faStore } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -40,6 +41,8 @@ library.add(faDashboard)
 library.add(faShoppingCart)
 library.add(faUserFriends)
 library.add(faCommentDollar)
+library.add(faAngleLeft)
+library.add(faAngleRight)
 library.add(faStore)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
