@@ -65,15 +65,6 @@
                         linkIcon:'cart-shopping',
                         styleObjects:styleObjects
                     },
-                    {
-                        compName:'',
-                        linkIcon:'cart-shopping',
-                        styleObjects:styleObjects
-                    },
-                    {
-                        compName:'',
-                        linkIcon:'cart-shopping',
-                    },
                 ],
                 support:[
                     {
@@ -164,11 +155,11 @@ footer{
         display: flex;
         flex-direction: row ;
         flex-wrap: wrap;
-        justify-content: space-between ;
+        justify-content: space-between;
         align-items: center;
         
         @media (min-width:768px) {      
-            width: 80%;
+            width: 90%;
             padding: 10px;   
         }
 

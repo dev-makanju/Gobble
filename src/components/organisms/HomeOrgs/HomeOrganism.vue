@@ -2,9 +2,13 @@
     <div class="carousel-main">
         <transition-group name="fade" tag="div">
             <div v-for="i in [currentIndex]" :key="i">
-                <img class="img" :src="currentImg" alt="">
+                <img class="img" :src="currentImg.url" alt="">
             </div>
         </transition-group>
+        <div  v-for="i in [currentIndex]" :key="i" class="banner__info">
+            <h1>{{ currentImg.headLine }}</h1>
+            <p>{{ currentImg.smallText }}</p>
+        </div>
         <div class="overlay__link">
             <font-awesome-icon 
                 class="prev" 
@@ -19,16 +23,31 @@
 </template>
 
 <script>
-
     export default {
         name:"HomeOrganism",
         data(){
             return{
                 images: [
-                   "https://cdn.pixabay.com/photo/2018/03/07/18/42/menu-3206748_960_720.jpg",
-                   "https://cdn.pixabay.com/photo/2019/03/31/07/48/food-4092617_960_720.jpg",
-                   "https://cdn.pixabay.com/photo/2022/01/28/12/17/fast-food-6974507_960_720.jpg",
-                   "https://cdn.pixabay.com/photo/2018/11/04/16/12/morocco-3794323_960_720.jpg"
+                    {
+                       url:"https://cdn.pixabay.com/photo/2018/03/07/18/42/menu-3206748_960_720.jpg",
+                       headLine:"Enjoy 10% off your first purchase",
+                       smallText:'make your first purchase by signing up...'
+                    },
+                    {
+                       url:"https://cdn.pixabay.com/photo/2019/03/31/07/48/food-4092617_960_720.jpg",
+                       headLine:'Yummy, delicious, fresh. ',
+                       smallText:'Enjoy the taste that differs...'
+                    },
+                    {
+                       url:"https://cdn.pixabay.com/photo/2022/01/28/12/17/fast-food-6974507_960_720.jpg",
+                       headLine:'We are best at what we do',
+                       smallText:'fast response and delivery time...'
+                    },
+                    {
+                       url:"https://cdn.pixabay.com/photo/2018/03/07/18/42/menu-3206748_960_720.jpg",
+                       headLine:'Your no 1 online food vendor',
+                       smallText:'"Amazing" is a way to describe us.'
+                    },
                 ],
                 timer: null,
                 currentIndex: 0,
@@ -70,13 +89,44 @@
             height: 500px;
             width: 100%;
             margin:0px auto;
-            background: rgba(0, 0, 0, 0.37);
+            background: rgba(0, 0, 0, 0.479);
 
             &:hover{
                 .next,.prev{
                     opacity: 1;
                 }
             }
+        }
+
+        .banner__info{
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            height: 500px;
+            width: 90%;
+            margin: auto;
+            display: flex;
+            justify-content: flex-end;
+            flex-direction: column;
+            z-index: 11;
+
+            h1{
+                color: #eee;
+                font-weight: 600;
+                font-size: 3rem;
+                padding: 20px 0px;
+                font-family: 'Mochiy Pop P One', sans-serif;
+            }
+
+            p{
+                font-weight: 100;
+                font-size: 1.2rem;
+                font-family: 'Mochiy Pop P One', sans-serif;
+                color: #eee;
+                margin-bottom: 2rem;
+            }
+
         }
     }
 
@@ -123,10 +173,12 @@
     .next{
         right: 0;
         margin-right: 20px;
+        z-index: 222;
     }
 
     .prev{
         left: 0;
         margin-left: 20px;
+        z-index: 222;
     }
 </style>

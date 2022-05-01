@@ -1,6 +1,7 @@
 <template>
    <div class="slide__wrapper">
-      <div class="card-slider">
+      <div class="main-padding">
+         <div class="card-slider">
          <div class="card-slider">
             <img class="card__image" src="@/assets/mobile/i-image.jpg" alt="">
          </div>
@@ -9,11 +10,13 @@
                <div class="item" style="display:inline-flex; font-weight: bold;">
                   <AtomStarf style="color:gold;font-size: 20px;"/><p class="padding:2px">4.6</p>
                </div> 
-               <h2>NgN 300.00</h2>
+               <h2>NGN 300.00</h2>
             </div>
+         </div>
          </div>
       </div>
-      <div class="card-slider">
+       <div class="main-padding">
+         <div class="card-slider">
          <div class="card-slider">
             <img class="card__image" src="@/assets/mobile/i-image.jpg" alt="">
          </div>
@@ -22,11 +25,14 @@
                <div class="item" style="display:inline-flex; font-weight: bold;">
                   <AtomStarf style="color:gold;font-size: 20px;"/><p class="padding:2px">4.6</p>
                </div> 
-               <h2>NgN 300.00</h2>
+               <h2>NGN 300.00</h2>
             </div>
+         </div>
          </div>
       </div>
-      <div class="card-slider">
+
+       <div class="main-padding">
+         <div class="card-slider">
          <div class="card-slider">
             <img class="card__image" src="@/assets/mobile/i-image.jpg" alt="">
          </div>
@@ -35,34 +41,9 @@
                <div class="item" style="display:inline-flex; font-weight: bold;">
                   <AtomStarf style="color:gold;font-size: 20px;"/><p class="padding:2px">4.6</p>
                </div> 
-               <h2>NgN 300.00</h2>
+               <h2>NGN 300.00</h2>
             </div>
          </div>
-      </div>
-      <div class="card-slider">
-         <div class="card-slider">
-            <img class="card__image" src="@/assets/mobile/i-image.jpg" alt="">
-         </div>
-         <div class="card-slider details">
-            <div class="description">
-               <div class="item" style="display:inline-flex; font-weight: bold;">
-                  <AtomStarf style="color:gold;font-size: 20px;"/><p class="padding:2px">4.6</p>
-               </div> 
-               <h2>NgN 300.00</h2>
-            </div>
-         </div>
-      </div>
-      <div class="card-slider">
-         <div class="card-slider">
-            <img class="card__image" src="@/assets/mobile/i-image.jpg" alt="">
-         </div>
-         <div class="card-slider details">
-            <div class="description">
-               <div class="item" style="display:inline-flex; font-weight: bold;">
-                  <AtomStarf style="color:gold;font-size: 20px;"/><p class="padding:2px">4.6</p>
-               </div> 
-               <h2>NgN 300.00</h2>
-            </div>
          </div>
       </div>
    </div>
@@ -85,11 +66,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+   .main-padding{
+      padding: 4px;
+   }
    .slide__wrapper{
       display: flex;
-      margin: -7px;
       overflow-x: auto;
+      gap: 2px;
+      align-items: center;
       flex-wrap: nowrap;
+      width: 100%;
       -webkit-overflow-scrolling: touch;
 
       &::-webkit-scrollbar{
@@ -105,8 +91,9 @@ export default {
       padding: 4px 0px;
 
       h2{
-         font-weight: 500;
+         font-weight: 300;
          padding: 1px 4px;
+         font-size: 16px;
          color: #065143;
       }
    }
@@ -114,28 +101,26 @@ export default {
    .card-slider{
       position: relative ;
       width: 200px;
-      margin: 7px;
       min-height: 150px;
       min-width: 200px;
       height: 150px;
       border-radius: 10px;
-      box-shadow: 0px 2px 37px 5px rgba(0 , 0 , 0 , .1);
       transition: .5s ease-in-out;
       overflow: hidden;
       cursor: pointer;
 
-         &:hover.card__image{
-            transform: scale(1.3);
+         &:hover{
+            transform: scale(1.04);
+            box-shadow: 0px 2px 1px 1px rgba(0 , 0 , 0 , .1);
          }
+         
+         .card__image{
+            width: 200px;
+            object-fit: cover;
+            min-height: inherit;
+            transition: .5s all ease;
+         }  
    }
-
-   .card__image{
-         min-width: 200px;
-         width: 200px;
-         object-fit: cover;
-         min-height: inherit;
-         transition: .5s all ease;
-   }  
 
    .details{
          position: absolute;

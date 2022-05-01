@@ -33,11 +33,10 @@
 
         & li{
            list-style-type: none ;
-           padding: 7px ;
+           padding: 6px  6px;
            border-radius: 50%;
            background: #066350 ;
            color: #000;
-           box-shadow: 0px 2px 33px 5px rgba(0 , 0 , 0 , .3);
            margin: 0px 7px ;
         }
         

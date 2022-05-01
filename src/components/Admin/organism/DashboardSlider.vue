@@ -131,6 +131,14 @@ export default {
    justify-content: center;
    gap: 4px;
    margin-top: 3rem;
+   overflow-x: auto;
+   flex-wrap: nowrap;
+
+   -webkit-overflow-scrolling: touch;
+
+   &::-webkit-scrollbar{
+      display: none;
+   }
 
    &__cards{
       display: flex;

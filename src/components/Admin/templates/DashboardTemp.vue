@@ -73,6 +73,7 @@ export default {
          &.nav{
             background: #fff ;
             border-right: 2px solid #a9c6c077;
+            transition: .5s ease;
 
             @media (max-width: 800px) {
                position: fixed;
@@ -80,6 +81,7 @@ export default {
                bottom: 0px;
                z-index: 111;
                width: 250px;
+               transform: translateX(-250px);
             }
          }
 

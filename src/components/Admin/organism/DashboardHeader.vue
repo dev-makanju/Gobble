@@ -87,6 +87,10 @@ export default {
    font-family: 'Poppins', sans-serif;
    color: #065143;
    font-weight: 600;
+   
+   @media (max-width: 800px) {
+      display: none;
+   }
 }
 
 .dashboard__header{
@@ -174,6 +178,11 @@ export default {
          color: #eee;
          margin-left: .5rem;
          font-family: 'Poppins', sans-serif;
+         transition: .5s ease;
+
+         @media (max-width: 800px) {
+            display: none;
+         }
       }
 
       &.inp{
