@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import  observer from './directives/observerApi'
 import { Skeleton } from 'vue-loading-skeleton';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faAngleLeft, faCartShopping } from '@fortawesome/free-solid-svg-icons'
@@ -50,6 +51,7 @@ Vue.component('PuSkeleton' , Skeleton)
 Vue.config.productionTip = false
 Vue.use(Carousel3d);
 Vue.use(vuelidate);
+Vue.directive( "scrollAnimate" , observer)
 
 new Vue({
   router,

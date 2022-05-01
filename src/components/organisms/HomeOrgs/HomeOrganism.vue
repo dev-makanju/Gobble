@@ -41,10 +41,11 @@
                     {
                        url:"https://cdn.pixabay.com/photo/2022/01/28/12/17/fast-food-6974507_960_720.jpg",
                        headLine:'We are best at what we do',
-                       smallText:'fast response and delivery time...'
+                       smallText:'fast response and a good delivery time...'
                     },
                     {
-                       url:"https://cdn.pixabay.com/photo/2018/03/07/18/42/menu-3206748_960_720.jpg",
+
+                       url:"https://cdn.pixabay.com/photo/2018/05/15/09/01/foodora-3402507_960_720.jpg",
                        headLine:'Your no 1 online food vendor',
                        smallText:'"Amazing" is a way to describe us.'
                     },

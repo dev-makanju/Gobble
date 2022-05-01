@@ -1,6 +1,6 @@
 <template>
     <div class="card__wrapper">
-        <div v-for="card  in cards" :key="card.id" class="card">
+        <div v-scrollAnimate  v-for="card  in cards" :key="card.id" class="card">
             <div class="card_image_wrapper">
                 <PuSkeleton class="is__loading">
                 </PuSkeleton>
@@ -81,6 +81,7 @@
         gap: 14px;
         justify-content: center;
         align-items: center;
+
     }
 
     .card{
@@ -91,6 +92,19 @@
         box-shadow: 0px 2px 30px 1px rgba(0 , 0 , 0 , .1);
         overflow: hidden;
         transition: .5s ;
+
+        @media (max-width: 450px){
+            &.before-enter{
+               opacity: 0;
+               transform: translateY(30px);
+            }
+
+            &.enter{
+                opacity: 1;
+                transform: translateY(0px);
+            }
+        }
+
 
         &:hover{
              transform: scale(1.02);
