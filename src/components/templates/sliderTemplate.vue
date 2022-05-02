@@ -6,7 +6,7 @@
         <div class="router-link card-slider">
             <!--cards-->
             <div class="cards">
-                <slidercard :card="card"/>
+                <slidercard :card="cards"/>
             </div>
         </div>
     </div>

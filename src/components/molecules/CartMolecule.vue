@@ -3,7 +3,7 @@
         <ul class="nav-link-cart" v-for="( cartList , index) in cartLists" :key="index">
             <li>                
                 <atom-cart-link :cartList="cartList">
-                    <AtomIcon class="" :content="cartList.linkIcon"/>
+                    <AtomIcon :content="cartList.linkIcon"/>
                 </atom-cart-link>
             </li>
         </ul>

@@ -21,6 +21,7 @@
             <input 
                type="text" 
                id="username" 
+               autocomplete="off"
                @focus="isUserInput=true"
                @blur="isFocusedUser"
                v-model.trim="$v.username.$model" 
@@ -43,14 +44,15 @@
             <input 
                type="text" 
                id="email" 
+               autocomplete="off"
                @focus="isEmailInput=true"
                @blur="isFocusedEmail"
                v-model.trim="$v.email.$model" 
             >
             <div class="validate-error">
                 <span v-if="$v.email.$error">
-                    <p v-if="!$v.email.required">email is required</p> 
-                    <p v-if="!$v.email.email">email is not valid</p>
+                   <p v-if="!$v.email.required">email is required</p> 
+                   <p v-if="!$v.email.email">email is not valid</p>
                 </span>
             </div>
          </div>
@@ -70,8 +72,8 @@
             <div class="validate-error">
                <span v-if="$v.password.$error">
                     <p 
-                        v-if="!$v.password.required">
-                        password is required
+                       v-if="!$v.password.required">
+                       password is required
                     </p>
                     <p
                         v-if="!$v.password.minLength">
@@ -85,19 +87,18 @@
         <div class="form__control">
             <label for="confirm_pass"  
                :class="isConfPassInput ? 'label active':'label' ">
-               Confirm Password
+               <span>Confirm Password</span> 
             </label>
             <input 
                type="password" 
                id="confirm_pass" 
                @focus="isConfPassInput=true"
                @blur="isFocusedConfPass"
-               v-model.trim="$v.confirmPass.$model" 
-            >
+               v-model.trim="$v.confirmPass.$model">
             <div class="validate-error">
                 <span v-if="$v.confirmPass.$error">
-                    <p v-if="!$v.password.required">confirm password is required</p>
-                    <p v-if="!$v.password.sameAsPassword">confirm password is not a match!</p>
+                   <p v-if="!$v.password.required">confirm password is required</p>
+                   <p v-if="!$v.password.sameAsPassword">confirm password is not a match!</p>
                 </span>
             </div>
         </div>
@@ -109,10 +110,10 @@
             </div>
         </div>
         <div class="login__link">
-            <h4>Already a member? <router-link class="log__link" :to="{name:'Login'}">Sign in</router-link> </h4>
+            <h4>Already a member?<router-link class="log__link" :to="{name:'Login'}">Sign in</router-link> </h4>
         </div>
         </form>
-   </div>
+    </div>
 </div>
 </template>
 
@@ -121,7 +122,6 @@
 import Logo from '../atoms/AppLogo.vue'
 import Loading from '../../molecules/Loading.vue'
 import { required , minLength , maxLength  ,  email , sameAs }  from 'vuelidate/lib/validators'
-
 
 export default {
    name:"RegMoles",
@@ -198,7 +198,7 @@ export default {
         login(){
             this.$v.$touch()
             if(this.$v.$invalid !== true){
-               const data = {
+                const data = {
                    email: this.email,
                    password: this.password, 
                 }
@@ -310,29 +310,33 @@ export default {
             padding: 4px 2rem;
             height: 45px;
             border: 1px solid #065143 ;
-            font-family: sans-serif;
+            font-family: 'Poppins', sans-serif;
             font-size: 14px;
             background: none;
             position: relative;
+
+            &:focus{    
+                outline: none;
+            }
         }
 
         & .label{
             outline: none;
-            padding: 4px 2rem ;
             color: #506b66 ;
             position: absolute;
             bottom: 35px;
             transition: .5s ease;
             font-size: 14px;
+            margin-left: 2rem;
+            font-family: 'Poppins' , sans-serif;
         }
 
         .label.active{
             outline: none ;
-            padding: 0px  2rem ;
             color: #506b66;
-            position: absolute ;
+            position: absolute;
             bottom: 55px;
-            transform: scale(0.7);
+            font-size: 9px;
             transition: .5s ease;   
         }   
     }

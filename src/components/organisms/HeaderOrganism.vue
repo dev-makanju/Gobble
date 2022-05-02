@@ -35,16 +35,16 @@
             let onClick = () => {
                 this.$store.dispatch('openCart');
             }
+            let  homeLog = () => {
+                if(this.$route.path != '/'){
+                    this.$router.push('/')
+                }
+            }
             return{
                 urlLists:[
                     {
                         compName:'',
                         linkTitle:'Menu',
-                        styleObjects:styleObjects
-                    },
-                    {
-                        compName:'',
-                        linkTitle:'Offer',
                         styleObjects:styleObjects
                     },
                     {
@@ -57,11 +57,12 @@
                     {
                         compName:'Home',
                         linkIcon:'home',
+                        click: homeLog
                     },
                     {
                         compName:'MarketPlace',
                         linkIcon:'cart-shopping',
-                        click:onClick,
+                        click: onClick,
                         count: 0,
                     },
                 ]

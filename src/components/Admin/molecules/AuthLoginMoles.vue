@@ -9,7 +9,7 @@
         </div>
         <!--app error-->
         <div class="app-error">
-            <p v-if="error">invalid user!</p>
+            <p v-if="error">{{ errorInfo }}</p>
         </div>
 
         <!--email-->
@@ -21,6 +21,7 @@
             <input 
                type="text" 
                id="email" 
+               autocomplete="off"
                @focus="isEmailInput=true"
                @blur="isFocusedEmail"
                v-model.trim="$v.email.$model" 
@@ -78,7 +79,7 @@
 import Logo from '../atoms/AppLogo.vue'
 import Loading from '../../molecules/Loading.vue'
 import { required , minLength  ,  email }  from 'vuelidate/lib/validators'
-
+import { mapActions } from 'vuex'
 
 export default {
    name:"LoginMoles",
@@ -93,7 +94,8 @@ export default {
             isEmailInput: null,
             isPasswordInput:null,
             loading:null,
-            modalMessage:''
+            modalMessage:'',
+            errorInfo:''
         }   
     },
     validations:{
@@ -107,6 +109,7 @@ export default {
         },
     },
     methods:{
+        ...mapActions(['userSignIn']),
         isFocusedEmail(){
             if(this.email !== ''){
                 this.isEmailInput = true
@@ -125,16 +128,25 @@ export default {
         login(){
             this.$v.$touch()
             if(this.$v.$invalid !== true){
-               //
-               const data = {
+                const data = {
                    email: this.email,
                    password: this.password, 
                 }
                 this.loading = true;
-                setTimeout( () => {
-                    this.stopLoader()
-                } , 5000 )
-                console.log(data);
+                this.userSignIn(data).then(res => {
+                    if(res.status === 200){
+                        this.loading = false
+                        if(res.data.user.role === 'Admin'){
+                           this.$router.push('/dashboard')
+                        }
+                        //want to use switch case here ...
+                    }
+                }).catch(err => {
+                    this.loading = false
+                    this.error = true;
+                    this.errorInfo = 'Oops , try again'
+                    console.log(err)
+                });
             }    
         },
       }

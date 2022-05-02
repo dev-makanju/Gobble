@@ -22,6 +22,7 @@
             <input 
                type="text" 
                id="email" 
+               autocomplete="off"
                @focus="isEmailInput=true"
                @blur="isFocusedEmail"
                v-model.trim="$v.email.$model" 

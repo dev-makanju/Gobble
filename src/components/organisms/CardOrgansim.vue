@@ -36,6 +36,8 @@
 <script>
     import AtomIcon from '../atoms/AtomIcon.vue'
     import AtomStarf from '../atoms/AtomStarfRating.vue'
+    import { mapGetters } from 'vuex'
+
     export default {
         name:"CardOrganism",
         props:['cards'],
@@ -52,15 +54,19 @@
             this.delayImageLoader();
         },
         methods:{
-           delayImageLoader(){
+            ...mapGetters(['isLoggedIn']),
+            delayImageLoader(){
               this.isVisible = false;
               setTimeout(() => {
                  this.isVisible = true
               } , 5000)
-           },
-           addToCart(card){
-               this.$emit('add-to-cart' , card)
-           }
+            },
+            addToCart(card){
+               //check if user is logged in
+                if(this.isLoggedIn){
+                   this.$emit('add-to-cart' , card);
+                }this.$router.push({name:'Login'});
+            }
         },
         computed:{
             filterHomeInputs: function(){

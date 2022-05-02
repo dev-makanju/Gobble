@@ -52,89 +52,99 @@
             linksMolecules,
         },
         data(){
+            let onClick = () => {
+                this.$store.dispatch('openCart');
+            }
+            let  homeLog = () => {
+                if(this.$route.path != '/'){
+                    this.$router.push('/')
+                }
+            }
             return{
                 cartLists:[
                     {
                         compName:'',
-                        linkIcon:'heart',
+                        linkIcon:'home',
+                        click:  homeLog,
                         styleObjects:styleObjects
 
                     },
                     {
                         compName:'',
+                        click: onClick,
                         linkIcon:'cart-shopping',
                         styleObjects:styleObjects
                     },
                 ],
                 support:[
                     {
-                        compName:'#',
+                        compName:'Home',
                         linkTitle:'Account',
                         styleObjects:styleObjects
                     },
                     {
-                        compName:'#',
+                        compName:'Home',
                         linkTitle:'Support center',
                         styleObjects:styleObjects
                     },
                     {
-                        compName:'#',
+                        compName:'Home',
                         linkTitle:'Feedback',
                         styleObjects:styleObjects
                     },
                     {
-                        compName:'#',
+                        compName:'Home',
                         linkTitle:'Accesibility',
                         styleObjects:styleObjects
                     },
                 ],
                 menu:[
                     {
-                        compName:'#',
+                        compName:'Home',
                         linkTitle:'Special',
                         styleObjects:styleObjects
                     },
                     {
-                        compName:'#',
+                        compName:'Home',
                         linkTitle:'Popular',
                         styleObjects:styleObjects
                     },
                     {
-                        compName:'#',
+                        compName:'Home',
                         linkTitle:'Cartigory',
                         styleObjects:styleObjects
                     },
                 ],
                 links:[
                     {
-                        compName:'',
+                        compName:'Home',
                         linkTitle:'Payment',
                         styleObjects:styleObjects
                     },
                     {
-                        compName:'',
+                        compName:'Home',
                         linkTitle:'Terms of Service',
                         styleObjects:styleObjects
                     },
                     {
-                        compName:'',
+                        compName:'Home',
                         linkTitle:'Privacy Policy',
                         styleObjects:styleObjects
                     },
                     {
-                        compName:'',
+                        compName:'Home',
                         linkTitle:'About Us',
                         styleObjects:styleObjects
                     },
                 ],
                 contact:[
                     {
-                        compName:'',
+                        compName:'Home',
                         linkTitle:'Makurseme@gmail.com',
                         styleObjects:styleObjects
                     },
                     {
-                        compName:'',
+                        compName:'Home',
                         linkTitle:'Obafemi Awolowo way Osun state',
                         styleObjects:styleObjects
                     },
