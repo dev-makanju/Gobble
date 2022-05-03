@@ -5,8 +5,9 @@ const token = localStorage.getItem('gobtoken');
 const apiClient = axios.create({
     baseURL:'https://gobble-foods.herokuapp.com/api/v1/',
     headers:{
-       'Access-Control-Allow-Origin':'*',
-       'Authorization': 'Bearer'+token
+       'Access-Control-Allow-Origin': '*',
+       'Authorization': 'Bearer'+token,
+       'Content-Type': 'application/json'
     }
 });
 
@@ -19,6 +20,6 @@ export default {
       return apiClient.post('auth/signup' , data);
    },
    passwordResetEvent(data){
-      return apiClient.post('forgotPassword' , data)
+      return apiClient.post('forgotPassword' , data);
    }
 }

@@ -208,6 +208,7 @@ export default {
                    email: this.email,
                    password: this.password, 
                 }
+                console.log(data)
                 this.loading = true;
                 this.userSignUp(data).then( res => {
                     if(res.status === 200){
@@ -217,7 +218,7 @@ export default {
                         setTimeout( () => {
                           this.success = false;
                           this.errorInfo = ''
-                          this.$router.push({ name:'Login'})
+                          this.$router.push({name:'Login'})
                         } , 4000 );
                         //redirect user to login page with a success message
                     }
