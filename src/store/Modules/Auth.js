@@ -2,48 +2,48 @@ import axios from 'axios'
 import eventService from '../../Events/EventService'
 
 const state = {
-   token: localStorage.getItem('token') || '',
+   token: localStorage.getItem('gobtoken') || '',
    user:{},
    status: '',
 }
 
-const getter = {
+const getters = {
    isLoggedIn: (state) => !!state.token,
-   user: state.user,
+   user: (state) => state.user,
    authStatus: (state) => state.status
 }
 
-const mutation = {
+const mutations = {
 
 }
 
-const action = {
+const actions = {
    //sign user in
-   async userSignIn({commit} , data){
-       try{
-         const res = await eventService.loginEvent(data)
-         console.log(res)
-         if(res.status){
-            const token = res.data.token;
-            const user = res.data.user;
-            localStorage.setItem("token" , token);
+   async userLogin({commit} , data){
+       try{ 
+         const response = await eventService.loginEvent(data);
+         console.log(response)
+         if(response.status){
+            const token = response.data.token;
+            const user = response.data.user;
+            localStorage.setItem("gobtoken" , token);
             axios.defaults.headers.common['Authorization'] = token;
             const dataInfo = {
                token: token,
                user: user,
             }
-            commit("user_info" , dataInfo)
-            return res
+            commit("user_info" , dataInfo);
+            return response;
          }
        }catch(err){
-         return err.response
+         return err.response;
        }
    },
 
    //sign user un
    async userSignUp({commit} , data){
       try{
-         const res = await eventService.registerEvent({commit} , data );
+         const res = await eventService.registerEvent(data );
          console.log(res)
          if(res.status){
             commit("user__registered");
@@ -55,9 +55,9 @@ const action = {
    },
    //forgot password
 
-   async forgotPassword(){
+   async forgotPassword({commit}, data){
       try{
-         const res = await eventService.passwordResetEvent({commit} , data);
+         const res = await eventService.passwordResetEvent(data);
          console.log(res)
          if(res.status){
             commit("password__reset")
@@ -67,9 +67,11 @@ const action = {
          return err.response
       }
    }
-
 }
 
-const module = {
-   
+export default {
+   state,
+   getters,
+   mutations,
+   actions,
 }

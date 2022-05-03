@@ -89,19 +89,15 @@ export default {
         login(){
             this.$v.$touch()
             if(this.$v.$invalid !== true){
-               //
-               const data = {
+                //
+                const data = {
                    email: this.email,
-                   password: this.password, 
                 }
-                this.loading = true;
-                setTimeout( () => {
-                    this.stopLoader()
-                } , 5000 )
-                console.log(data);
+                console.log(data)
+                
             }    
         },
-      }
+    }
 }
 
 </script>

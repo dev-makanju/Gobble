@@ -109,7 +109,7 @@ export default {
         },
     },
     methods:{
-        ...mapActions(['userSignIn']),
+        ...mapActions(['userLogin']),
         isFocusedEmail(){
             if(this.email !== ''){
                 this.isEmailInput = true
@@ -133,18 +133,29 @@ export default {
                    password: this.password, 
                 }
                 this.loading = true;
-                this.userSignIn(data).then(res => {
+                this.userLogin(data).then( res => {
                     if(res.status === 200){
                         this.loading = false
                         if(res.data.user.role === 'Admin'){
-                           this.$router.push('/dashboard')
+                           this.$router.push('/dashboard');
                         }
                         //want to use switch case here ...
-                    }
+                    }this.loading = false;
+                    this.error = true;
+                    this.errorInfo = res.data.error.message
+                    setInterval( () => {
+                        this.error = false
+                        this.errorInfo = ''//clear
+                    } , 7000)
+                     
                 }).catch(err => {
                     this.loading = false
                     this.error = true;
                     this.errorInfo = 'Oops , try again'
+                    this.errorInfo = ''//clear
+                    setInterval( () => {
+                        this.error = false
+                    } , 7000)
                     console.log(err)
                 });
             }    

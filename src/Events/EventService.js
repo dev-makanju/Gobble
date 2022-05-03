@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 //get token
-const token = localStorage.getItem('token');
+const token = localStorage.getItem('gobtoken');
 const apiClient = axios.create({
     baseURL:'https://gobble-foods.herokuapp.com/api/v1/',
     headers:{
@@ -11,7 +11,7 @@ const apiClient = axios.create({
 });
 
 //export api client for usage...
-export default{
+export default {
    loginEvent(data){
       return apiClient.post('auth/login' , data);
    },

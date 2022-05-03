@@ -269,7 +269,7 @@ export default {
          height: 30px;
 
          p{
-             padding: 8px;
+             padding: 4px;
              background: #e74e3c;
              border-radius: 5px;
              width: 100%;

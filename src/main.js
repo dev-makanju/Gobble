@@ -25,6 +25,7 @@ import { faCommentDollar } from '@fortawesome/free-solid-svg-icons'
 import { faStore } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import Carousel3d from 'vue-carousel-3d';
+import axios from 'axios'
 
 
 library.add(faCartShopping)
@@ -58,3 +59,5 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
+
+Vue.prototype.http = axios
