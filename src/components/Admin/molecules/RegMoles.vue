@@ -3,7 +3,7 @@
     <div class="form__container">  
       <Logo class="logo"/>
       <form class="form__wrapper" action="">
-         <div class="form__wrapper__header">
+        <div class="form__wrapper__header">
             <h2>Sign Up.</h2>
             <p>Create an account with us to enjoy more customers benefits.</p>
          </div>
@@ -210,7 +210,6 @@ export default {
                 }
                 this.loading = true;
                 this.userSignUp(data).then( res => {
-                    console.log(res)
                     if(res.status === 200){
                         this.loading = false;
                         this.success = true;

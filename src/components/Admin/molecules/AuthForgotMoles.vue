@@ -1,5 +1,4 @@
 <template>
-
 <div>
    <div class="form__container">  
       <Logo class="logo"/>
@@ -9,8 +8,9 @@
             <p>Submit your email, if valid you will receive a mail containing your password.</p>
         </div>
         <!--app error-->
-        <div class="app-error">
-            <p v-if="error">invalid user!</p>
+        <div :class="['app',error ?'error': 'success']">
+            <p v-if="error">{{ errorInfo }}</p>
+            <p v-if="success">{{ errorInfo }}</p>
         </div>
 
         <!--email-->
@@ -54,6 +54,7 @@
 import Logo from '../atoms/AppLogo.vue'
 import Loading from '../../molecules/Loading.vue'
 import { required ,  email }  from 'vuelidate/lib/validators'
+import { mapActions } from 'vuex'
 
 
 export default {
@@ -65,7 +66,9 @@ export default {
         return{
             email:'',
             error: null,
+            success: null,
             isEmailInput: null,
+            errorInfo:'',
             isPasswordInput:null,
             loading:null,
             modalMessage:''
@@ -78,6 +81,7 @@ export default {
         },
     },
     methods:{
+        ...mapActions(['forgotPassword']),
         isFocusedEmail(){
             if(this.email !== ''){
                 this.isEmailInput = true
@@ -85,16 +89,40 @@ export default {
                 this.isEmailInput = false
             }
         },
-
         login(){
             this.$v.$touch()
             if(this.$v.$invalid !== true){
-                //
+                //get all user info
                 const data = {
                    email: this.email,
                 }
-                console.log(data)
-                
+                this.loading = true;
+                this.forgotPassword(data).then(res => {
+                    if(res.status === 200){
+                        this.loading = false;
+                        this.success = true;
+                        this.errorInfo = res.data
+                        setInterval( () => {
+                            this.success = false ;
+                            this.errorInfo = '';
+                        }, 7000);
+                    }this.loading = false;
+                    this.error = true;
+                    this.errorInfo = res.data.error.message
+                    setInterval( () => {
+                        this.error = false;
+                        this.errorInfo = ''
+                    }, 7000);
+                }).catch(err => {
+                    this.loading = false;
+                    this.error = true;
+                    this.errorInfo = 'Oops!! , Try again.'
+                    setInterval( () => {
+                        this.error = false ;
+                        this.errorInfo = ''
+                    }, 5000);
+                    console.log(err);
+                })
             }    
         },
     }

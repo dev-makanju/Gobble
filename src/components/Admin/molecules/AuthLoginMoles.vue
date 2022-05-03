@@ -8,8 +8,9 @@
             <p>Login with your data that you entered during your registration</p>
         </div>
         <!--app error-->
-        <div class="app-error">
+        <div :class="['app',error ?'error': 'success']">
             <p v-if="error">{{ errorInfo }}</p>
+            <p v-if="success">{{ errorInfo }}</p>
         </div>
 
         <!--email-->
@@ -91,6 +92,7 @@ export default {
             email:'',
             password:'',
             error: null,
+            success: null,
             isEmailInput: null,
             isPasswordInput:null,
             loading:null,
