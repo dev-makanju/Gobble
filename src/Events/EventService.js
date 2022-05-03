@@ -16,7 +16,7 @@ export default {
       return apiClient.post('auth/login' , data);
    },
    registerEvent(data){
-      return apiClient.post('auth/login' , data);
+      return apiClient.post('auth/signup' , data);
    },
    passwordResetEvent(data){
       return apiClient.post('forgotPassword' , data)

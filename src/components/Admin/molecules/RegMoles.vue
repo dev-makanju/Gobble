@@ -8,8 +8,9 @@
             <p>Create an account with us to enjoy more customers benefits.</p>
          </div>
          <!--app error-->
-         <div class="app-error">
-            <p v-if="error">invalid user!</p>
+         <div :class="['app',error ?'error': 'success']">
+            <p v-if="error">{{ errorInfo }}</p>
+            <p v-if="success">{{ errorInfo }}</p>
          </div>
 
          <!--username-->
@@ -122,6 +123,7 @@
 import Logo from '../atoms/AppLogo.vue'
 import Loading from '../../molecules/Loading.vue'
 import { required , minLength , maxLength  ,  email , sameAs }  from 'vuelidate/lib/validators'
+import { mapActions } from 'vuex'
 
 export default {
    name:"RegMoles",
@@ -135,6 +137,8 @@ export default {
             password:'',
             confirmPass:'',
             error: null,
+            success: null,
+            errorInfo: '',
             isEmailInput: null,
             isConfPassInput: null,
             isPasswordInput: null,
@@ -163,6 +167,7 @@ export default {
         }
     },
     methods:{
+        ...mapActions(['userSignUp']),
         isFocusedEmail(){
             if(this.email !== ''){
                 this.isEmailInput = true
@@ -199,14 +204,42 @@ export default {
             this.$v.$touch()
             if(this.$v.$invalid !== true){
                 const data = {
+                   name: this.username, 
                    email: this.email,
                    password: this.password, 
                 }
                 this.loading = true;
-                setTimeout( () => {
-                    this.stopLoader()
-                } , 5000 )
-                console.log(data);
+                this.userSignUp(data).then( res => {
+                    console.log(res)
+                    if(res.status === 200){
+                        this.loading = false;
+                        this.success = true;
+                        this.errorInfo = res.data
+                        setTimeout( () => {
+                          this.success = false;
+                          this.errorInfo = ''
+                          this.$router.push({ name:'Login'})
+                        } , 4000 );
+                        //redirect user to login page with a success message
+                    }
+                    this.loading = false;
+                    this.error = true
+                    this.errorInfo = res.data.error.message
+                    setTimeout( () => {
+                          this.error = false;
+                          this.errorInfo = ''
+                    } , 5000 )
+
+                }).catch(err => {
+                    this.loading = false;
+                    this.error = true
+                    this.errorInfo = 'Oops!! , Try again'
+                    setTimeout( () => {
+                          this.error = false;
+                          this.errorInfo = ''
+                    } , 5000 )
+                    console.log(err);
+                })
             }    
         },
       }
@@ -248,7 +281,7 @@ export default {
            padding: 10px 0px;
            text-align: center;
 
-           .log__link{
+            .log__link{
                color: #065143;
                text-decoration: none;
             }
@@ -265,17 +298,30 @@ export default {
         }
     }
 
-    .app-error{
-         height: 30px;
-
-         p{
-             padding: 4px;
-             background: #e74e3c;
-             border-radius: 5px;
-             width: 100%;
-             color: #eee;
-             text-align: center ;
-         }
+    .app{
+        height: 33px;
+        &.error{
+          p{
+            padding: 4px;
+            background: #e74e3c;
+            border-radius: 5px;
+            width: 100%;
+            color: #eee;
+            font-size: 12px;
+          }
+        }
+        &.success{
+            p{
+               padding: 4px;
+               border: 1px dashed rgb(189, 241, 189);
+               background: green;
+               border-radius: 5px;
+               width: 100%;
+               color: #eee;
+               text-align: center;
+               font-size: 12px;  
+            }
+        }
     }
 
     &__header{
