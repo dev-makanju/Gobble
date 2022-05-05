@@ -18,20 +18,21 @@ export default{
 </script>
 
 <style lang="scss" scoped>
+
    .main-banner{
-      height: 400px;
+      height: 60vh ;
       background: #065143; 
       position: relative ;    
 
       .background{
-         height: 400px;
-         width: 100%;
-         position: absolute;
-         top: 0px;
+         height: 60vh ;
+         width: 100% ;
+         position: absolute ;
+         top: 0px ;
 
          img{
             width: 100%;
-            height: 400px;
+            height: 60vh;
             object-fit: cover;
          }
       }

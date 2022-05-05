@@ -1,7 +1,6 @@
 <template>
 <div>
-   <div class="form__container">  
-      <Logo class="logo"/>
+    <div class="form__container">  
       <form class="form__wrapper" action="">
         <div class="form__wrapper__header">
             <h2>Forgot Password.</h2>
@@ -51,7 +50,6 @@
 
 <script>
 
-import Logo from '../atoms/AppLogo.vue'
 import Loading from '../../molecules/Loading.vue'
 import { required ,  email }  from 'vuelidate/lib/validators'
 import { mapActions } from 'vuex'
@@ -60,7 +58,7 @@ import { mapActions } from 'vuex'
 export default {
    name:"AuthForgotMoles",
    components:{
-       Logo , Loading
+       Loading
    },
    data(){
         return{

@@ -1,7 +1,10 @@
 <template>
    <div class="template">
       <div class="templateWrapper">
-         <AuthReg/>
+         <Logo class="logo"/>
+         <div class="form-main">
+             <AuthReg/>
+         </div>
       </div>
       <div class="templateWrapper">
          <AuthBannerOrgs class="banner-tag"/>
@@ -13,11 +16,15 @@
 //import component molecules
 import AuthReg from '../organism/AuthReg.vue'
 import AuthBannerOrgs from '../organism/AuthBanner.vue'
+import Logo from '../atoms/AppLogo.vue'
+
 
 export default{
    name:'RegisterTemplate',
    components:{
-      AuthReg , AuthBannerOrgs
+      AuthReg, 
+      AuthBannerOrgs,
+      Logo
    }
 }
 
@@ -30,6 +37,10 @@ export default{
       display: grid;
       grid-template-columns: 400px 1fr;  
    }
+}
+
+.logo{
+   padding: 4px 8px;
 }
 
 @media screen and (max-width: 600px){

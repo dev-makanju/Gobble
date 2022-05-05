@@ -1,51 +1,21 @@
 <template>
    <div class="slide__wrapper">
-      <div class="main-padding">
+      <div class="main-padding" v-for="card in cards" :key="card.id">
          <div class="card-slider">
          <div class="card-slider">
-            <img class="card__image" src="@/assets/mobile/i-image.jpg" alt="">
+            <img class="card__image" :src="card.image" :alt="card.description">
          </div>
          <div class="card-slider details">
             <div class="description">
                <div class="item" style="display:inline-flex; font-weight: bold;">
-                  <AtomStarf style="color:gold;font-size: 20px;"/><p class="padding:2px">4.6</p>
+                  <AtomStarf style="color:gold;font-size: 20px;"/><p class="padding:2px">{{ card.rating }}</p>
                </div> 
-               <h2>NGN 300.00</h2>
+               <h2>NGN {{ card.price }}</h2>
             </div>
          </div>
          </div>
       </div>
-       <div class="main-padding">
-         <div class="card-slider">
-         <div class="card-slider">
-            <img class="card__image" src="@/assets/mobile/i-image.jpg" alt="">
-         </div>
-         <div class="card-slider details">
-            <div class="description">
-               <div class="item" style="display:inline-flex; font-weight: bold;">
-                  <AtomStarf style="color:gold;font-size: 20px;"/><p class="padding:2px">4.6</p>
-               </div> 
-               <h2>NGN 300.00</h2>
-            </div>
-         </div>
-         </div>
-      </div>
-
-       <div class="main-padding">
-         <div class="card-slider">
-         <div class="card-slider">
-            <img class="card__image" src="@/assets/mobile/i-image.jpg" alt="">
-         </div>
-         <div class="card-slider details">
-            <div class="description">
-               <div class="item" style="display:inline-flex; font-weight: bold;">
-                  <AtomStarf style="color:gold;font-size: 20px;"/><p class="padding:2px">4.6</p>
-               </div> 
-               <h2>NGN 300.00</h2>
-            </div>
-         </div>
-         </div>
-      </div>
+   
    </div>
 </template>
 
@@ -57,11 +27,7 @@ export default {
    components:{
       AtomStarf
    },
-   data(){
-      return{
-
-      }
-   },
+   props:['cards']
 }
 </script>
 

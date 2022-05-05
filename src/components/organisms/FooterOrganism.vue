@@ -161,6 +161,7 @@ footer{
 
     .footer{
         width: 90%;
+        max-width: 1440px;
         margin: 0px auto;
         display: flex;
         flex-direction: row ;
@@ -176,9 +177,9 @@ footer{
         & .footer-link{
            min-height: 250px;
 
-           & .footer-info{
+            & .footer-info{
                padding: 20px 5px;
-           }
+            }
         }
     }
 }

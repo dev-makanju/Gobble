@@ -28,7 +28,7 @@ export default{
   },
   data(){
     return{
-       isReturnCardsRatings:4.7
+      isReturnCardsRatings:3.7
     }
   }
 }

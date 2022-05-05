@@ -1,7 +1,10 @@
 <template>
    <div class="template">
       <div class="templateWrapper">
-         <AuthForgot/>
+         <Logo class="logo"/>
+         <div class="form-main">
+             <AuthForgot/>
+         </div>
       </div>
       <div class="templateWrapper">
          <AuthBannerOrgs class="banner-tag"/>
@@ -13,11 +16,13 @@
 //import component molecules
 import AuthForgot from '../organism/AuthForgot.vue'
 import AuthBannerOrgs from '../organism/AuthBanner.vue'
+import Logo from '../atoms/AppLogo.vue'
+
 
 export default{
    name:'ForgotTemplate',
    components:{
-      AuthForgot , AuthBannerOrgs
+      Logo, AuthForgot, AuthBannerOrgs
    }
 }
 

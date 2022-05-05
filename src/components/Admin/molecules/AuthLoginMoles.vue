@@ -1,7 +1,6 @@
 <template>
 <div>
     <div class="form__container">  
-      <Logo class="logo"/>
       <form class="form__wrapper" action="">
         <div class="form__wrapper__header">
             <h2>Log in.</h2>
@@ -77,7 +76,6 @@
 
 <script>
 
-import Logo from '../atoms/AppLogo.vue'
 import Loading from '../../molecules/Loading.vue'
 import { required , minLength  ,  email }  from 'vuelidate/lib/validators'
 import { mapActions } from 'vuex'
@@ -85,7 +83,7 @@ import { mapActions } from 'vuex'
 export default {
    name:"LoginMoles",
    components:{
-       Logo , Loading
+       Loading
    },
    data(){
         return{
@@ -138,7 +136,7 @@ export default {
                 this.userLogin(data).then( res => {
                     if(res.status === 200){
                         this.loading = false
-                        if(res.data.user.role === 'Admin'){
+                        if(res.data.role === 'Admin'){
                            this.$router.push('/dashboard');
                         }
                         //want to use switch case here ...

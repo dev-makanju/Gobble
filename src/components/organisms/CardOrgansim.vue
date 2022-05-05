@@ -5,7 +5,7 @@
                 <PuSkeleton class="is__loading">
                 </PuSkeleton>
                 <div v-if="isVisible" class="card__loaded">
-                    <img class="card__image" :src="require(`@/assets/mobile/${card.image}`)" alt="">
+                    <img class="card__image" :src="card.image" alt="">
                 </div>
             </div>
             <div class="main-card">
@@ -63,9 +63,9 @@
             },
             addToCart(card){
                //check if user is logged in
-                if(this.isLoggedIn){
-                   this.$emit('add-to-cart' , card);
-                }this.$router.push({name:'Login'});
+                if(this.$route.name === 'Home'){
+                   this.$router.push({name: 'MarketPlace'})
+                }this.$emit('add-to-cart' , card);
             }
         },
         computed:{
@@ -78,15 +78,18 @@
 
 <style lang="scss" scoped>
     .card__wrapper{
-        padding: 0px 7px;
         margin: 0px auto ;
-        margin-top: 5rem;
+        margin-top: 3rem;
         display: flex ;
         flex-direction: row ;
         flex-wrap: wrap ;
         gap: 14px;
         justify-content: center;
         align-items: center;
+
+        @media (max-width: 800px){
+          padding: 0px 5px;
+        }
 
     }
 

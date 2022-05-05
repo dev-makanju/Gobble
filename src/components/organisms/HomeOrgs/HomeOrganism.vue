@@ -29,7 +29,7 @@
             return{
                 images: [
                     {
-                       url:"https://cdn.pixabay.com/photo/2018/03/07/18/42/menu-3206748_960_720.jpg",
+                       url:"https://cdn.pixabay.com/photo/2022/02/23/05/10/tiramisu-7030032_960_720.jpg",
                        headLine:"Enjoy 10% off your first purchase",
                        smallText:'make your first purchase by signing up...'
                     },
@@ -78,7 +78,7 @@
 
 <style lang="scss" scoped>
     .carousel-main{
-        height: 500px;
+        height: 60vh;
         width: 100%;
         position: relative;
 
@@ -87,7 +87,7 @@
             top: 0;
             display: flex;
             align-items: center;
-            height: 500px;
+            height: 60vh;
             width: 100%;
             margin:0px auto;
             background: rgba(0, 0, 0, 0.479);
@@ -104,7 +104,7 @@
             top: 0;
             right: 0;
             left: 0;
-            height: 500px;
+            height: 60vh;
             width: 90%;
             margin: auto;
             display: flex;
@@ -149,7 +149,7 @@
     }
 
     .img{
-        height: 500px;
+        height: 60vh;
         width: 100%;
         object-fit: cover;
     }

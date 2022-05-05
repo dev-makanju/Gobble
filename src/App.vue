@@ -88,10 +88,9 @@ html{
 }
 
 #app{
-  max-width: 1440px ;
   margin: 0px auto ;
   min-height: 100vh ;
-  width: 100% ;
+  width: 100%;
 }
 
 body{

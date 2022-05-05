@@ -24,7 +24,8 @@ export default {
 <style>
 
 .banner__wrapper{
-   position: relative ;
+   position: relative;
+   width: 100%;
 }
 
 .overlay__info{
@@ -36,7 +37,8 @@ export default {
    top: 0px ;
    bottom: 0px;
    background: rgba(0, 0, 0, 0.408);
-   width: 100% ;
+   width: 100%;
+   height: 100vh;
    display: flex;
    justify-content: center;
    align-items: center;
@@ -45,15 +47,14 @@ export default {
 .banner__image{
    width: 100%;
    height: 100vh;
-   background-position: 100%  100%;
    object-fit: cover;
 }
 
 .overlay__item{
-   width: 400px;
+   max-width: 400px;
    background: rgba(238, 238, 238, 0.413);
    padding: 50px 50px;
-   border-radius: 15px;
+   border-radius: 2px;
 }
 
 </style>

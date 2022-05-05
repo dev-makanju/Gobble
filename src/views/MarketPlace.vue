@@ -70,7 +70,7 @@
 <style lang="scss" scoped>
 .market__place{
     display: grid ;
-    grid-template-columns: 1fr ;
+    grid-template-columns: 1fr;
 }
 .market__place.open{
     display: grid ;

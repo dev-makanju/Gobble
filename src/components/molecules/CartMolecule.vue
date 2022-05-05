@@ -36,6 +36,7 @@
            padding: 6px  6px;
            border-radius: 50%;
            background: #066350 ;
+           font-family: 'Poppins' , sans-serif;
            color: #000;
            margin: 0px 7px ;
         }
@@ -50,6 +51,7 @@
         border-radius: 10px;
         border: 1px solid #066350;
         color: #066350;
+        margin-left: 1.5rem;
 
         &:hover{
             background: #066350;

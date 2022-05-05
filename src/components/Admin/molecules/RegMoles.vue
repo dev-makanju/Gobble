@@ -1,20 +1,19 @@
 <template>
 <div>
     <div class="form__container">  
-      <Logo class="logo"/>
       <form class="form__wrapper" action="">
         <div class="form__wrapper__header">
             <h2>Sign Up.</h2>
             <p>Create an account with us to enjoy more customers benefits.</p>
-         </div>
-         <!--app error-->
-         <div :class="['app',error ?'error': 'success']">
+        </div>
+        <!--app error-->
+        <div :class="['app',error ?'error': 'success']">
             <p v-if="error">{{ errorInfo }}</p>
             <p v-if="success">{{ errorInfo }}</p>
-         </div>
+        </div>
 
-         <!--username-->
-         <div class="form__control">
+        <!--username-->
+        <div class="form__control">
             <label for="username"  
                :class="isUserInput ? 'label active':'label' ">
                Username
@@ -25,8 +24,7 @@
                autocomplete="off"
                @focus="isUserInput=true"
                @blur="isFocusedUser"
-               v-model.trim="$v.username.$model" 
-            >
+               v-model.trim="$v.username.$model">
             <div class="validate-error">
                <span v-if="$v.username.$error">
                     <p v-if="!$v.username.required">username is required</p>
@@ -120,7 +118,6 @@
 
 <script>
 
-import Logo from '../atoms/AppLogo.vue'
 import Loading from '../../molecules/Loading.vue'
 import { required , minLength , maxLength  ,  email , sameAs }  from 'vuelidate/lib/validators'
 import { mapActions } from 'vuex'
@@ -128,7 +125,7 @@ import { mapActions } from 'vuex'
 export default {
    name:"RegMoles",
    components:{
-       Logo , Loading
+        Loading
    },
    data(){
         return{
@@ -254,14 +251,13 @@ export default {
    justify-content: center;
    align-items: center;
    flex-direction: column;
-   height: 100vh ;
    position: relative ;
 
    .logo{
        position: absolute ;
        top: 0 ;
        left: 0 ;
-       padding: 2px  15px ;
+       padding: 2px  14px ;
     }
 }
 

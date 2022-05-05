@@ -94,6 +94,7 @@
 header{
     .header{
         width: 90%;
+        max-width: 1440px;
         margin: 0px auto;
         display: flex;
         justify-content: space-between ;
