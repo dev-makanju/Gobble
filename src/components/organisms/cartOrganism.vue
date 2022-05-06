@@ -8,7 +8,7 @@
             <div v-if="!isEmpty">
             <div v-for="items in cartItemsDetails" :key="items.id" class="cart">
                 <div class="cart__wrapper">
-                        <img class="cart__image" width="150" height="150" :src="items.image">
+                   <img class="cart__image" width="150" height="150" :src="items.image">
                 </div>
                 <div>  
                     <div style="padding: 5px; margin-left: 4px;">
@@ -73,7 +73,6 @@
             </div>
         </div>
     </div>
-    
     </transition>
 </template>
 

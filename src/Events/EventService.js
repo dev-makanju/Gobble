@@ -13,6 +13,7 @@ const apiClient = axios.create({
 
 //export api client for usage...
 export default {
+   //Authentication service
    loginEvent(data){
       return apiClient.post('auth/login' , data);
    },
@@ -21,5 +22,25 @@ export default {
    },
    passwordResetEvent(data){
       return apiClient.post('forgotPassword' , data);
+   },
+
+   //product handler services
+   getProductEvent(){
+      return apiClient.get('products')
+   },
+   createProductEvent(data){
+      return apiClient.post(`products` , data)
+   },
+   getProductByIdEvent(data){
+      return apiClient.get(`products/${data.id}`)
+   },
+   editProductEvent(data){
+      return apiClient.patch(`products/${data.id}` , data.product)
+   },
+   deleteProductEvent(data){
+      return apiClient.delete(`products/${data.id}`)
    }
+
+   //search for a single product
+ 
 }
