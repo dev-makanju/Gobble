@@ -83,6 +83,5 @@ export default {
    //search for a single product
    getProductBySearchEvent(data){
       return apiClient.get('queryProducts' , data)
-   },
- 
+   }, 
 }

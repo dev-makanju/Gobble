@@ -5,7 +5,7 @@
       </div>
       <ul class="navbar">
          <li>
-            <router-link class="nav-link" to="/">
+            <router-link class="nav-link" :to="{name:'Dashboard'}">
                <div class="navbar icon">
                   <div class="navbar child">
                      <font-awesome-icon  icon="home"/>
@@ -15,17 +15,17 @@
             </router-link>
          </li>
          <li>
-            <router-link class="nav-link" to="/">
+            <router-link class="nav-link" :to="{name:'Order'}">
                <div class="navbar icon">
                   <div class="navbar child">
-                      <font-awesome-icon  icon="shopping-cart"/>
+                     <font-awesome-icon  icon="shopping-cart"/>
                   </div>
                   <div class="navbar child">Orders</div>
                </div>
             </router-link>
          </li>
          <li>
-            <router-link class="nav-link" to="/">
+            <router-link class="nav-link" :to="{name:'Product'}">
                <div class="navbar icon">
                   <div class="navbar child">
                       <font-awesome-icon  icon="store"/>
@@ -35,7 +35,17 @@
             </router-link>
          </li>
          <li>
-            <router-link class="nav-link" to="/">
+            <router-link class="nav-link" :to="{name:'CreateProduct'}">
+               <div class="navbar icon">
+                  <div class="navbar child">
+                      <font-awesome-icon  icon="plus"/>
+                  </div>
+                  <div class="navbar child">Create Product</div>
+               </div>
+            </router-link>
+         </li>
+         <li>
+            <router-link class="nav-link" :to="{name:'Customers'}">
                <div class="navbar icon">
                   <div class="navbar child">
                      <font-awesome-icon icon="user-friends"/>
@@ -45,7 +55,7 @@
             </router-link>
          </li>
          <li>
-            <router-link class="nav-link" to="/">
+            <router-link class="nav-link" :to="{name:'payHistory'}">
                <div class="navbar icon">
                   <div class="navbar child">
                      <font-awesome-icon  icon="comment-dollar"/>

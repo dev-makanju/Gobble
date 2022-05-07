@@ -4,6 +4,11 @@ import Home from '../views/Home.vue'
 import Checkout from '../views/Checkout.vue'
 import MarketPlace from '../views/MarketPlace.vue'
 import Dashboard from '../views/Admin/Dashboard.vue'
+import Customers from '../views/Admin/Customers.vue'
+import payHistory from '../views/Admin/payHistory.vue'
+import Product from '../views/Admin/Product.vue'
+import CreateProduct from '../views/Admin/CreateProduct.vue'
+import Order from '../views/Admin/Order.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import NotFound from '../views/NotFound.vue'
@@ -37,9 +42,7 @@ const routes = [
       title:"marketplace",
     }
   },
-
   //Admin route with user auth
-
   {
     path: '/login',
     name: 'Login',
@@ -48,7 +51,6 @@ const routes = [
       title:"Login",
     }
   },
-
   {
     path: '/register',
     name: 'Register',
@@ -57,7 +59,46 @@ const routes = [
       title:"Register",
     }
   },
-
+  {
+    path: '/Customers',
+    name: 'Customers',
+    component: Customers,
+    meta:{
+      title:"Customers",
+    }  
+  },
+  {
+    path: '/payment-history',
+    name: 'payHistory',
+    component: payHistory,
+    meta:{
+      title:"payment-history",
+    }  
+  },
+  {
+    path: '/Product',
+    name: 'Product',
+    component: Product,
+    meta:{
+      title:"Product",
+    }  
+  },
+  {
+    path: '/create-product',
+    name: 'CreateProduct',
+    component: CreateProduct,
+    meta:{
+      title:"create-product",
+    }  
+  },
+  {
+    path: '/Order',
+    name: 'Order',
+    component: Order,
+    meta:{
+      title:"Order",
+    }  
+  },
   {
     path: '/forgot-password',
     name: 'ForgotPassword',

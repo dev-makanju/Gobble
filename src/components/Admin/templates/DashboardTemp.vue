@@ -64,6 +64,10 @@ export default {
    grid-template-columns: 250px 1fr ;
    height: 100vh;
    position: relative;
+
+   @media (max-width: 800px) {
+      grid-template-columns: none ;
+   }
    
    
     &__container{

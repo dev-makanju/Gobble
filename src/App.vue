@@ -43,7 +43,12 @@ export default {
         if(this.$route.name === "Login" || 
           this.$route.name === "Register" ||
           this.$route.name === "ForgotPassword" ||
-          this.$route.name === "Dashboard"){
+          this.$route.name === "Dashboard" ||
+          this.$route.name === "Customers" ||
+          this.$route.name === "payHistory" ||
+          this.$route.name === "Product" ||
+          this.$route.name === "Order"||
+          this.$route.name === "CreateProduct"){
           this.isNavActive = true;
           return;
         }this.isNavActive = false;
