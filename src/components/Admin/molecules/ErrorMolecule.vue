@@ -21,7 +21,8 @@ export default{
        border-radius: 5px;
        background: #f0c1bc;
        position: relative;
-       border: 2px dashed red ;
+       border: 1px dashed red ;
+       box-shadow: 0px 1px 35px 1px rgba(0 , 0 , 0 , .1);
 
        .close{
           color: red ;

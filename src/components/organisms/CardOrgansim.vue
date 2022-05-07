@@ -5,16 +5,16 @@
                 <PuSkeleton class="is__loading">
                 </PuSkeleton>
                 <div v-if="isVisible" class="card__loaded">
-                    <img class="card__image" :src="card.image" alt="">
+                   <img class="card__image" :src="card.image" alt="">
                 </div>
             </div>
             <div class="main-card">
                 <div class="rating">
                     <div class="item">
-                        <AtomIcon :content="'heart'" style="color: #065143;"/>
+                       <AtomIcon :content="'heart'" style="color: #065143;"/>
                     </div>
                     <div class="item" style="display:inline-flex;margin-left: 4px; ">
-                        <AtomStarf style="color:gold;font-size: 20px;"/> <p class="padding:2px">{{ card.rating }}</p>
+                       <AtomStarf style="color:gold;font-size: 20px;"/> <p class="padding:2px">{{ card.rating }}</p>
                     </div>
                 </div>
                 <div class="card__text" style="margin-top: 10px;">
@@ -25,7 +25,17 @@
                         <p style="color: #065143;font-size: 18px;">NgN &nbsp;{{ card.price}}.00</p>
                     </div>
                     <div class="footer-info">
-                        <button @click="addToCart(card)" class="button-btn">Add To Cart</button>
+                        <div>
+                            <button @click="addToCart(card)" class="button-btn">Add To Cart</button>
+                        </div>
+                        <div  class="edit-wrapper">
+                            <div>
+                                <td class="icon"><font-awesome-icon icon="circle-check"/></td>
+                            </div>
+                            <div>
+                                <td class="icon"><font-awesome-icon icon="trash-alt"/></td>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -48,6 +58,7 @@
         data(){
             return{
                 isVisible:null,
+                admin: false,
             }
         },
         created(){
@@ -77,6 +88,16 @@
 </script>
 
 <style lang="scss" scoped>
+    .edit-wrapper{
+        display: flex ;
+        div{
+            padding: 7px ;
+
+            .icon{
+                cursor: pointer; 
+            }
+        }
+    }
     .card__wrapper{
         margin: 0px auto ;
         margin-top: 3rem;

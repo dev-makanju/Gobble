@@ -28,7 +28,7 @@
             <router-link class="nav-link" :to="{name:'Product'}">
                <div class="navbar icon">
                   <div class="navbar child">
-                      <font-awesome-icon  icon="store"/>
+                     <font-awesome-icon  icon="store"/>
                   </div>
                   <div class="navbar child">Product</div>
                </div>
@@ -102,8 +102,8 @@ export default {
       .nav-link{
          text-decoration: none;
          font-weight: 500;
-         color: #065143;
          font-family: 'Poppins', sans-serif;
+         color: #065143;
 
          &:hover{
             color: rgb(249, 247, 247) ;

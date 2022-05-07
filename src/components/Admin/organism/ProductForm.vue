@@ -2,7 +2,7 @@
    <div class="main-form-wrapper">
          <div class="error-height">
             <AppError v-if="error" :message="errorMessage"/>
-            <Alert :message="successMessage"/>
+            <Alert v-if="success" :message="successMessage"/>
          </div>
          <form  enctype="multipart/form-data">
             <div class="form-wrapper upload">
@@ -37,21 +37,32 @@
                      <label for="">Rating</label>
                      <input type="text" autocomplete="on">
                </div>
+               <Button  :value="buttonVariant"/>
             </div>
          </form>
    </div>
 </template>
 <script>
+
 import AppError from '../molecules/ErrorMolecule.vue'
+import Alert from '../molecules/Alert.vue'
+import Button from '../molecules/Button.vue'
+
 export default {
    name:"ProductForm",
    components:{
-       AppError
+       AppError,Alert,Button
    },
    data(){
       return{
          errorMessage:'invalid username and password!',
-         error: false
+         successMessage:'Product created successfully , hurray.',
+         error: false,
+         success: false,
+         buttonVariant:{
+            value:'Submit',
+            loading: false,
+         }
       }
    }
 }
@@ -89,6 +100,10 @@ export default {
 
          .form-control{
             padding: 6px 1px;
+
+            label{
+               padding: 10px 0px;
+            }
 
             p{
                font-size: 12px;

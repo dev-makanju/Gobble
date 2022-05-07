@@ -4,11 +4,10 @@
       <div class="Dashboard__main__container nav">
          <DashboardNavbar/>
       </div>
-      
       <!--Dashboard main wrapper-->
       <div class="Dashboard__main__container">  
          <div class="Dashboard__main__container header">
-            <DashboardHeader/>
+               <DashboardHeader/>
          </div>
          <div>
             <CardTemplate :isFilterCard="1.0"/>

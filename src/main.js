@@ -14,6 +14,9 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import { faHome } from '@fortawesome/free-solid-svg-icons'
 import { faUpload } from '@fortawesome/free-solid-svg-icons'
 import { faBell } from '@fortawesome/free-solid-svg-icons'
@@ -44,8 +47,11 @@ library.add(faTimes)
 library.add(faCheck)
 library.add(faAngleDown)
 library.add(faHome)
+library.add(faTrashAlt)
+library.add(faEdit)
 library.add(faDashboard)
 library.add(faShoppingCart)
+library.add(faCircleCheck)
 library.add(faUserFriends)
 library.add(faCommentDollar)
 library.add(faAngleLeft)

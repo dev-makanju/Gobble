@@ -60,7 +60,7 @@ const routes = [
     }
   },
   {
-    path: '/Customers',
+    path: '/dashboard/customers',
     name: 'Customers',
     component: Customers,
     meta:{
@@ -68,7 +68,7 @@ const routes = [
     }  
   },
   {
-    path: '/payment-history',
+    path: '/dashboard/payment-history',
     name: 'payHistory',
     component: payHistory,
     meta:{
@@ -76,7 +76,7 @@ const routes = [
     }  
   },
   {
-    path: '/Product',
+    path: '/dashboard/product',
     name: 'Product',
     component: Product,
     meta:{
@@ -84,7 +84,7 @@ const routes = [
     }  
   },
   {
-    path: '/create-product',
+    path: '/dashboard/create-product',
     name: 'CreateProduct',
     component: CreateProduct,
     meta:{
@@ -92,7 +92,7 @@ const routes = [
     }  
   },
   {
-    path: '/Order',
+    path: '/dashboard/order',
     name: 'Order',
     component: Order,
     meta:{
