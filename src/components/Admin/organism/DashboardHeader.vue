@@ -7,10 +7,12 @@
             <font-awesome-icon class="search-icon" icon="search"/>
          </div>
          <!--Add product-->
-         <div class="header__field add">
-            <font-awesome-icon class="fab-icon"  icon="plus"/>
-            <p class="add-product">Add product</p>
-         </div>
+         <router-link :to="{name:'CreateProduct'}">
+            <div class="header__field add">
+               <font-awesome-icon class="fab-icon"  icon="plus"/>
+               <p class="add-product">Add product</p>
+            </div>
+         </router-link>
          <!--Notification-->
          <div class="header__field not">
             <font-awesome-icon  icon="bell"/>
@@ -180,7 +182,7 @@ export default {
          font-family: 'Poppins', sans-serif;
          transition: .5s ease;
 
-         @media (max-width: 800px) {
+         @media (max-width: 1200px) {
             display: none;
          }
       }

@@ -13,6 +13,8 @@ import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import NotFound from '../views/NotFound.vue'
 import ForgotPassword from '../views/ForgotPassword.vue'
+import store from "../store/Modules/Auth";
+
 
 Vue.use(VueRouter)
 
@@ -24,6 +26,8 @@ const routes = [
     component: Home,
     meta:{
       title:"Home",
+      requiresAuth: false,
+      requiresGuest: true,
     }
   },
   {
@@ -32,6 +36,7 @@ const routes = [
     component: Checkout,
     meta:{
       title:"checkout",
+      requiresAuth: true,
     }
   },
   {
@@ -40,6 +45,8 @@ const routes = [
     component: MarketPlace,
     meta:{
       title:"marketplace",
+      requiresAuth: false,
+      requiresGuest: true,
     }
   },
   //Admin route with user auth
@@ -49,6 +56,8 @@ const routes = [
     component: Login,
     meta:{
       title:"Login",
+      requiresAuth: false,
+      requiresGuest: true,
     }
   },
   {
@@ -57,6 +66,8 @@ const routes = [
     component: Register,
     meta:{
       title:"Register",
+      requiresAuth: false,
+      requiresGuest: true,
     }
   },
   {
@@ -65,6 +76,7 @@ const routes = [
     component: Customers,
     meta:{
       title:"Customers",
+      requiresAuth: true,
     }  
   },
   {
@@ -73,6 +85,7 @@ const routes = [
     component: payHistory,
     meta:{
       title:"payment-history",
+      requiresAuth: true,
     }  
   },
   {
@@ -81,6 +94,7 @@ const routes = [
     component: Product,
     meta:{
       title:"Product",
+      requiresAuth: true,
     }  
   },
   {
@@ -89,6 +103,7 @@ const routes = [
     component: CreateProduct,
     meta:{
       title:"create-product",
+      requiresAuth: true,
     }  
   },
   {
@@ -97,6 +112,7 @@ const routes = [
     component: Order,
     meta:{
       title:"Order",
+      requiresAuth: true,
     }  
   },
   {
@@ -105,6 +121,8 @@ const routes = [
     component: ForgotPassword,
     meta:{
       title:"Forgot password",
+      requiresAuth: false,
+      requiresGuest: true,
     }
   },
 
@@ -114,6 +132,7 @@ const routes = [
     component: Dashboard,
     meta:{
       title:"dashboard",
+      requiresAuth: true,
     }
   },
 
@@ -139,5 +158,17 @@ router.beforeEach((to , from , next) => {
   document.title = documentTitle;
   next()
 });
+
+router.beforeEach((to , from , next) => {
+  const user = store.state.token  
+  if(to.matched.some(res => res.meta.requiresAuth)){
+    if(user == ''){
+        return next({name:'Login'});
+    }
+    next();
+  }else{
+       return next()
+  }
+})
 
 export default router
