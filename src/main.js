@@ -73,3 +73,10 @@ new Vue({
 }).$mount('#app')
 
 Vue.prototype.http = axios
+
+const token = localStorage.getItem("token");
+
+//If there is any token we append it to the http default axios authorisation headers 
+if(token){
+  Vue.prototype.http.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+}

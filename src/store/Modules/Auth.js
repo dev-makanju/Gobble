@@ -1,10 +1,12 @@
 import axios from 'axios'
 import eventService from '../../Events/EventService'
+import router from '../../router'
 
 const state = {
    token: localStorage.getItem('gobtoken') || '',
    user:{},
-   status: '',
+   role:'',
+   status:'',
 }
 
 const getters = {
@@ -14,37 +16,47 @@ const getters = {
 }
 
 const mutations = {
-
+   STATUS(state){
+      state.status = 'loading';
+   },
+   USER_DATA( state , payload){
+      state.token = payload.token
+      state.role = payload.userRole
+      state.user = payload.user
+   },
+   USER_STATUS(state){
+      state.status = 'loaded'
+   }
 }
 
 const actions = {
-   //sign user in
    async userLogin({commit} , data){
        try{ 
+         commit('STATUS') 
          const response = await eventService.loginEvent(data);
          console.log(response)
          if(response.status){
             const token = response.data.token;
-            const user = response.data.user;
             localStorage.setItem("gobtoken" , token);
             axios.defaults.headers.common['Authorization'] = token;
-            const dataInfo = {
+            const user = response.data.data
+            const role = response.data.data.role
+            const data = {
                token: token,
-               user: user,
-            }
-            commit("user_info" , dataInfo);
-            return response;
+               userRole: role,
+               user: user 
+            }  
+            commit("USER_DATA", data);
+            commit("USER_STATUS");
          }
+         return response;
        }catch(err){
          return err.response;
        }
    },
-
-   //sign user un
    async userSignUp({commit} , data){
       try{
          const res = await eventService.registerEvent(data );
-         console.log(res)
          if(res.status){
             commit("user__registered");
          }
@@ -53,8 +65,6 @@ const actions = {
          return err.response
       }
    },
-   //forgot password
-
    async forgotPassword({commit}, data){
       try{
          const res = await eventService.passwordResetEvent(data);
@@ -66,7 +76,36 @@ const actions = {
       }catch(err){
          return err.response
       }
-   }
+   },
+   async getUserInfo({commit}){
+      try{
+         commit("STATUS");
+         const response = await eventService.getUserEvent();
+         console.log(response);
+         console.log(localStorage.getItem('gobtoken'));
+         if(response.status){   
+            const token = localStorage.getItem("gobtoken");
+            const user = response.data.data
+            const role = response.data.role
+            const data = {
+               token: token,
+               userRole: role,
+               user: user 
+            }  
+            commit("USER_DATA", data);
+            commit('USER_STATUS');
+         }
+         return response;
+      }catch(err){
+         return err.response
+      }
+   },
+   logout({commit}){
+      localStorage.removeItem('token');
+      router.push('/');
+      commit('LOGGED_OUT');
+      location.reload();
+   },
 }
 
 export default {

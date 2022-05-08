@@ -12,7 +12,7 @@ import LoginTemplate from '../components/Admin/templates/LoginTemplate.vue'
 export default {
     name: 'Login',
     components: {
-        LoginTemplate,
+       LoginTemplate,
     },
 }
 

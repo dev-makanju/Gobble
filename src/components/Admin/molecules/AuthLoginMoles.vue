@@ -7,9 +7,8 @@
             <p>Login with your data that you entered during your registration</p>
         </div>
         <!--app error-->
-        <div :class="['app',error ?'error': 'success']">
-            <p v-if="error">{{ errorInfo }}</p>
-            <p v-if="success">{{ errorInfo }}</p>
+        <div class="app error">
+            <p v-if="error">{{ messageInfo }}</p>
         </div>
 
         <!--email-->
@@ -51,10 +50,6 @@
                         v-if="!$v.password.required">
                         password is required
                     </p>
-                    <p
-                        v-if="!$v.password.minLength">
-                        password must have at least {{ $v.password.$params.minLength.min }} numbers
-                    </p>
                </span>
             </div>
         </div>
@@ -77,7 +72,7 @@
 <script>
 
 import Loading from '../../molecules/Loading.vue'
-import { required , minLength  ,  email }  from 'vuelidate/lib/validators'
+import { required , email }  from 'vuelidate/lib/validators'
 import { mapActions } from 'vuex'
 
 export default {
@@ -95,7 +90,7 @@ export default {
             isPasswordInput:null,
             loading:null,
             modalMessage:'',
-            errorInfo:''
+            messageInfo:''
         }   
     },
     validations:{
@@ -105,7 +100,6 @@ export default {
         },
         password:{
             required,
-            minLength: minLength(8),
         },
     },
     methods:{
@@ -132,35 +126,28 @@ export default {
                    email: this.email,
                    password: this.password, 
                 }
+                this.error = false
                 this.loading = true;
                 this.userLogin(data).then( res => {
                     if(res.status === 200){
-                        this.loading = false
-                        if(res.data.role === 'Admin'){
-                           this.$router.push('/dashboard');
-                        }
-                        //want to use switch case here ...
-                    }this.loading = false;
-                    this.error = true;
-                    this.errorInfo = res.data.error.message
-                    setInterval( () => {
-                        this.error = false
-                        this.errorInfo = ''//clear
-                    } , 7000)
-                     
+                        this.loading = false;
+                        if(this.$store.state.auth.role === 'ADMIN'){
+                            this.$router.push('/dashboard');
+                        }this.$router.push('/');
+                    }else{
+                       this.loading = false;
+                       this.error = true;
+                       this.messageInfo = res.data.error.message
+                     }
                 }).catch(err => {
-                    this.loading = false
-                    this.error = true;
-                    this.errorInfo = 'Oops , try again'
-                    this.errorInfo = ''//clear
-                    setInterval( () => {
-                        this.error = false
-                    } , 7000)
-                    console.log(err)
+                    this.loading = false;
+                    this.error = true
+                    this.messageInfo = 'Oops!! , Try again'
+                    console.log(err);
                 });
             }    
         },
-      }
+    }
 }
 
 </script>

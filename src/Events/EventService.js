@@ -1,14 +1,14 @@
 import axios from 'axios'
 
-//get token
 const token = localStorage.getItem('gobtoken');
+console.log(token)
 const apiClient = axios.create({
-    baseURL:'https://gobble-foods.herokuapp.com/api/v1/',
-    headers:{
-      'Access-Control-Allow-Origin': '*',
-      'Authorization': 'Bearer'+token,
-      'Content-Type': 'application/json'
-    }
+   baseURL:'https://gobble-foods.herokuapp.com/api/v1/',
+   headers:{
+      'Access-Control-Allow-Origin':'*',
+      'Authorization':'Bearer '+token,
+      'Content-Type':'application/json'
+   }
 });
 
 //export api client for usage...
@@ -18,16 +18,16 @@ export default {
       return apiClient.post('auth/login' , data);
    },
    registerEvent(data){
-      return apiClient.post('auth/signup' , data);
+      return apiClient.post('auth/signup',data);
    },
    passwordResetEvent(data){
       return apiClient.post('forgotPassword' , data);
    },
    getUserEvent(){
-      return apiClient.get('me')
+      return apiClient.get('me');
    },
    getUserByIdEvent(id){
-      return apiClient.get('user/'+id)
+      return apiClient.get('user/'+id);
    },
    updatePasswordEvent(data){
       return apiClient.post('user/updatePassword' , data )

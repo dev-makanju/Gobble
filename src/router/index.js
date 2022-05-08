@@ -77,6 +77,7 @@ const routes = [
     meta:{
       title:"Customers",
       requiresAuth: true,
+      requiresAdmin: true
     }  
   },
   {
@@ -86,6 +87,7 @@ const routes = [
     meta:{
       title:"payment-history",
       requiresAuth: true,
+      requiresAdmin: true
     }  
   },
   {
@@ -95,6 +97,7 @@ const routes = [
     meta:{
       title:"Product",
       requiresAuth: true,
+      requiresAdmin: true
     }  
   },
   {
@@ -104,6 +107,7 @@ const routes = [
     meta:{
       title:"create-product",
       requiresAuth: true,
+      requiresAdmin: true
     }  
   },
   {
@@ -113,6 +117,7 @@ const routes = [
     meta:{
       title:"Order",
       requiresAuth: true,
+      requiresAdmin: true
     }  
   },
   {
@@ -133,6 +138,7 @@ const routes = [
     meta:{
       title:"dashboard",
       requiresAuth: true,
+      requiresAdmin: true
     }
   },
 
@@ -160,14 +166,23 @@ router.beforeEach((to , from , next) => {
 });
 
 router.beforeEach((to , from , next) => {
-  const user = store.state.token  
+  const role = store.state.role
+  const token = store.state.token  
   if(to.matched.some(res => res.meta.requiresAuth)){
-    if(user == ''){
-        return next({name:'Login'});
+    //check if user is logged in
+    if(token !== ''){
+      //check if user is an admin
+      if(to.matched.some(res => res.meta.requiresAdmin)){
+        if(role !== 'ADMIN'){
+          return next({name:'Home'});
+        }
+        next()
+      }
+      next();
     }
-    next();
+    next({name:'Login'})
   }else{
-       return next()
+      return next()
   }
 })
 

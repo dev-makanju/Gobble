@@ -7,11 +7,12 @@
             <p>Create an account with us to enjoy more customers benefits.</p>
         </div>
         <!--app error-->
-        <div :class="['app',error ?'error': 'success']">
-            <p v-if="error">{{ errorInfo }}</p>
-            <p v-if="success">{{ errorInfo }}</p>
+        <div v-if="error" class="app error">
+            <p>{{ messageInfo }}</p>
         </div>
-
+        <div v-if="success" class="success">
+            <p>{{ messageInfo }}</p>
+        </div>
         <!--username-->
         <div class="form__control">
             <label for="username"  
@@ -33,7 +34,6 @@
                </span>
             </div>
          </div>
-
          <!--email-->
          <div class="form__control">
             <label for="email"  
@@ -111,7 +111,7 @@
         <div class="login__link">
             <h4>Already a member?<router-link class="log__link" :to="{name:'Login'}">Sign in</router-link> </h4>
         </div>
-        </form>
+    </form>
     </div>
 </div>
 </template>
@@ -135,7 +135,7 @@ export default {
             confirmPass:'',
             error: null,
             success: null,
-            errorInfo: '',
+            messageInfo: '',
             isEmailInput: null,
             isConfPassInput: null,
             isPasswordInput: null,
@@ -143,7 +143,7 @@ export default {
             loading: null,
             modalMessage:''
         }   
-    },
+   },
     validations:{
         email:{
             required,
@@ -201,40 +201,27 @@ export default {
             this.$v.$touch()
             if(this.$v.$invalid !== true){
                 const data = {
-                   name: this.username, 
                    email: this.email,
+                   name: this.username, 
                    password: this.password, 
                 }
-                console.log(data)
                 this.loading = true;
+                this.error = false;
+                this.success = false;
                 this.userSignUp(data).then( res => {
                     if(res.status === 200){
                         this.loading = false;
                         this.success = true;
-                        this.errorInfo = res.data
-                        setTimeout( () => {
-                          this.success = false;
-                          this.errorInfo = ''
-                          this.$router.push({name:'Login'})
-                        } , 4000 );
-                        //redirect user to login page with a success message
+                        this.messageInfo = res.data.data   
+                    }else{
+                        this.loading = false;
+                        this.error = true;
+                        this.messageInfo = res.data.error.message
                     }
+                }).catch( err => {
                     this.loading = false;
                     this.error = true
-                    this.errorInfo = res.data.error.message
-                    setTimeout( () => {
-                          this.error = false;
-                          this.errorInfo = ''
-                    } , 5000 )
-
-                }).catch(err => {
-                    this.loading = false;
-                    this.error = true
-                    this.errorInfo = 'Oops!! , Try again'
-                    setTimeout( () => {
-                          this.error = false;
-                          this.errorInfo = ''
-                    } , 5000 )
+                    this.messageInfo = 'Oops!! , Try again'
                     console.log(err);
                 })
             }    
@@ -245,6 +232,18 @@ export default {
 </script>
 
 <style lang="scss">
+.success{
+    p{
+        padding: 4px;
+        border: 1px dashed rgb(189, 241, 189);
+        background: green;
+        border-radius: 5px;
+        width: 100%;
+        color: #eee;
+        text-align: center;
+        font-size: 12px;  
+    }
+}
 
 .form__container{
    display: flex;
@@ -305,18 +304,6 @@ export default {
             color: #eee;
             font-size: 12px;
           }
-        }
-        &.success{
-            p{
-               padding: 4px;
-               border: 1px dashed rgb(189, 241, 189);
-               background: green;
-               border-radius: 5px;
-               width: 100%;
-               color: #eee;
-               text-align: center;
-               font-size: 12px;  
-            }
         }
     }
 
