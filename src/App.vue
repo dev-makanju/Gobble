@@ -15,6 +15,7 @@
 <script>
 import HeaderOrganism from './components/organisms/HeaderOrganism.vue'
 import FooterOrganism from './components/organisms/FooterOrganism.vue'
+import { mapActions } from 'vuex'
 
 export default {
     components:{
@@ -27,11 +28,25 @@ export default {
          isNavActive: null,
       }
     },
+    mounted(){
+      const token = this.$store.state.auth.token
+      if(token){
+        this.getUserInfo().then(res => {
+           if(res.status){
+            console.log(res.status)
+           }
+        }).catch(err => {
+          console.log(err)
+        })
+      }
+    },
     created(){
+      //get user information when app is created
       this.isMarketRoute();
       this.showNavbar()
     },
     methods:{
+      ...mapActions(['getUserInfo']),
       isMarketRoute(){
         if(this.$route.name === "MarketPlace"){
             this.isMarketPlace = true;

@@ -13,6 +13,9 @@ import { faSubtract } from '@fortawesome/free-solid-svg-icons'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import { faRefresh } from '@fortawesome/free-solid-svg-icons'
+import { faSignOut } from '@fortawesome/free-solid-svg-icons'
+import { faUserEdit } from '@fortawesome/free-solid-svg-icons'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
@@ -38,8 +41,11 @@ library.add(faCartShopping)
 library.add(faPlus)
 library.add(faSubtract)
 library.add(faSearch)
+library.add(faUserEdit)
+library.add(faSignOut)
 library.add(faTrash)
 library.add(faBell)
+library.add(faRefresh)
 library.add(faCheckCircle)
 library.add(faHeart)
 library.add(faExclamationCircle)

@@ -13,7 +13,7 @@ import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import NotFound from '../views/NotFound.vue'
 import ForgotPassword from '../views/ForgotPassword.vue'
-import store from "../store/Modules/Auth";
+//import store from "../store/Modules/Auth";
 
 
 Vue.use(VueRouter)
@@ -77,7 +77,6 @@ const routes = [
     meta:{
       title:"Customers",
       requiresAuth: true,
-      requiresAdmin: true
     }  
   },
   {
@@ -87,7 +86,6 @@ const routes = [
     meta:{
       title:"payment-history",
       requiresAuth: true,
-      requiresAdmin: true
     }  
   },
   {
@@ -97,7 +95,6 @@ const routes = [
     meta:{
       title:"Product",
       requiresAuth: true,
-      requiresAdmin: true
     }  
   },
   {
@@ -107,7 +104,6 @@ const routes = [
     meta:{
       title:"create-product",
       requiresAuth: true,
-      requiresAdmin: true
     }  
   },
   {
@@ -117,7 +113,6 @@ const routes = [
     meta:{
       title:"Order",
       requiresAuth: true,
-      requiresAdmin: true
     }  
   },
   {
@@ -138,7 +133,6 @@ const routes = [
     meta:{
       title:"dashboard",
       requiresAuth: true,
-      requiresAdmin: true
     }
   },
 
@@ -160,30 +154,26 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to , from , next) => {
-  let documentTitle = `Gobble - ${to.meta.title}`;
-  document.title = documentTitle;
-  next()
+   let documentTitle = `Gobble - ${to.meta.title}`;
+   document.title = documentTitle;
+   next()
 });
 
-router.beforeEach((to , from , next) => {
-  const role = store.state.role
-  const token = store.state.token  
-  if(to.matched.some(res => res.meta.requiresAuth)){
-    //check if user is logged in
-    if(token !== ''){
-      //check if user is an admin
-      if(to.matched.some(res => res.meta.requiresAdmin)){
-        if(role !== 'ADMIN'){
-          return next({name:'Home'});
-        }
-        next()
-      }
-      next();
-    }
-    next({name:'Login'})
-  }else{
-      return next()
-  }
-})
+// router.beforeEach((to , from , next) => {
+//   const user = store.state.token  
+//   const role = store.state.role
+//   if(to.matched.some(res => res.meta.requiresAuth)){
+//     if(user !== ''){
+//       console.log(store.state.role)
+//       if(role !== 'ADMIN'){
+//         return next({name:'Home'});
+//       }
+//       next()
+//     }
+//     return next({name:'Login'});
+//   }else{
+//        return next()
+//   }
+// })
 
 export default router

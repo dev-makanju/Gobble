@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import auth from '../store/Modules/Auth'
+import admin from './Admin/product'
+import cart from '../store/Modules/Cart'
+import customer from '../store/Modules/Customer'
 
 Vue.use(Vuex)
 
@@ -56,5 +59,8 @@ export default new Vuex.Store({
   },
   modules: {
     auth,
+    admin,
+    cart,
+    customer
   }
 });

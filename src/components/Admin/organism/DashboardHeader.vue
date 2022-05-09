@@ -1,40 +1,27 @@
 <template>
-   <div class="dashboard__head">
-      <div class="dashboard__header">
-         <!--search-->
-         <div class="header__field inp">
-            <input type="text">
-            <font-awesome-icon class="search-icon" icon="search"/>
-         </div>
-         <!--Add product-->
-         <router-link :to="{name:'CreateProduct'}">
-            <div class="header__field add">
-               <font-awesome-icon class="fab-icon"  icon="plus"/>
-               <p class="add-product">Add product</p>
+   <div class="header-wrapper">
+      <div class="dashboard__head">
+         <div class="dashboard__header">
+            <!--search-->
+            <div class="header__field inp">
+               <input type="text">
+               <font-awesome-icon class="search-icon" icon="search"/>
             </div>
-         </router-link>
-         <!--Notification-->
-         <div class="header__field not">
-            <font-awesome-icon  icon="bell"/>
-            <div class="notify"></div>
-         </div>
-         <!--User-->
-         <div class="header__field thumb">
-            <div class="user header">
-               <div class="thumbnail thu">
-                  <img class="image" src="" alt="">
+            <!--Add product-->
+            <router-link :to="{name:'CreateProduct'}">
+               <div class="header__field add">
+                  <font-awesome-icon class="fab-icon"  icon="plus"/>
+                  <p class="add-product">Add product</p>
                </div>
-               <p class="thu">Miracle</p>
-               <div @click="toggleProfile" :class="[ showProfile ? 'angle active' : 'angle' ]">
-                  <font-awesome-icon  :class="[ showProfile? 'angle active' : 'angle' ]" icon="angle-down"/>
-               </div>
+            </router-link>
+            <!--Notification-->
+            <div class="header__field not">
+               <font-awesome-icon  icon="bell"/>
+               <div class="notify"></div>
             </div>
-            <div v-if="showProfile" :class="['user', showProfile?'user-profile active':'user-profile' ]">
-                 <img width="45" height="45" class="user-thumbnail" src="@/assets/mobile/a-image.jpg" alt="">
-                 <ul>
-                    <li>Miracle</li>
-                    <li>Role: Admin</li>
-                 </ul>
+            <!--User-->
+            <div class="header__field thumb">
+               <ProfileCard/>
             </div>
          </div>
       </div>
@@ -43,8 +30,13 @@
 
 <script>
 
+import ProfileCard from '../../molecules/ProfileMoles.vue'
+
 export default {
    name: "DashboardHeaderOrgs",
+   components:{
+      ProfileCard  
+   },
    data(){
       return{
          showProfile: false,
@@ -59,7 +51,10 @@ export default {
 
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+.relative{
+   position: relative;
+}
 
 .fab-icon{
    padding: 5px ;
@@ -68,8 +63,8 @@ export default {
 }
 
 .thumbnail{
-   width: 40px;
-   height: 40px;
+   width: 35px;
+   height: 35px;
    border-radius: 50%;
    background: #eee;
 }
@@ -80,7 +75,7 @@ export default {
    color: #065143;
 
    &.active{
-      transform: rotate(90deg);
+      transform: rotate(180deg);
    }
 }
 
@@ -98,7 +93,7 @@ export default {
 .dashboard__header{
    display: flex;
    flex-direction: row;
-   align-items: flex-start;
+   align-items: center ;
    padding: 15px 25px;
    gap: 20px;
    float: right;
@@ -114,9 +109,8 @@ export default {
 
          .header{
             display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
+            flex-direction: row ;
+            align-items: center ;
          }
 
          .user-profile{
@@ -125,7 +119,12 @@ export default {
             border-radius: 4px;
             box-shadow: 0px 2px 5px rgba(0, 0,0,.3);
             z-index: 111;
+            width: 280px;
+            height: 100px;
+            margin-top: .9rem;
+            position: absolute;
             display: flex;
+            right: 0px;
             gap: 5px;
             transition: .5s all;
             opacity: 0;

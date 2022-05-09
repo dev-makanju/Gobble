@@ -1,7 +1,6 @@
 import axios from 'axios'
 
 const token = localStorage.getItem('gobtoken');
-console.log(token)
 const apiClient = axios.create({
    baseURL:'https://gobble-foods.herokuapp.com/api/v1/',
    headers:{
@@ -58,7 +57,7 @@ export default {
    getProductReviewsEvent(productId){
       return apiClient.post('reviews/'+productId)
    },
-   // Cart  System
+   //Cart System
    getUserCartEvent(){
       return apiClient.get('mycart');
    },

@@ -7,27 +7,45 @@
                 </atom-cart-link>
             </li>
         </ul>
-        <div class="nav-link-cart">
+        <div v-if="loggedIn" class="nav-link-cart">
             <router-link class="nav-log" :to="{name:'Login'}">Sign In</router-link>
+        </div>
+        <div class="nav-link-cart">
+             <ProfileCard/>
         </div>
     </div>
 </template>
 
 <script>
-
     import AtomCartLink from '../atoms/AtomCartLink.vue'
+    import ProfileCard from '../molecules/ProfileMoles.vue'
     import AtomIcon from '../atoms/AtomIcon.vue'
 
     export default {
         name:"CartMolecule",
         props:['cartLists'],
         components:{
-            AtomCartLink ,AtomIcon
+            AtomCartLink, AtomIcon, ProfileCard
         },
+        data(){
+            return{
+
+            }
+        },
+        computed:{
+            loggedIn: function(){
+                return this.$store.getters.isLoggedIn.auth
+            }
+        }
     }
 </script>
 
 <style lang="scss" scoped>
+    .header__nav__links{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     .nav-link-cart{
         display: inline-flex ;
 

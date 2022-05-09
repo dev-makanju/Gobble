@@ -12,7 +12,8 @@ const state = {
 const getters = {
    isLoggedIn: (state) => !!state.token,
    user: (state) => state.user,
-   authStatus: (state) => state.status
+   authStatus: (state) => state.status,
+   userRole: (state) => state.role
 }
 
 const mutations = {
@@ -30,11 +31,11 @@ const mutations = {
 }
 
 const actions = {
+   //USER LOGGED IN
    async userLogin({commit} , data){
        try{ 
          commit('STATUS') 
-         const response = await eventService.loginEvent(data);
-         console.log(response)
+         const response = await eventService.loginEvent(data)
          if(response.status){
             const token = response.data.token;
             localStorage.setItem("gobtoken" , token);
@@ -54,6 +55,7 @@ const actions = {
          return err.response;
        }
    },
+   //USER SIGN UP
    async userSignUp({commit} , data){
       try{
          const res = await eventService.registerEvent(data );
@@ -65,6 +67,7 @@ const actions = {
          return err.response
       }
    },
+   //FORGOT PASSWORD
    async forgotPassword({commit}, data){
       try{
          const res = await eventService.passwordResetEvent(data);
@@ -77,16 +80,15 @@ const actions = {
          return err.response
       }
    },
+   //GET LOGGED IN USER 
    async getUserInfo({commit}){
       try{
          commit("STATUS");
          const response = await eventService.getUserEvent();
-         console.log(response);
-         console.log(localStorage.getItem('gobtoken'));
          if(response.status){   
             const token = localStorage.getItem("gobtoken");
             const user = response.data.data
-            const role = response.data.role
+            const role = response.data.data.role
             const data = {
                token: token,
                userRole: role,
@@ -100,6 +102,7 @@ const actions = {
          return err.response
       }
    },
+   //LOG USER OUT
    logout({commit}){
       localStorage.removeItem('token');
       router.push('/');
