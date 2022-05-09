@@ -67,6 +67,10 @@ export default {
    height: 35px;
    border-radius: 50%;
    background: #eee;
+   
+   @media (max-width: 800px) {
+      display: none;
+   }
 }
 
 .angle{
@@ -84,10 +88,6 @@ export default {
    font-family: 'Poppins', sans-serif;
    color: #065143;
    font-weight: 600;
-   
-   @media (max-width: 800px) {
-      display: none;
-   }
 }
 
 .dashboard__header{
@@ -112,39 +112,6 @@ export default {
             flex-direction: row ;
             align-items: center ;
          }
-
-         .user-profile{
-            background: #fff;
-            padding: 10px 10px;
-            border-radius: 4px;
-            box-shadow: 0px 2px 5px rgba(0, 0,0,.3);
-            z-index: 111;
-            width: 280px;
-            height: 100px;
-            margin-top: .9rem;
-            position: absolute;
-            display: flex;
-            right: 0px;
-            gap: 5px;
-            transition: .5s all;
-            opacity: 0;
-
-            &.active{
-               opacity: 1;
-            }
-
-            ul li{
-               list-style-type: none;
-               color: #065143;
-               font-family: 'Poppins' , sans-serif ;
-               font-weight: bold;
-            }
-
-            .user-thumbnail{
-               border-radius: 50%;
-            }
-         }
-
       }
 
       &.not{

@@ -1,7 +1,8 @@
 <template>
     <header>
-        <div class="header">            
+        <div class="header">          
             <div class="header-nav">
+                <div id="top"></div>
                 <AtomText :tag="'h1'" :content="'Gobble'"/>
             </div>
             <div class="header-nav">

@@ -5,7 +5,7 @@
                 <PuSkeleton class="is__loading">
                 </PuSkeleton>
                 <div v-if="isVisible" class="card__loaded">
-                   <img class="card__image" :src="card.image" alt="">
+                   <img class="card__image" :src="card.image" alt=" " onerror="this.style.display='none'">
                 </div>
             </div>
             <div class="main-card">
@@ -25,10 +25,10 @@
                         <p style="color: #065143;font-size: 18px;">NgN &nbsp;{{ card.price}}.00</p>
                     </div>
                     <div class="footer-info">
-                        <div>
+                        <div v-if="!showButton">
                             <button @click="addToCart(card)" class="button-btn">Add To Cart</button>
                         </div>
-                        <div  class="edit-wrapper">
+                        <div v-if="showButton" class="edit-wrapper">
                             <div>
                                 <td class="icon"><font-awesome-icon icon="circle-check"/></td>
                             </div>
@@ -59,29 +59,53 @@
             return{
                 isVisible:null,
                 admin: false,
+                showButton: null,
             }
         },
         created(){
             this.delayImageLoader();
+            this.showIsEditing();
         },
         methods:{
             ...mapGetters(['isLoggedIn']),
             delayImageLoader(){
               this.isVisible = false;
               setTimeout(() => {
-                 this.isVisible = true
+                this.isVisible = true
               } , 5000)
             },
             addToCart(card){
-               //check if user is logged in
                 if(this.$route.name === 'Home'){
                    this.$router.push({name: 'MarketPlace'})
                 }this.$emit('add-to-cart' , card);
-            }
+            },
+            showIsEditing(){
+                console.log('loading')
+                console.log(this.$store.state.auth.role)
+                if(this.$store.state.auth.role == "ADMIN"){
+                    if(this.$route.name == 'Product'){
+                       this.showButton = true
+                       return;
+                    }
+                }else if(this.$route.name == 'Product'){
+                       this.showButton = true
+                       return;
+                }else {
+                    this.showButton = false
+                }
+            },
         },
         computed:{
             filterHomeInputs: function(){
                 return this.cards
+            },
+        },
+        watch:{
+            $route(){
+               this.showIsEditing()
+            },
+            showButton: function(){
+
             }
         }
     }

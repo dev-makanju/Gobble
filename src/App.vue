@@ -19,13 +19,13 @@ import { mapActions } from 'vuex'
 
 export default {
     components:{
-       HeaderOrganism,
-       FooterOrganism,
+      HeaderOrganism,
+      FooterOrganism,
     },  
     data(){
       return{
-         isMarketPlace: null,
-         isNavActive: null,
+        isMarketPlace: null,
+        isNavActive: null,
       }
     },
     mounted(){

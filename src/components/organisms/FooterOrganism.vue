@@ -8,7 +8,7 @@
                 <div class="footer-info">
                     <AtomText :tag="'p'" :content="'we are always available 24 ours all day.'"/>
                 </div>
-                <CartMolecule :cartLists="cartLists"/>
+                <a class="footer-info" style="color:#000;text-decoration:none;" href="#top" v-smooth-scroll>Back To Top</a>  
             </div>
             <div class="footer-link">
                 <div class="footer-info">
@@ -41,14 +41,12 @@
 <script>
     import styleObjects from '../molecules/HeaderMoles/ListStyle.js'
     import AtomText from '../atoms/AtomText.vue'
-    import CartMolecule from '../molecules/CartMolecule.vue'
     import linksMolecules from '../molecules/FooterMoles/LinksMolecules.vue'
 
     export default {
         name:"FooterOrganism",
         components:{
             AtomText,
-            CartMolecule,
             linksMolecules,
         },
         data(){

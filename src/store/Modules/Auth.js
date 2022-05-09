@@ -104,7 +104,7 @@ const actions = {
    },
    //LOG USER OUT
    logout({commit}){
-      localStorage.removeItem('token');
+      localStorage.removeItem('gobtoken');
       router.push('/');
       commit('LOGGED_OUT');
       location.reload();

@@ -2,9 +2,8 @@
    <div class="header__field">
       <div class="user header">
          <div class="thumbnail thu">
-            <img class="image" src="" alt="">
+            <img class="image" src="" alt=" " onerror="this.style.display='none'">
          </div>
-         <p class="thu">Miracle</p>
          <div class="relative thu">
             <font-awesome-icon @click="toggleProfile"  :class="[ showProfile? 'angle active' : 'angle' ]" icon="angle-down"/>
             <div v-if="showProfile" :class="['user', showProfile?'user-profile active':'user-profile' ]">
@@ -15,8 +14,8 @@
                   <div></div>
                </div>
                <ul>
-                  <li class="username">Miracle</li>
-                  <li>Role: <span class="role">Admin</span></li>
+                  <li class="username">{{ this.$store.state.auth.user.name }}</li>
+                  <li>Role: <span class="role">{{ this.$store.state.auth.role }}</span></li>
                   <div class="profile-tab">
                      <font-awesome-icon class="fab-icon"  icon="user-edit"/>
                      <router-link class="link update-profile" :to="{name:'Home'}">Update Profile</router-link>
@@ -25,7 +24,7 @@
                      <font-awesome-icon class="fab-icon" icon="refresh"/>
                      <router-link class="link update-profile" :to="{name:'Home'}">Reset Password</router-link>
                   </div>
-                  <div class="profile-tab">
+                  <div @click="signOut" class="profile-tab">
                      <font-awesome-icon class="fab-icon"  icon="sign-out"/>
                      <p class="link update-profile">log out</p>
                   </div>
@@ -37,6 +36,7 @@
 </template>
 
 <script>
+
 export default {
    name: 'ProfileCard',
    data(){
@@ -48,6 +48,9 @@ export default {
       toggleProfile(){
          this.showProfile = !this.showProfile
       },
+      signOut(){
+         this.$store.dispatch('logout').auth;
+      }
    }
 }
 </script>
@@ -56,6 +59,8 @@ export default {
 .profile-tab{
    display: flex;
    flex-direction: row;
+   font-size: 14px;
+   gap: 2px;
 }
 
 .lower-wrapper{
@@ -80,6 +85,7 @@ export default {
    font-weight: 300;
    color: #076d5a ;
    transition: .5s ease;
+   cursor: pointer;
 
    &:hover{
       color: #065143;
@@ -100,7 +106,9 @@ export default {
    border-radius: 2px;
    box-shadow: 0px 2px 5px rgba(0, 0,0,.3);
    z-index: 111;
-   width: 280px;
+   width: 350px;
+   min-height: 200px;
+   min-width: 300px;
    margin-top: .9rem;
    position: absolute;
    display: flex;

@@ -1,7 +1,7 @@
 <template>
    <div class="main-banner">
       <div class="background">
-         <img src="@/assets/Desktop/heart.png" alt="">
+         <img src="@/assets/Desktop/heart.png" alt=" " onerror="this.style.display='none'">
       </div>
       <div class="overlay__content">
            <h2>Get <span v-scrollAnimate class="highlight">10%</span> off your first purchase </h2>
