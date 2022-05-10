@@ -4,24 +4,29 @@
          <font-awesome-icon class="notice" icon="check-circle"/>
          <span>{{ message }}</span>
       </div>
-      <font-awesome-icon class="close" icon="times"/>
+      <font-awesome-icon @click="closeModal" class="close" icon="times"/>
    </div>
 </template>
 <script>
+
 export default{
-   name:'error',
-   props:['message']
+   name:'success',
+   props:['message'],
+   methods:{
+      closeModal(){
+         console.log('modal')
+      }
+   }
 }
+
 </script>
 
 <style lang="scss" scoped>
    .error-body{
        padding: 10px;
        height: 50px;
-       border-radius: 5px;
-       background: rgb(200, 249, 200);
+       background: rgb(201, 238, 201);
        position: relative;
-       border: 1px dashed green ;
        box-shadow: 0px 1px 35px 1px rgba(0 , 0 , 0 , .1);
 
        .close{
@@ -38,7 +43,7 @@ export default{
           margin-right: 10px;
        }
        span{
-          color: green;
+          color: #000;
        }
    }
 </style>

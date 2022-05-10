@@ -4,7 +4,6 @@
       <div class="Dashboard__main__container nav">
          <DashboardNavbar/>
       </div>
-      
       <!--Dashboard main wrapper-->
       <div class="Dashboard__main__container">  
          <div class="Dashboard__main__container header">
@@ -15,7 +14,7 @@
                <div class="order-header">
                   <h3>Order</h3>
                </div>
-               <div class="order-header">
+               <div class="order-header search">
                   <Search/>
                </div>
             </div>
@@ -76,7 +75,6 @@
 </template>
 
 <script>
-
 import DashboardNavbar from '../organism/DashboardNavbar.vue'
 import DashboardHeader from '../organism/DashboardHeader.vue'
 import Pagination from '../molecules/pagination.vue'
@@ -95,12 +93,17 @@ export default {
 </script>
 
 <style lang="scss">
-   .order-wrapper{
-      width: 80%;
+   .loader-wrapper{
+      width: 100%;
       margin: 0px auto;
-      min-width: 400px;
       margin-top: 30px;
       padding: 20px 0px;
+   }
+
+   .order-wrapper{
+      margin: 0px auto;
+      padding: 20px 0px;
+      width: 100%;
 
       @media (max-width: 450px) {
          padding: 5px;
@@ -110,6 +113,8 @@ export default {
          width: 100%;
          border-collapse: collapse;
          margin-top: 10px;
+         font-size: 14px;
+         //word-break: break-all;
 
          thead th{
             padding: 10px;
@@ -143,14 +148,24 @@ export default {
             }
          }
       }
-      
-      .order-header{
-         display: flex;
-         justify-content: space-between;
-         align-items: center;
+
+      .order-header .search{
+         float: right;
+         margin-bottom: .5rem ;
       }
+
+      @media (min-width: 500px) {
+         .order-header{
+            display: flex;
+            flex-direction: row ;
+            padding: 5px 0px;
+            justify-content: space-between;
+            align-items: center;
+         }
+      }
+
    }
-   @media (max-width: 450px) {
+   @media (max-width: 700px) {
       .mobile{
          display: none;  
       }

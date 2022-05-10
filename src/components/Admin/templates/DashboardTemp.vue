@@ -65,21 +65,20 @@ export default {
    height: 100vh;
    position: relative;
 
-   @media (max-width: 800px) {
+   @media (max-width: 900px) {
       grid-template-columns: none ;
    }
    
    
     &__container{
-         display: grid ;
-         grid-template-rows: 50px 1fr ;
+         //display: grid ;
 
          &.nav{
             background: #fff ;
             border-right: 2px solid #a9c6c077;
             transition: .5s ease;
 
-            @media (max-width: 800px) {
+            @media (max-width: 900px) {
                position: fixed;
                top: 0px;
                bottom: 0px;

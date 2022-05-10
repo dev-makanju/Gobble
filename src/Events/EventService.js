@@ -31,13 +31,12 @@ export default {
    updatePasswordEvent(data){
       return apiClient.post('user/updatePassword' , data )
    },
-
    //delete your account
-   deleteUserEvent(){
-      return apiClient.delete('user/deleteAccount')
+   deleteUserEvent(id){
+      return apiClient.delete('user/deleteAccount' , id)
    },
    makeUserAdminEvent(data){
-      return apiClient.get('user/makeAdmin' , data)//accepting email
+      return apiClient.patch('user/makeAdmin' , data)//accepting email
    },
    getAllUserEvent(){
       return apiClient.get('users/?page=1&limit=10');

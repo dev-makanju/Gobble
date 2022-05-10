@@ -1,50 +1,59 @@
 import eventService from '../../Events/EventService'
 
 const state = {
-
+   loading: null,
+   aborted: null,
+   editing: null,
+   deleting: null,
 }
 
 const mutations = {
-
+   STATUS(state){
+      state.loading = true;
+   },
+   USER_STATUS(state){
+      state.loading = false;
+   },
+   USER_STATUS_ABORTED(state){
+      state.aborted = true
+   },
+   CLEAR_ERROR(state){
+      state.aborted = false;
+   },
+   iS_EDITING(state){
+      state.editing = true;
+   },
+   EDITED(state){
+      state.editing = false ;
+   },
 }
 
 const actions = {
    //GET ALL REGISTERED USER
    async getAllRegUser({commit}){
-      commit('STATUS') 
       try{
+         commit('CLEAR_ERROR')
          commit('STATUS') 
          const res = await eventService.getAllUserEvent()
          if(res.status){
-            console.log(res)
-            commit("USER_STATUS");
+            commit("USER_STATUS", res.data.data);
          }
+         return res
       }catch(err){
+         commit("USER_STATUS_ABORTED");
          return err.response
       }
    },  
    //MAKE A USER AN ADMIN
-   async makeUserAdmin({commit}){
+   async makeUserAdmin({commit} , email){
       try{
-         commit('STATUS') 
-         const res = await eventService.makeUserAdminEvent()
+         commit('iS_EDITING') 
+         const res = await eventService.makeUserAdminEvent(email)
          if(res.status){
             console.log(res)
-            commit("USER_STATUS");
+            commit("EDITED");
          }
-      }catch(err){
-         return err.response
-      }
-   },
-   //DELETE A USER 
-   async  deleteUserById({commit} , user_id){
-      try{
-         commit('STATUS') 
-         const res = await eventService.getAllUserEvent(user_id)
-         if(res.status){
-            console.log(res)
-            commit("USER_STATUS");
-         }
+         return res
       }catch(err){
          return err.response
       }

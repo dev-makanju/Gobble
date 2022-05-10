@@ -4,13 +4,18 @@
          <font-awesome-icon class="notice" icon="exclamation-circle"/>
          <span>{{ message }}</span>
       </div>
-      <font-awesome-icon class="close" icon="times"/>
+      <font-awesome-icon @click="closeModal" class="close" icon="times"/>
    </div>
 </template>
 <script>
 export default{
    name:'error',
-   props:['message']
+   props:['message'],
+   methods:{
+      closeModal(){
+         this.$emit('close')
+      }
+   }
 }
 </script>
 
@@ -18,10 +23,8 @@ export default{
    .error-body{
        padding: 10px;
        height: 50px;
-       border-radius: 5px;
-       background: #f0c1bc;
+       background: #e5c2be;
        position: relative;
-       border: 1px dashed red ;
        box-shadow: 0px 1px 35px 1px rgba(0 , 0 , 0 , .1);
 
        .close{
@@ -38,7 +41,7 @@ export default{
           margin-right: 10px;
        }
        span{
-          color: red;
+          color: #000;
        }
    }
 </style>

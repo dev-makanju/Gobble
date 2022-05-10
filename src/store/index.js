@@ -61,6 +61,9 @@ export default new Vuex.Store({
     auth,
     admin,
     cart,
-    customer
+    customer:{
+      namespaced: true,
+      ...customer
+    }
   }
 });
