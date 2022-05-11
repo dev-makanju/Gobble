@@ -13,7 +13,7 @@ import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import NotFound from '../views/NotFound.vue'
 import ForgotPassword from '../views/ForgotPassword.vue'
-//import store from "../store/Modules/Auth";
+import store from "../store/Modules/Auth";
 
 
 Vue.use(VueRouter)
@@ -159,21 +159,21 @@ router.beforeEach((to , from , next) => {
    next()
 });
 
-// router.beforeEach((to , from , next) => {
-//   const user = store.state.token  
-//   const role = store.state.role
-//   if(to.matched.some(res => res.meta.requiresAuth)){
-//     if(user !== ''){
-//       console.log(store.state.role)
-//       if(role !== 'ADMIN'){
-//         return next({name:'Home'});
-//       }
-//       next()
-//     }
-//     return next({name:'Login'});
-//   }else{
-//        return next()
-//   }
-// })
+router.beforeEach((to , from , next) => {
+  const user = store.state.token  
+  const role = store.state.role
+  if(to.matched.some(res => res.meta.requiresAuth)){
+    if(user !== ''){
+      console.log(store.state.role)
+      if(role !== 'ADMIN'){
+        return next({name:'Home'});
+      }
+      next()
+    }
+    return next({name:'Login'});
+  }else{
+       return next()
+  }
+})
 
 export default router
