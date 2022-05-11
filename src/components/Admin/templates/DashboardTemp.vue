@@ -3,8 +3,7 @@
       <!--Dashboard Header--> 
       <div class="Dashboard__main__container nav">
          <DashboardNavbar/>
-      </div>
-      
+      </div> 
       <!--Dashboard main wrapper-->
       <div class="Dashboard__main__container">  
          <div class="Dashboard__main__container header">
@@ -68,7 +67,6 @@ export default {
    @media (max-width: 900px) {
       grid-template-columns: none ;
    }
-   
    
     &__container{
          //display: grid ;

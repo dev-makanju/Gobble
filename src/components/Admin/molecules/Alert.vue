@@ -14,7 +14,7 @@ export default{
    props:['message'],
    methods:{
       closeModal(){
-         console.log('modal')
+         this.$emit('close')
       }
    }
 }

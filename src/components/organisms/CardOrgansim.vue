@@ -14,11 +14,11 @@
                        <AtomIcon :content="'heart'" style="color: #065143;"/>
                     </div>
                     <div class="item" style="display:inline-flex;margin-left: 4px; ">
-                       <AtomStarf style="color:gold;font-size: 20px;"/> <p class="padding:2px">{{ card.rating }}</p>
+                       <AtomStarf style="color:gold;font-size: 20px;"/> <p class="padding:2px">{{ card.averageReview }}</p>
                     </div>
                 </div>
                 <div class="card__text" style="margin-top: 10px;">
-                    <p>{{ card.description }}</p>
+                    <p>{{ card.name }}</p>
                 </div>
                 <div class="card__footer">
                     <div class="footer-info">
@@ -30,10 +30,10 @@
                         </div>
                         <div v-if="showButton" class="edit-wrapper">
                             <div>
-                                <td class="icon"><font-awesome-icon icon="circle-check"/></td>
+                                <td  @click="editProduct(card.id)" class="icon"><font-awesome-icon icon="circle-check"/></td>
                             </div>
                             <div>
-                                <td class="icon"><font-awesome-icon icon="trash-alt"/></td>
+                                <td @click="deleteProduct(card.id)" class="icon"><font-awesome-icon icon="trash-alt"/></td>
                             </div>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
 <script>
     import AtomIcon from '../atoms/AtomIcon.vue'
     import AtomStarf from '../atoms/AtomStarfRating.vue'
-    import { mapGetters } from 'vuex'
+    import { mapActions, mapGetters } from 'vuex'
 
     export default {
         name:"CardOrganism",
@@ -68,6 +68,7 @@
         },
         methods:{
             ...mapGetters(['isLoggedIn']),
+            ...mapActions(['editSingleProduct' , 'deleteSingleProduct']),
             delayImageLoader(){
               this.isVisible = false;
               setTimeout(() => {
@@ -80,8 +81,6 @@
                 }this.$emit('add-to-cart' , card);
             },
             showIsEditing(){
-                console.log('loading')
-                console.log(this.$store.state.auth.role)
                 if(this.$store.state.auth.role == "ADMIN"){
                     if(this.$route.name == 'Product'){
                        this.showButton = true
@@ -94,6 +93,25 @@
                     this.showButton = false
                 }
             },
+            editProduct(id){
+               this.editSingleProduct(id).then(res => {
+                   if(res.status){
+                       //
+                   }
+               }).catch(err => {
+                   console.log(err)
+               })
+            },
+            deleteProduct(id){
+               this.deleteSingleProduct(id).then(res => {
+                   console.log(id)
+                   if(res.status){
+                       //
+                   }
+               }).catch(err => {
+                   console.log(err)
+               })
+            }
         },
         computed:{
             filterHomeInputs: function(){
@@ -104,9 +122,6 @@
             $route(){
                this.showIsEditing()
             },
-            showButton: function(){
-
-            }
         }
     }
 </script>

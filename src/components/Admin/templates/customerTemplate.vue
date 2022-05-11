@@ -142,12 +142,10 @@ export default {
          }
          this.makeUserAdmin(emailObj).then(res => {
             if(res.status == 200){
-               console.log('okay')
                this.success = true;
                this.message = res.data.data
                this.selected = null
             }else{
-               console.log(res)
                this.error = true
                this.selected = null
                this.message = res.data.error.message

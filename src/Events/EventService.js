@@ -76,7 +76,8 @@ export default {
       return apiClient.patch(`products/${data.id}` , data.product)
    },
    deleteProductEvent(data){
-      return apiClient.delete(`products/${data.id}`)
+      console.log(data)
+      return apiClient.delete(`products/${data}`)
    },
    //search for a single product
    getProductBySearchEvent(data){
