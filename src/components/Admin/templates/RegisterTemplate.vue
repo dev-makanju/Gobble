@@ -30,12 +30,17 @@ export default{
 
 </script>
 
-<style>
+<style lang="scss" >
 
 @media screen and (min-width: 600px){
    .template{
       display: grid;
       grid-template-columns: 400px 1fr;  
+
+      .templateWrapper{
+         overflow: hidden ;
+         height: 100vh;
+      }
    }
 }
 

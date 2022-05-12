@@ -4,14 +4,7 @@
          <img class="banner-image" src="@/assets/mobile/a-image.jpg" alt="">
          <div class="banner__overlay"></div>
          <div class="banner__text">
-              <h1>Join Our Member and get discount to 35% </h1>
-              <div class="banner__input">
-                  <input type="text" placeholder="Enter your mail">
-                  <button class="btn-class">Sign In</button>
-              </div>
-              <div class="error_handler">
-                  This user does not exist!!!
-              </div>
+              <h1>Join Our Member and get discount up to 35% </h1>
          </div>
           </PuSkeleton>
     </div>
@@ -20,7 +13,6 @@
 <script>
     export default {
         name:"bannerOrganism"
-        
     }
 </script>
 
@@ -30,7 +22,7 @@
         max-width: 1440px;
         margin: 0px auto;
         height: 300px;
-        border-radius: 5px;
+        border-radius: 5px ;
         position: relative ;
         box-shadow: 0px 0px 30px 12px rgba(0 , 0 , 0 , .3) ;
         margin-top: 5rem;

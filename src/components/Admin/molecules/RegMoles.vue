@@ -248,6 +248,7 @@ export default {
    align-items: center;
    flex-direction: column;
    position: relative ;
+   height: 90vh;
 
    .logo{
        position: absolute ;
