@@ -93,13 +93,12 @@
                id="confirm_pass" 
                @focus="isConfPassInput=true"
                @blur="isFocusedConfPass"
-               v-model.trim="$v.confirmPass.$model">
-            <div class="validate-error">
-                <span v-if="$v.confirmPass.$error">
-                   <p v-if="!$v.password.required">confirm password is required</p>
-                   <p v-if="!$v.password.sameAsPassword">confirm password is not a match!</p>
-                </span>
-            </div>
+                v-model.trim="$v.confirmPass.$model">
+                <div class="validate-error">
+                    <div v-if="$v.confirmPass.$error">
+                        <p v-if="!$v.password.sameAsPassword">confirm password is not a match!</p>
+                    </div>
+                </div>  
         </div>
 
         <div class="log">
@@ -159,7 +158,6 @@ export default {
             minLength: minLength(8),
         },
         confirmPass:{
-            required,
             sameAsPassword: sameAs('password')
         }
     },
