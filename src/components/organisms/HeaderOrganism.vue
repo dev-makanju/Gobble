@@ -7,11 +7,11 @@
             </div>
             <div class="header-nav">
                 <ListMolecule 
-                   :urlLists="urlLists"/>
+                    :urlLists="urlLists"/>
             </div>
             <div class="header-nav">
                 <CartMolecule 
-                   :cartLists="cartLists"/>
+                    :cartLists="cartLists"/>
             </div>
         </div>
     </header>
@@ -93,6 +93,7 @@
 
 <style lang="scss" scoped>
 header{
+    border-bottom: 1px solid #06514341;
     .header{
         width: 90%;
         max-width: 1440px;

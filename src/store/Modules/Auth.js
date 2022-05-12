@@ -13,7 +13,7 @@ const getters = {
    isLoggedIn: (state) => !!state.token,
    user: (state) => state.user,
    authStatus: (state) => state.status,
-   userRole: (state) => state.role
+   userRole: (state) => state.role == "ADMIN"
 }
 
 const mutations = {

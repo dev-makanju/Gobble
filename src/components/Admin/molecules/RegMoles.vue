@@ -196,7 +196,6 @@ export default {
                 this.isConfPassInput = false
             }
         },
-
         login(){
             this.$v.$touch()
             if(this.$v.$invalid !== true){
@@ -235,11 +234,9 @@ export default {
 .success{
     p{
         padding: 4px;
-        border: 1px dashed rgb(189, 241, 189);
-        background: green;
-        border-radius: 5px;
+        background: rgb(205, 245, 205);
         width: 100%;
-        color: #eee;
+        color: #000;
         text-align: center;
         font-size: 12px;  
     }
@@ -298,10 +295,9 @@ export default {
         &.error{
           p{
             padding: 4px;
-            background: #e74e3c;
-            border-radius: 5px;
+            background: #f48d82;
             width: 100%;
-            color: #eee;
+            color: #000;
             font-size: 12px;
           }
         }

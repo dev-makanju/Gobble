@@ -1,56 +1,56 @@
 <template>
     <transition name="cart__slider">
-    <div class="shopping__cart">
-        <div style="overflow-y:auto; height:80%">
-            <div class="times__icon">
-                <font-awesome-icon @click="$emit('toggle-cart')" icon="times"/>
-            </div>
-            <div v-if="!isEmpty">
-            <div v-for="items in cartItemsDetails" :key="items.id" class="cart">
-                <div class="cart__wrapper">
-                   <img class="cart__image" width="150" height="150" :src="items.image">
+        <div v-if="this.$store.state.isOpen"  class="shopping__cart">
+            <div style="overflow-y:auto; height:80%">
+                <div class="times__icon">
+                    <font-awesome-icon class="icon-close" @click="$emit('toggle-cart')" icon="times"/>
                 </div>
-                <div>  
-                    <div style="padding: 5px; margin-left: 4px;">
-                        <div>
-                            <p>{{ items.description }}</p>
-                            <p class="" style="margin-top: 4px;color:#065143;"><span>NgN</span>{{ items.price }}</p>
-                        </div>
-                        <div class="cart__increment">
-                                <div class="cart__add">
-                                    <div>
-                                    <font-awesome-icon 
-                                        style="cursor:pointer; 
-                                        padding:5px;
-                                        border: 1px solid #065143;
-                                        border-radius: 5px;" 
-                                        @click="items.qty++" icon="plus"/>
-                                    </div>
-                                    <div>
-                                    <p style="padding: 5px;">{{ items.qty }}</p>
-                                    </div>
-                                    <div>
+                <div v-if="!isEmpty">
+                <div v-for="items in cartItemsDetails" :key="items.id" class="cart">
+                    <div class="cart__wrapper">
+                        <img class="cart__image" width="150" height="150" :src="items.image">
+                    </div>
+                    <div>  
+                        <div style="padding: 5px; margin-left: 4px;">
+                            <div>
+                                <p>{{ items.description }}</p>
+                                <p class="" style="margin-top: 4px;color:#065143;"><span>NgN</span>{{ items.price }}</p>
+                            </div>
+                            <div class="cart__increment">
+                                    <div class="cart__add">
+                                        <div>
                                         <font-awesome-icon 
-                                            style="cursor:pointer;
-                                            padding:5px; 
-                                            border: 1px solid #065143; 
+                                            style="cursor:pointer; 
+                                            padding:5px;
+                                            border: 1px solid #065143;
                                             border-radius: 5px;" 
-                                            @click="reduceQty(items.id)" icon="subtract"/>
+                                            @click="items.qty++" icon="plus"/>
+                                        </div>
+                                        <div>
+                                        <p style="padding: 5px;">{{ items.qty }}</p>
+                                        </div>
+                                        <div>
+                                            <font-awesome-icon 
+                                                style="cursor:pointer;
+                                                padding:5px; 
+                                                border: 1px solid #065143; 
+                                                border-radius: 5px;" 
+                                                @click="reduceQty(items.id)" icon="subtract"/>
+                                        </div>
                                     </div>
-                                </div>
-                                <font-awesome-icon  
-                                    style="padding: 5px;
-                                    cursor: pointer;
-                                    float:right;" 
-                                    @click="filterCart(items.id)"
-                                    icon="times"/>
+                                    <font-awesome-icon  
+                                        style="padding: 5px;
+                                        cursor: pointer;
+                                        float:right;" 
+                                        @click="filterCart(items.id)"
+                                        icon="times"/>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         <div v-else>
-              <h2>Kindly select an item to add to your cart...</h2>
+              <h2 class="add-text">Kindly select an item to add to your cart...</h2>
         </div>
         </div>
 
@@ -59,10 +59,10 @@
             <hr>
                 <div class="purchase">
                     <div>
-                        <h1>Total Purchase</h1>
+                        <h1 class="add-text">Total Purchase</h1>
                     </div>
                     <div>
-                        <h1><span class="" style="color: #065143 ;font-size: 20px;">NgN</span>{{ returnTotalPrice }}.00</h1>
+                        <h2><span style="color: #065143 ;font-size:18px;">NgN</span>{{ returnTotalPrice }}.00</h2>
                     </div>
                 </div>
             <hr>
@@ -118,11 +118,23 @@
 
 <style lang="scss" scoped>
 
+.icon-close{
+    padding: 5px;
+    border:  1px solid #065143;
+    box-shadow: 0px 2px 5px rgba(0 , 0  , 0  , .1);
+    border-radius: 3px;
+}
+
 .shopping__cart{
     height: 100%;
     padding: 10px;
     display: flex;
     flex-direction: column ;
+
+    .add-text{
+        font-size: 14px;
+        font-family: 'Poppins' , sans-serif ;
+    }
     
     .cart{
         display: flex ;
@@ -178,16 +190,11 @@
         align-items: center;
     }
 
-    .main_product_cart{
-        position: absolute;
-        bottom: 0px;
-        width: 100%;
-    }
-
-    .cart__add{
-
-    }
-
+    // .main_product_cart{
+    //     position: absolute;
+    //     bottom: 0px;
+    //     width: 100%;
+    // }
 }
 
 </style>

@@ -13,7 +13,8 @@ import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import NotFound from '../views/NotFound.vue'
 import ForgotPassword from '../views/ForgotPassword.vue'
-import store from "../store/Modules/Auth";
+// import store from '../store'
+// import EventService from '../Events/EventService'
 
 
 Vue.use(VueRouter)
@@ -153,27 +154,27 @@ const router = new VueRouter({
   routes
 })
 
-router.beforeEach((to , from , next) => {
-   let documentTitle = `Gobble - ${to.meta.title}`;
-   document.title = documentTitle;
-   next()
-});
+// router.beforeEach( async(to , from , next) => {
+//     const user = store.getters.isLoggedIn;
+//     const res = await EventService.getUserEvent();
+//     if(to.matched.some(res => res.meta.requiresAuth)){
+//       if(user){
+//         if(res.status){
+//           const role = res.data.data.role
+//           if(role === "ADMIN"){
+//             return next();
+//           }return next({name:'Home'});
+//         }
+//       }return next({name:'Login'});
+//     }else{
+//       return next();
+//     }
+// });
 
 router.beforeEach((to , from , next) => {
-  const user = store.state.token  
-  const role = store.state.role
-  if(to.matched.some(res => res.meta.requiresAuth)){
-    if(user !== ''){
-      console.log(store.state.role)
-      if(role !== 'ADMIN'){
-        return next({name:'Home'});
-      }
-      next()
-    }
-    return next({name:'Login'});
-  }else{
-       return next()
-  }
-})
+  let documentTitle = `Gobble - ${to.meta.title}`;
+  document.title = documentTitle;
+  next()
+});
 
 export default router

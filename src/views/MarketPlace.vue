@@ -2,13 +2,18 @@
     <div :class="[this.$store.state.isOpen ? 'market__place open' :'market__place' ]">
         <div class="market__section">
             <cardTemplate :isFilterCard="isReturnCardsRatings" @add-to-cart="addProductToCart"/>
+            <div v-if="this.$store.state.isOpen" class="market__overlay"></div>
         </div>
-        <div v-if="this.$store.state.isOpen" class="market__section cart">
+        <div :class="[this.$store.state.isOpen ? 'market__section open' : 'market__section cart']">
             <cartOrganism 
                 @filter-cart="removeItem" 
                 :cartItemsDetails="isCartActive" 
                 :isEmpty="isEmpty" 
-                @toggle-cart="toogleCart"/>
+                @toggle-cart="toogleCart"
+            />
+        </div>
+        <div class="top">
+            <a class="back-top" href="#top" v-smooth-scroll>Up</a>
         </div>
     </div>
 </template>
@@ -63,35 +68,82 @@
                 }
             },
         }
-        
     }
 </script>
 
 <style lang="scss" scoped>
+.top{
+    .back-top{
+        padding: 7px;
+        background: #065143 ;
+        width: 40px;
+        border-radius: 50%;
+        font-size: 14px;
+        font-family: 'Poppins' , sans-serif;
+        color: #eee;
+        box-shadow: 0px 2px 5px rgba( 0 , 0 , 0 , .3);
+        position: fixed;
+        z-index: 111;
+        bottom: 2rem;
+        right: 2rem;
+        cursor: pointer ;
+        font-weight: bold;
+        font-size: 20px;
+        text-decoration: none ;
+    }
+}
+
+.market__overlay{
+    background: rgba(0, 0, 0, 0.485);
+    position: fixed ;
+    inset: 0px;
+}
+
 .market__place{
     display: grid ;
     grid-template-columns: 1fr;
 }
-.market__place.open{
-    display: grid ;
-    grid-template-columns: 1fr 400px;
+.market__place.open{  
+     grid-template-columns: 1fr;
+    .market__section{
+        transition: .5s ease ;
 
-    .market__section.cart{
-        background: #eee ;
-        height: 100vh ;
-        box-shadow: 0px 2px 45px 4px rgba( 0 , 0 , 0 , .3);
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        right: 0;
-        width: 350px ;
-        min-width: 400px;
-        z-index: 2222;
+        &.cart{
+            background: #eee ;
+            height: 100vh ;
+            box-shadow: 0px 2px 45px 4px rgba( 0 , 0 , 0 , .3);
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            //width: 350px;
+            transform: translateX(400px);
+            min-width: 400px;
+            z-index: 2222;
 
-        @media (max-width: 600px) {
-            min-width: 280px;
+            @media (max-width: 600px) {
+                min-width: 280px;
+            }
         }
-    }
+
+        &.open{
+            background: #eee;
+            height: 100vh;
+            box-shadow: 0px 2px 45px 4px rgba( 0 , 0 , 0 , .3);
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            //width: 350px;
+            transform: translateX(0px);
+            min-width: 400px;
+            z-index: 2222;
+
+            @media (max-width: 600px) {
+                min-width: 280px;
+            }
+        }
+    }    
 }
 
 </style>

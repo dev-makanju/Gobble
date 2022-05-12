@@ -139,7 +139,7 @@
     }
     .card__wrapper{
         margin: 0px auto ;
-        margin-top: 3rem;
+        margin-top: 5rem;
         display: flex ;
         flex-direction: row ;
         flex-wrap: wrap ;
