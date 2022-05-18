@@ -10,7 +10,7 @@
                v-if="success" 
                :message="successMessage"/>
          </div>
-         <form  enctype="multipart/form-data">
+         <form enctype="multipart/form-data">
             <div class="form-wrapper upload">
                <div class="form-control">
                   <div class="click-able" 
@@ -55,7 +55,14 @@
                      <label for="">Rating</label>
                      <input type="text" autocomplete="on" v-model.trim="rating">
                </div>
-               <Button @submit.prevent="createProduct()"  :value="buttonVariant"/>
+               <div  class="button">
+                  <button @click.prevent="createProductItem">
+                     <Loader v-if="loading"/>
+                     <div class="button__text">
+                        Create Product
+                     </div>
+                  </button>
+               </div>
             </div>
          </form>
    </div>
@@ -64,17 +71,20 @@
 
 import AppError from '../molecules/ErrorMolecule.vue'
 import Alert from '../molecules/Alert.vue'
-import Button from '../molecules/Button.vue'
+import Loader from '../../molecules/Loading.vue'
+import { mapActions } from 'vuex'
+//import Button from '../molecules/Button.vue'
 
 export default {
    name:"ProductForm",
    components:{
-       AppError,Alert,Button
+       AppError,
+       Alert,Loader
    },
    data(){
       return{
          errorMessage:'',
-         successMessage:'Product created successfully , hurray.',
+         successMessage:'',
          isDragging: false,
          name:'',
          description:'',
@@ -86,13 +96,11 @@ export default {
          images:[], // save image in base 64 for previewing;
          error: false,
          success: false,
-         buttonVariant:{
-            value:'Submit',
-            loading: false,
-         }
+         loading: null,
       }
    },
    methods:{
+      ...mapActions(['createProduct']),
       OnDragEnter(e){
          e.preventDefault();
          this.dragCount++;
@@ -113,10 +121,9 @@ export default {
          Array.from(files).forEach( file => this.addImage(file));
       },
       addImage(file){
-            if(!file.type.match('image.*')){
-              this.error = true;
-              this.errorMessage = `${file.name} is not an image.`
-            }
+            if(!file.type.match('image.*'))
+               this.error = true;
+               this.errorMessage = `${file.name} is not an image.`
 
             this.files.push(file);//image has been been save in side for sending to server
             //now lets convert it to base 64 for image preview
@@ -141,15 +148,45 @@ export default {
          console.log(images)
          this.$emit('open' , images);
       },
-      createProduct(){
-         console.log('click')
-         if(this.name === '' ||
-            this.description === ''||
-            this.price === '' || 
-            this.category === '' ||
-            this.rating === ''){
+      createProductItem(){
+         if(this.name == '' ||
+            this.description == ''||
+            this.price == '' || 
+            this.category == '' ||
+            this.rating == ''){
+            if(this.files.length === 0){
+               this.error = true;
+               this.errorMessage = 'Oops!, Kindly select an image.'
+               return
+            }   
             this.error = true;
-            this.errorMessage = 'Oops!, Kindly fill in input details'
+            this.errorMessage = 'Oops!, input fields are required.'
+         }else{
+            const data = {
+               name: this.name,
+               description: this.description,
+               price: this.price,
+               category: this.category,
+               image: this.files,
+               rating: this.rating,
+            }
+            this.loading = true
+            this.createProduct(data).then(res => {
+            if(res.status === 201)
+               console.log(res)
+               this.loading = false
+               this.success = true
+               this.successMessage = res.data.message
+            this.loading = false
+            this.error = true
+            this.errorMessage = res.data.error.message
+            
+            }).catch(err => {
+               this.loading = false;
+               this.error = true;
+               this.errorMessage = 'Product cannot be created!'
+               console.log(err)
+            })
          }
       }
    }
@@ -158,6 +195,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+   .button{
+      position: relative;
+      float: right;
+      margin-top: 10px;
+
+      button{
+         background: #eee;
+         padding: 10px 20px;
+         border: 1px solid #065143;
+         color: #038069 ;
+         border-radius: 5px;
+         outline: none;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         align-content: center;
+         cursor: pointer;
+      }
+   }
    .submit-btn{
       padding: 10px 20px;
       width: 100px;
@@ -176,7 +232,7 @@ export default {
       margin:auto;
       
       .error-height{
-         height: 50px;
+         //height: 50px;
       }
 
       form{

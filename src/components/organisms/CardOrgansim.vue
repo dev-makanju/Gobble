@@ -5,7 +5,7 @@
                 <PuSkeleton class="is__loading">
                 </PuSkeleton>
                 <div v-if="isVisible" class="card__loaded">
-                   <img class="card__image" :src="card.image" alt=" " onerror="this.style.display='none'">
+                   <img class="card__image" :src="`data:image;base64,${card.image}`" alt=" " onerror="this.style.display='none'">
                 </div>
             </div>
             <div class="main-card">
@@ -22,7 +22,7 @@
                 </div>
                 <div class="card__footer">
                     <div class="footer-info">
-                        <p style="color: #065143;font-size: 18px;">NgN &nbsp;{{ card.price}}.00</p>
+                        <p style="color: #065143;font-size: 18px;">₦ &nbsp;{{ card.price}}.00</p>
                     </div>
                     <div class="footer-info">
                         <div v-if="!showButton">
@@ -111,6 +111,11 @@
                }).catch(err => {
                    console.log(err)
                })
+            },
+            createObj(image){
+                console.log(typeof image)
+                const url =  URL.createObjectURL( new Blob([image] , {type: "image/jpg"}))  
+                console.log(url)
             }
         },
         computed:{

@@ -50,7 +50,7 @@
                 </div>
             </div>
         <div v-else>
-              <h2 class="add-text">Kindly select an item to add to your cart...</h2>
+            <h2 class="add-text">Kindly select an item to add to your cart...</h2>
         </div>
         </div>
 
@@ -62,14 +62,21 @@
                         <h1 class="add-text">Total Purchase</h1>
                     </div>
                     <div>
-                        <h2><span style="color: #065143 ;font-size:18px;">NgN</span>{{ returnTotalPrice }}.00</h2>
+                        <h2><span style="color: #065143 ;font-size:18px;">₦</span>{{ returnTotalPrice }}.00</h2>
                     </div>
                 </div>
             <hr>
             <div style="display:flex; justify-content: flex-end; width: 100%; padding: 0px 10px;">
-                <router-link :to="{name:'Checkout'}">
-                      <button class="btn-button">Check Out</button>
-                </router-link>
+                <paystack           
+                    :amount="parseInt(returnTotalPrice * 100)"
+                    :email="'makurseme@gmail.com'" 
+                    :paystackkey="get_paystack_details['PUBLIC_KEY']"
+                    :reference="reference"
+                    :callback="processPayment"
+                    :close="get_paystack_details['close']"
+                    class="btn-button">
+                    Pay ₦{{ returnTotalPrice }}
+                </paystack>
             </div>
         </div>
     </div>
@@ -77,15 +84,24 @@
 </template>
 
 <script>
+    
+import { mapGetters , mapActions } from "vuex";
+import paystack from "vue-paystack";
+
     export default {
         name:"CartOrganism",
         props:['cartItemsDetails' , 'isEmpty'],
+        components:{ 
+            paystack 
+        },
         data(){
             return{
                 price:0,
+                shippingFee: 4,
             }
         },
         methods:{
+            ...mapActions('payment', ['processPayment']),
             filterCart(item){
                 this.$emit('filter-cart' , item );
             },
@@ -99,6 +115,19 @@
             }
         },
         computed:{
+            ...mapGetters('payment',[
+               "Carts",
+               "get_paystack_details",
+               "getUserDetail",
+            ]),
+            reference() {
+                let text = "";
+                let possible =
+                    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+                for (let i = 0; i < 10; i++)
+                    text += possible.charAt(Math.floor(Math.random() * possible.length));
+                return text;
+            },
             returnTotalPrice: function(){
                 let total = 0 
                 const itms = this.cartItemsDetails;

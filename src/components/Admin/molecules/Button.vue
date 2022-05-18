@@ -1,7 +1,7 @@
 <template>
    <div class="button">
       <button>
-         <Loader v-if="value.loading" />
+         <Loader v-if="value.loading"/>
          <div class="button__text">
             {{ value.value }}
          </div>
@@ -23,7 +23,8 @@ export default{
 
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+
    .button{
       position: relative;
       float: right;

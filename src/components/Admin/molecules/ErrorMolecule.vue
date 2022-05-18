@@ -22,7 +22,7 @@ export default{
 <style lang="scss" scoped>
    .error-body{
        padding: 10px;
-       height: 50px;
+       min-height: 50px ;
        background: #e5c2be;
        position: relative;
        box-shadow: 0px 1px 35px 1px rgba(0 , 0 , 0 , .1);

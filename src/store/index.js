@@ -4,6 +4,7 @@ import auth from '../store/Modules/Auth'
 import admin from './Admin/product'
 import cart from '../store/Modules/Cart'
 import customer from '../store/Modules/Customer'
+import payment from '../store/Modules/payment'
 import EventService from '../Events/EventService'
 
 Vue.use(Vuex)
@@ -80,6 +81,7 @@ export default new Vuex.Store({
          commit('IS_LOADING')
          const res = await EventService.getProductEvent();
           if(res.status){
+            console.log(res.data)
             commit("UPDATE_PRODUCT" , res.data.data)
           }
          return res
@@ -110,12 +112,26 @@ export default new Vuex.Store({
       }catch(err){
           return err.response
       }
+    },
+    async createProduct({commit} , data){
+      try{
+        const response = await EventService.createProductEvent(data);
+        if(response.status)
+           commit('PRODUCT_CREATED');
+        return response
+      }catch(err){
+        return err.response
+      }
     }
   },
   modules: {
     auth,
     admin,
     cart,
+    payment:{
+       namespaced: true,
+       ...payment
+    },
     customer:{
       namespaced: true,
       ...customer
