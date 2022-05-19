@@ -156,7 +156,7 @@ export default {
 
    .landing-page-child.text{
       min-height: 400px;
-      transition: .5s ease;
+      transition: .8s ease;
    }
 
    .landing-page-child.text.before-enter{

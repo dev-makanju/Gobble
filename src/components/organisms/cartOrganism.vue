@@ -14,7 +14,7 @@
                         <div style="padding: 5px; margin-left: 4px;">
                             <div>
                                 <p>{{ items.description }}</p>
-                                <p class="" style="margin-top: 4px;color:#065143;"><span>NgN</span>{{ items.price }}</p>
+                                <p class="" style="margin-top: 4px;color:#065143;"><span> ₦ </span>{{ items.price }}</p>
                             </div>
                             <div class="cart__increment">
                                     <div class="cart__add">

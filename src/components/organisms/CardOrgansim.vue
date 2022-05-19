@@ -5,7 +5,7 @@
                 <PuSkeleton class="is__loading">
                 </PuSkeleton>
                 <div v-if="isVisible" class="card__loaded">
-                   <img class="card__image" :src="`data:image;base64,${card.image}`" alt=" " onerror="this.style.display='none'">
+                   <img class="card__image" :src="card.image" alt=" " onerror="this.style.display='none'">
                 </div>
             </div>
             <div class="main-card">
@@ -76,9 +76,9 @@
               } , 5000)
             },
             addToCart(card){
-                if(this.$route.name === 'Home'){
-                   this.$router.push({name: 'MarketPlace'})
-                }this.$emit('add-to-cart' , card);
+                if(this.$store.getters.isLoggedIn)
+                    this.$emit('add-to-cart' , card)
+                this.$router.push({name: 'Login'})
             },
             showIsEditing(){
                 if(this.$store.state.auth.role == "ADMIN"){

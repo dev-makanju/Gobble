@@ -34,7 +34,9 @@
         },
         data(){
             let onClick = () => {
-                this.$store.dispatch('openCart');
+                if(this.$store.getters.isLoggedIn)
+                   this.$store.dispatch('openCart');
+                this.$router.push('/login')   
             }
             let  homeLog = () => {
                 if(this.$route.path != '/'){
