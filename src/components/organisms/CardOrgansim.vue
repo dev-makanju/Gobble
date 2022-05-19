@@ -76,9 +76,10 @@
               } , 5000)
             },
             addToCart(card){
-                if(this.$store.getters.isLoggedIn)
+                if(this.$store.getters.isLoggedIn){
                     this.$emit('add-to-cart' , card)
-                this.$router.push({name: 'Login'})
+                    return
+                }this.$router.push({name: 'Login'})
             },
             showIsEditing(){
                 if(this.$store.state.auth.role == "ADMIN"){
