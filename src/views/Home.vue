@@ -3,7 +3,7 @@
     <HomePage/>
     <slider/>
     <banner/>
-    <cardTemplate :isFilterCard="isReturnCardsRatings"/>
+    <landingPage/>
     <bannerOrg/>
   </div>
 </template>
@@ -15,7 +15,7 @@ import HomePage from '@/components/templates/HomeLayout.vue'
 import bannerOrg from '../components/organisms/HomeOrgs/bannerOrganism.vue'
 import banner from '../components/templates/bannerTemplate.vue'
 import slider from '../components/templates/sliderTemplate.vue'
-import cardTemplate from '../components/templates/cardTemplate.vue'
+import landingPage from '../components/templates/landingPage.vue'
 
 export default{
   name: 'Home',
@@ -24,7 +24,7 @@ export default{
     bannerOrg,
     banner,
     slider,
-    cardTemplate
+    landingPage,
   },
   data(){
     return{
@@ -35,7 +35,7 @@ export default{
 </script>
 
 <style lang="scss" scoped>
-   .home{
-       margin-bottom: 6rem;
-   }
+    .home{
+      margin-bottom: 6rem;
+    }
 </style>

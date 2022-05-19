@@ -126,20 +126,21 @@ h1 , h2 , h3 , h4 , h5 , h6 , p{
 
 ul , li , ol {
   font-family: 'Poppins' , sans-serif;
+  list-style-type: none;
 }
 
 input{
-   border: $secondary-color;
-   box-sizing: border-box;
-   font-family: 'Poppins' , sans-serif;
-   width: 100%;
-   padding: 7px;
-   font-size: 16px;
-   border-radius: 5px;
+  border: $secondary-color;
+  box-sizing: border-box;
+  font-family: 'Poppins' , sans-serif;
+  width: 100%;
+  padding: 7px;
+  font-size: 16px;
+  border-radius: 5px;
 }
 
 .error{
-   color: $error-color;
+  color: $error-color;
 }
 
 </style>

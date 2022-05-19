@@ -22,8 +22,10 @@ import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import { faHome } from '@fortawesome/free-solid-svg-icons'
+import { faBorderNone } from '@fortawesome/free-solid-svg-icons'
 import { faUpload } from '@fortawesome/free-solid-svg-icons'
 import { faBell } from '@fortawesome/free-solid-svg-icons'
+import { faBoltLightning } from '@fortawesome/free-solid-svg-icons'
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
 import { faDashboard } from '@fortawesome/free-solid-svg-icons'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
@@ -33,6 +35,7 @@ import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 import { faCommentDollar } from '@fortawesome/free-solid-svg-icons'
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { faStore } from '@fortawesome/free-solid-svg-icons'
+import { faMoneyBill } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import Carousel3d from 'vue-carousel-3d';
 import axios from 'axios'
@@ -40,12 +43,15 @@ import axios from 'axios'
 
 library.add(faCartShopping)
 library.add(faPlus)
+library.add(faBoltLightning)
+library.add(faMoneyBill)
 library.add(faSubtract)
 library.add(faSearch)
 library.add(faUserEdit)
 library.add(faSignOut)
 library.add(faTrash)
 library.add(faBell)
+library.add(faBorderNone)
 library.add(faRefresh)
 library.add(faCheckCircle)
 library.add(faHeart)

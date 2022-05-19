@@ -91,6 +91,7 @@ export default {
          this.getProducts().then(res => {
             if(res.status){
                this.products = this.$store.state.products
+               console.log(this.products)
             }
          })
       },

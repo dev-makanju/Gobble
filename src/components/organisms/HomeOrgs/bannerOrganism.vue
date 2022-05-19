@@ -1,12 +1,12 @@
 <template>
     <div class="banner">
         <PuSkeleton class="banner__loader">
-         <img class="banner-image" src="@/assets/mobile/a-image.jpg" alt="">
-         <div class="banner__overlay"></div>
-         <div class="banner__text">
-              <h1>Join Our Member and get discount up to 35% </h1>
-         </div>
-          </PuSkeleton>
+        <img class="banner-image" src="@/assets/mobile/a-image.jpg" alt="">
+        <div class="banner__overlay"></div>
+        <div class="banner__text">
+            <h1>Join Our Member and get discount up to 35% </h1>
+        </div>
+        </PuSkeleton>
     </div>
 </template>
 

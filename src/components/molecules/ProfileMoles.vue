@@ -14,8 +14,14 @@
                   <div></div>
                </div>
                <ul>
-                  <li class="username">{{ this.$store.state.auth.user.name }}</li>
-                  <li>Role: <span class="role">{{ this.$store.state.auth.role }}</span></li>
+                  <div>
+                     <PuSkeleton class="loader" height="20px"></PuSkeleton>
+                     <PuSkeleton class="loader" height="10px" :rounded="true"></PuSkeleton>
+                  </div>
+                  <div>
+                     <li class="username">{{ this.$store.state.auth.user.name }}</li>
+                     <li>Role: <span class="role">{{ this.$store.state.auth.role }}</span></li>
+                  </div>
                   <div class="profile-tab">
                      <font-awesome-icon class="fab-icon"  icon="user-edit"/>
                      <router-link class="link update-profile" :to="{name:'Home'}">Update Profile</router-link>
@@ -23,6 +29,10 @@
                   <div class="profile-tab">
                      <font-awesome-icon class="fab-icon" icon="refresh"/>
                      <router-link class="link update-profile" :to="{name:'Home'}">Reset Password</router-link>
+                  </div>
+                  <div class="profile-tab">
+                     <font-awesome-icon class="fab-icon" icon="trash"/>
+                     <router-link class="link update-profile" :to="{name:'Home'}">Delete Account</router-link>
                   </div>
                   <div @click="signOut" class="profile-tab">
                      <font-awesome-icon class="fab-icon"  icon="sign-out"/>

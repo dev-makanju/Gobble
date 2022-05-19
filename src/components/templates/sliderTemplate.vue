@@ -72,7 +72,8 @@
 
 <style lang="scss" scoped>
     .text{
-        padding: 30px 10px;
+        margin-top: 7rem;
+        padding: 0px 10px;
     }
 
     .slider{
@@ -88,8 +89,7 @@
         }
 
         .router-link.card-slider{
-            padding:5px 0px;
-            min-height: 250px;
+            margin-bottom: 7rem;
             
             .link{
                 padding: 10px;
