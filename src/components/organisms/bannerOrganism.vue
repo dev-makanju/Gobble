@@ -57,14 +57,21 @@ export default{
          background: rgba(0, 0, 0, 0.635);
 
          .banner-wrapper{
-            background: rgba(238, 238, 238, 0.822);
-            padding: 20px 20px ;
-            border-radius: 5px;
+            background: rgba(238, 238, 238, 0.885);
+            box-shadow: 0px 2px 5px rgba(157, 152, 152, 0.635);
+            padding: 20px 4rem ;
+            border-radius: 2px;
             height: 300px;
             justify-content: space-evenly;
             display: flex;
             align-items: center;
             flex-direction: column;
+         }
+
+         @media (max-width: 768px ) {
+            .banner-wrapper{
+               padding: 20px 15px ;
+            }
          }
 
          h2{

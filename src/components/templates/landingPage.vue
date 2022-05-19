@@ -5,7 +5,7 @@
                <div class="image-wrapper">
                   <img src="@/assets/Desktop/landingImage1.png" onerror="this.style.display='none'">
                </div>
-               <div class="landing-page-tags image">
+               <div v-scrollAnimate class="landing-page-tags image">
                   <ul>
                      <font-awesome-icon class="fab-icon-round"  icon="shopping-cart"/>
                      <div class="image-text">
@@ -16,7 +16,7 @@
                </div>
          </div>
          <div class="landing-page-child">
-            <div class="landing-page-child text">
+            <div v-scrollAnimate class="landing-page-child text">
                <div class="landing-page-tags ordinary">
                   <div>
                      <ul>
@@ -42,7 +42,7 @@
             </div>
          </div>
          <div class="landing-page-child">
-            <div class="landing-page-child text">
+            <div v-scrollAnimate class="landing-page-child text">
                <h4>SHOWCASE</h4>
                <h1>Why should you use our service?</h1>
                <div>
@@ -156,6 +156,17 @@ export default {
 
    .landing-page-child.text{
       min-height: 400px;
+      transition: .5s ease;
+   }
+
+   .landing-page-child.text.before-enter{
+      opacity: 0;
+      transform: translateY(60px);
+   }
+
+   .landing-page-child.text.enter{
+      opacity: 1;
+      transform: translateY(0px);
    }
 
    .landing-page-child.text h4{
@@ -195,6 +206,21 @@ export default {
       background: #eee;
       width: 270px ;
       z-index: 1111;
+   }
+
+   .landing-page-tags.image.before-enter{
+      transform: scale(.8);
+   }
+
+   .landing-page-tags.image.enter{
+      animation: bounce .5s infinite alternate;
+      animation-iteration-count: 4;
+   }
+
+   @keyframes bounce {
+      to { 
+         transform: scale(1.1); 
+      }
    }
 
    .landing-page-tags.image ul{

@@ -22,7 +22,7 @@
         max-width: 1440px;
         margin: 0px auto;
         height: 300px;
-        border-radius: 5px ;
+        border-radius: 2px ;
         position: relative ;
         box-shadow: 0px 0px 30px 12px rgba(0 , 0 , 0 , .3) ;
         margin-top: 5rem;
