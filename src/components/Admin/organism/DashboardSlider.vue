@@ -11,10 +11,10 @@
             </div>
             <div class="dashboard__details det">
                <div class="child">
-                     <router-link class="link-det" to="">See Details</router-link>
+                  <router-link class="link-det" to="">See Details</router-link>
                </div>
                <div class="child green icon">
-                     <font-awesome-icon  icon="dashboard"/>
+                  <font-awesome-icon  icon="dashboard"/>
                </div>
             </div>
           </div>
@@ -22,22 +22,22 @@
       <!--Customers--->
       <div class="pad">
          <div class="dashboard__cards">
-          <div class="dashboard__details">
-              <h5>Customers</h5>
+            <div class="dashboard__details">
+               <h5>Customers</h5>
+            </div>
+            <div class="dashboard__details">
+               <h1>5,310</h1>
+            </div>
+               <div class="dashboard__details det">
+                  <div class="child">
+                        <router-link class="link-det" to="">See Details</router-link>
+                  </div>
+                  <div class="child pink icon">
+                        <font-awesome-icon  icon="dashboard"/>
+                  </div>
+               </div>
           </div>
-          <div class="dashboard__details">
-              <h1>5,310</h1>
-          </div>
-          <div class="dashboard__details det">
-              <div class="child">
-                  <router-link class="link-det" to="">See Details</router-link>
-              </div>
-              <div class="child pink icon">
-                  <font-awesome-icon  icon="dashboard"/>
-              </div>
-         </div>
-      </div>
-      </div>
+      </div> 
       <!---total earnings--->
       <div class="pad">
          <div class="dashboard__cards">
@@ -133,8 +133,8 @@ export default {
    margin-top: 3rem;
    overflow-x: auto;
    flex-wrap: nowrap;
-   border: 1px solid red;
    padding: 1rem 10px;
+   width: 100%;
 
    -webkit-overflow-scrolling: touch;
 
