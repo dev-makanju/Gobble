@@ -3,34 +3,34 @@
         <div class="footer">
             <div class="footer-link">
                 <div class="footer-info">
-                     <AtomText :tag="'h1'" :content="'Gobble'"/>
+                     <AtomText :tag="'h1'" style="color:#eee" :content="'Gobble'"/>
                 </div>
                 <div class="footer-info">
-                    <AtomText :tag="'p'" :content="'we are always available 24 ours all day.'"/>
+                    <AtomText :tag="'p'" style="color:#eee" :content="'we are always available 24 ours all day.'"/>
                 </div>
-                <a class="footer-info" style="color:#000;text-decoration:none;" href="#top" v-smooth-scroll>Back To Top</a>  
+                <a class="footer-info" style="color:#eee;text-decoration:none;" href="#top"  v-smooth-scroll>Back To Top</a>  
             </div>
             <div class="footer-link">
                 <div class="footer-info">
-                    <AtomText :tag="'h3'" :content="'Support'"/>
+                    <AtomText :tag="'h3'" style="color:#eee" :content="'Support'"/>
                 </div>
                 <linksMolecules :urlLists="support"/>
             </div>
             <div class="footer-link">
                 <div class="footer-info">
-                    <AtomText :tag="'h3'" :content="'Our Menu'"/>
+                    <AtomText :tag="'h3'" style="color:#eee" :content="'Our Menu'"/>
                 </div>
                 <linksMolecules :urlLists="menu"/>
             </div>
             <div class="footer-link">
                 <div class="footer-info">
-                    <AtomText :tag="'h3'" :content="'Useful Link'"/>
+                    <AtomText :tag="'h3'" style="color:#eee" :content="'Useful Link'"/>
                 </div>
                 <linksMolecules :urlLists="links"/>
             </div>
             <div class="footer-link">
                 <div class="footer-info">
-                     <AtomText :tag="'h3'" :content="'Get in touch'"/>
+                     <AtomText :tag="'h3'" style="color:#eee" :content="'Get in touch'"/>
                 </div>
                  <linksMolecules :urlLists="contact"/>
             </div>
@@ -39,6 +39,7 @@
 </template>
 
 <script>
+
     import styleObjects from '../molecules/HeaderMoles/ListStyle.js'
     import AtomText from '../atoms/AtomText.vue'
     import linksMolecules from '../molecules/FooterMoles/LinksMolecules.vue'
@@ -154,7 +155,8 @@
 
 <style lang="scss" scoped>
 footer{
-    background: #A8B087 ;
+    background: #065143  ;
+    opacity: .9;
     border-radius: 10px 10px 0px 0px;
 
     .footer{
@@ -166,6 +168,7 @@ footer{
         flex-wrap: wrap;
         justify-content: space-between;
         align-items: center;
+
         
         @media (min-width:768px) {      
             width: 90%;

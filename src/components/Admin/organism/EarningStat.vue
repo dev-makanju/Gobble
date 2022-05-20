@@ -19,19 +19,19 @@
 </template>
 
 <script>
-   import loader from '../../molecules/Loading.vue'
+    import loader from '../../molecules/Loading.vue'
 
-   export default {
-       name:"EarningStat",
-       components:{
-           loader
-       },
-       data(){
+    export default {
+        name:"EarningStat",
+        components:{
+            loader
+        },
+        data(){
            return{
                loading: null,
            }
-       }
-   }
+        }
+    }
 </script>
 
 <style lang="scss"> 
@@ -46,11 +46,12 @@
     }
 
     .table-container{
-        border-radius: 7px;
-        background: #fff ;
+        border-radius: 3px;
+        background: #fff;
         margin: 0px auto;
         width: 100%;
-        box-shadow: 0px 2px 15px 7px rgb(0 0 0 / 10%);
+        min-height: 250px;
+        box-shadow: 0px 2px 35px 2px rgb(0, 0, 0, .1 );
         position: relative;
 
         .overlay{

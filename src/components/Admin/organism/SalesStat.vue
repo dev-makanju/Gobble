@@ -6,16 +6,16 @@
             <h3 class="order">Latest Orders</h3> 
             <table>
             <thead>
-                <th>Product</th>
-                <th>Date</th>
+                <th class="desktop">Product</th>
+                <th class="desktop">Date</th>
                 <th>Name</th>
                 <th>Amount</th>
                 <th>Status</th>
             </thead>
                <tbody>
                     <tr>
-                        <td><img class="pic_thumbnail" src="@/assets/mobile/a-image.jpg" alt=""></td>
-                        <td>Apr, 21st 2022</td>
+                        <td class="desktop"><img class="pic_thumbnail" src="@/assets/mobile/a-image.jpg" alt=""></td>
+                        <td class="desktop">Apr, 21st 2022</td>
                         <td>Shoe</td>
                         <td>NgN 5000.00</td>
                         <td @click="toggleStatus" class="toggle">paid</td>
@@ -49,6 +49,12 @@
 </script>
 
 <style lang="scss"> 
+    @media (max-width: 768px){
+        .desktop{
+            display: none;
+        }
+    }
+
     .pic_thumbnail{
         width: 60px;
         border-radius: 5px;

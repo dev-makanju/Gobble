@@ -63,7 +63,6 @@ export default {
                     { data: [40, 20, 12 , 10 , 30 , 45 , 30 , 10, 12] },
                 ]
             },
-
             chartOptions: {
             responsive: true
          }

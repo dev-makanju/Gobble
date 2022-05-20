@@ -17,11 +17,11 @@
                <graph/>
             </div>
             <div class="Dashboard__main__container__wrapper stat">
-               <div class="Dashboard__main__container__wrapper stat">
+               <div class="Dashboard__main__container__wrapper col">
                   <salesStat/>
                   <!--latest order-->
                </div>
-               <div class="Dashboard__main__container__wrapper stat">
+               <div class="Dashboard__main__container__wrapper col">
                   <earningStat/>
                   <!--customer review-->
                </div>
@@ -92,32 +92,59 @@ export default {
          }
 
          &__wrapper{
+            flex: 1;
+
+            &.col{
+               @media (max-width: 1200px) {
+                  padding-top: 4rem;
+               }
+            }
 
             &.slider{
                display: flex;
                justify-content: center;
                align-items: center;
+               align-self: center;
+               padding: 1rem 0px; 
+               overflow-x: auto;  
+               flex-wrap: nowrap;
+               min-height: 250px;
             }
 
             &.stat{
-               @media (min-width: 600px) {                  
+               flex-direction: column;
+               padding-bottom: 4rem;
+               width: 95%;
+               margin: 0px auto;
+
+               @media (min-width: 1200px) {                  
                   display: flex ;
+                  width: 95%;
+                  margin: 0px auto;
                   flex-direction: row;
+                  padding-bottom: 4rem;
                   flex: 1;
                   margin-top: 2rem;
-                  padding: 20px 20px;
+                  gap: 2rem;
                }
-               flex-direction: column ;
             }
          }
 
          &.main{
             display: grid ;
-            grid-template-rows: 200px 1fr ;
+            grid-template-rows: 250px 1fr;
+            width: 100%;
 
             .graph{
-               padding: 10px 20px;
+               padding-top: 2rem;
                margin-top: 3rem;
+               overflow-x: auto;
+               width: 95%;
+               margin: 0px auto;
+
+               @media (max-width: 768px) {
+                  display: none;
+               }
             }
          }
     }
