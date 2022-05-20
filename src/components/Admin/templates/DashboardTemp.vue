@@ -1,13 +1,13 @@
 <template>
    <div class="Dashboard__main">
       <!--Dashboard Header--> 
-      <div class="Dashboard__main__container nav">
-         <DashboardNavbar/>
+      <div :class="['Dashboard__main__container nav',showDashboardNavbar ? 'open' : '']">
+         <DashboardNavbar @close-nav="closeNavbar"/>
       </div> 
       <!--Dashboard main wrapper-->
       <div class="Dashboard__main__container">  
          <div class="Dashboard__main__container header">
-            <DashboardHeader/>
+            <dashboard-header  @toggle-navigation="isDashboardActive"/>
          </div>
          <div class="Dashboard__main__container main">
             <div class="Dashboard__main__container__wrapper slider">
@@ -39,9 +39,11 @@ import DashboardSlider from '../organism/DashboardSlider.vue'
 import salesStat from '../organism/SalesStat.vue'
 import earningStat from '../organism/EarningStat.vue'
 import graph from '../molecules/graph.vue'
+import DashboardMixin from '../../../mixins/dashboardMixin'
 
 export default {
    name: 'Dashboard',
+   mixins:[DashboardMixin],
    components:{
       DashboardNavbar,
       DashboardHeader,
@@ -50,7 +52,6 @@ export default {
       earningStat,
       graph,
    },
-
 }
 
 
@@ -83,6 +84,10 @@ export default {
                z-index: 111;
                width: 250px;
                transform: translateX(-250px);
+
+               &.open{
+                  transform: translateX(0px);
+               }
             }
          }
 

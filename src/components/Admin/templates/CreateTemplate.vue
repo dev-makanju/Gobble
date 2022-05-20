@@ -1,13 +1,13 @@
 <template>
    <div class="Dashboard__main">
       <!--Dashboard Header--> 
-      <div class="Dashboard__main__container nav">
-         <DashboardNavbar/>
+      <div :class="['Dashboard__main__container nav',showDashboardNavbar ? 'open' : '']">
+         <DashboardNavbar @close-nav="closeNavbar"/>
       </div>
       <!--Dashboard main wrapper-->
       <div class="Dashboard__main__container">  
          <div class="Dashboard__main__container header">
-            <DashboardHeader/>
+            <DashboardHeader @toggle-navigation="isDashboardActive"/>
          </div>
          <div>
             <ProductForm @open="openPreview"/>
@@ -25,10 +25,11 @@
 import DashboardNavbar from '../organism/DashboardNavbar.vue'
 import DashboardHeader from '../organism/DashboardHeader.vue'
 import ProductForm from '../organism/ProductForm.vue'
-
+import DashboardMixin from '../../../mixins/dashboardMixin'
 
 export default {
    name: 'CreateTemplate',
+   mixins:[DashboardMixin],
    data(){
       return{
          showPreview: null,

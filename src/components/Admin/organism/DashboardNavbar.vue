@@ -2,6 +2,7 @@
    <div>
       <div class="appLogo">
          <AppLogo/>
+         <font-awesome-icon class="mobile-navbar" @click="$emit('close-nav')" icon="times"/>
       </div>
       <ul class="navbar">
          <li>
@@ -84,6 +85,9 @@ export default {
 <style lang="scss" scoped>
 
 .appLogo{
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
    padding: 15px 10px ;
    border-bottom: 1px solid rgb(249, 247, 247) ;
 }

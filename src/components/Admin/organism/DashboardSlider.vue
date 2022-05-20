@@ -133,6 +133,8 @@ export default {
    margin-top: 3rem;
    overflow-x: auto;
    flex-wrap: nowrap;
+   border: 1px solid red;
+   padding: 1rem 10px;
 
    -webkit-overflow-scrolling: touch;
 

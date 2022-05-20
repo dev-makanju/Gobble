@@ -1,14 +1,14 @@
 <template>
    <div class="Dashboard__main">
       <!--Dashboard Header--> 
-      <div class="Dashboard__main__container nav">
-         <DashboardNavbar/>
+      <div :class="['Dashboard__main__container nav',showDashboardNavbar ? 'open' : '']">
+         <DashboardNavbar @close-nav="closeNavbar"/>
       </div>
       
       <!--Dashboard main wrapper-->
       <div class="Dashboard__main__container">  
          <div class="Dashboard__main__container header">
-            <DashboardHeader/>
+            <DashboardHeader @toggle-navigation="isDashboardActive"/>
          </div>
          <div class="order-wrapper">
             <div class="order-header">
@@ -88,9 +88,12 @@ import DashboardNavbar from '../organism/DashboardNavbar.vue'
 import DashboardHeader from '../organism/DashboardHeader.vue'
 import Pagination from '../molecules/pagination.vue'
 import Search from '../molecules/SearchMole.vue'
+import DashboardMixin from '../../../mixins/dashboardMixin'
+
 
 export default {
    name: 'paymentTemplate',
+   mixins:[DashboardMixin],
    components:{
       DashboardNavbar,
       DashboardHeader,

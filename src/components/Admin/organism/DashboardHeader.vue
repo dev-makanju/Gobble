@@ -1,8 +1,10 @@
 <template>
    <div class="header-wrapper">
       <div class="dashboard__head">
-         <div class="dashboard__header">
-            <!--search-->
+         <font-awesome-icon  class="mobile-navbar" icon="hamburger" @click='$emit("toggle-navigation")'/>
+      </div>
+      <div class="dashboard__head">
+         <div class="dashboard__header">            <!--search-->
             <div class="header__field inp">
                <input type="text">
                <font-awesome-icon class="search-icon" icon="search"/>
@@ -27,9 +29,7 @@
       </div>
    </div>
 </template>
-
 <script>
-
 import ProfileCard from '../../molecules/ProfileMoles.vue'
 
 export default {
@@ -52,6 +52,31 @@ export default {
 </script>
 
 <style lang="scss">
+
+.header-wrapper{
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.mobile-navbar{
+   display: none;
+}
+
+@media (max-width: 900px) {
+   .mobile-navbar{
+      padding: 5px;
+      border: 1px solid #065143;
+      border-radius: 3px;
+      width: 25px;
+      color: #065143;
+      cursor: pointer;  
+      margin-left: 7px; 
+      display: block;
+   }  
+}
+
 .relative{
    position: relative;
 }

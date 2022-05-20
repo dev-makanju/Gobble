@@ -43,6 +43,11 @@
            return{
                loading: null,
            }
+       },
+       methods:{
+           toggleStatus(){
+               //something here
+           }
        }
     }
 

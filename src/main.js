@@ -18,6 +18,7 @@ import { faRefresh } from '@fortawesome/free-solid-svg-icons'
 import { faSignOut } from '@fortawesome/free-solid-svg-icons'
 import { faUserEdit } from '@fortawesome/free-solid-svg-icons'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faHamburger } from '@fortawesome/free-solid-svg-icons'
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
@@ -46,6 +47,7 @@ library.add(faPlus)
 library.add(faBoltLightning)
 library.add(faMoneyBill)
 library.add(faSubtract)
+library.add(faHamburger)
 library.add(faSearch)
 library.add(faUserEdit)
 library.add(faSignOut)

@@ -1,13 +1,13 @@
 <template>
    <div class="Dashboard__main">
       <!--Dashboard Header--> 
-      <div class="Dashboard__main__container nav">
-         <DashboardNavbar/>
+      <div :class="['Dashboard__main__container nav',showDashboardNavbar ? 'open' : '']">
+         <DashboardNavbar @close-nav="closeNavbar"/>
       </div>
       <!--Dashboard main wrapper-->
       <div class="Dashboard__main__container">  
          <div class="Dashboard__main__container header">
-            <DashboardHeader/>
+            <DashboardHeader @toggle-navigation="isDashboardActive"/>
          </div>
          <div v-if="this.$store.state.productError" class="table-parent-container">
             <div class="table-parent-wrapper">
@@ -56,11 +56,14 @@ import SuccessAlert from '../molecules/Alert.vue'
 import ErrorAlert from '../molecules/ErrorMolecule.vue' 
 import ServiceError from '../molecules/ServiceError.vue'
 import Pagination from '../molecules/pagination.vue'
+import DashboardMixin from '../../../mixins/dashboardMixin'
+
 
 import { mapActions } from 'vuex'
 
 export default {
    name: 'ProductTemplate',
+   mixins:[DashboardMixin],
    components:{
       DashboardNavbar,
       DashboardHeader,
@@ -110,6 +113,7 @@ export default {
       display: flex;
       flex-grow: 100%;
       width: 100%;
+      min-height: 90%;
 
       }
       .table-parent-wrapper{

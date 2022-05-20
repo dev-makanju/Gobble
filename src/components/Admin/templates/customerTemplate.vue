@@ -1,13 +1,13 @@
 <template>
    <div class="Dashboard__main">
       <!--Dashboard Header--> 
-      <div class="Dashboard__main__container nav">
-         <DashboardNavbar/>
+      <div :class="['Dashboard__main__container nav',showDashboardNavbar ? 'open' : '']">
+         <DashboardNavbar @close-nav="closeNavbar"/>
       </div>
       <!--Dashboard main wrapper-->
       <div class="Dashboard__main__container">  
          <div class="Dashboard__main__container header">
-            <DashboardHeader/>
+            <DashboardHeader @toggle-navigation="isDashboardActive"/>
          </div>
          <div v-if="this.$store.state.customer.aborted" class="table-parent-container">
             <div class="table-parent-wrapper">
@@ -92,9 +92,11 @@ import Loader from '../../molecules/Loading.vue'
 import SuccessAlert from '../molecules/Alert.vue'
 import ErrorAlert from '../molecules/ErrorMolecule.vue' 
 import ServiceError from '../molecules/ServiceError.vue'
+import DashboardMixin from '../../../mixins/dashboardMixin'
 
 export default {
    name: 'CustomerTemplate',
+   mixins:[DashboardMixin],
    components:{
       DashboardNavbar,  
       DashboardHeader,
