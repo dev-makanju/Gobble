@@ -1,6 +1,13 @@
 <template>
     <div :class="[this.$store.state.isOpen ? 'market__place open' :'market__place' ]">
         <div class="market__section">
+            <div class="market-banner">
+                <img src="https://cdn.pixabay.com/photo/2017/07/16/11/57/fried-2509089_960_720.jpg" alt="">
+                <div class="market-banner-overlay"></div>
+                <div class="market-banner-overlay-text">
+                    <h1>Enjoy the taste that differs.</h1>
+                </div>
+            </div>
             <cardTemplate :isFilterCard="isReturnCardsRatings" @add-to-cart="addProductToCart"/>
             <div v-if="this.$store.state.isOpen" class="market__overlay"></div>
         </div>
@@ -72,6 +79,47 @@
 </script>
 
 <style lang="scss" scoped>
+/***Product banner****/
+.market-banner{
+    position: relative;
+    height: 40vh;
+    overflow: hidden;
+
+    &>img{
+      height: 40vh;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .market-banner-overlay{
+        height: 40vh;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        background: rgba(0, 0, 0, 0.556);
+
+        &-text{
+            height: 40vh;
+            width: 90%;
+            margin: auto;
+            position: absolute;
+            inset: 0;
+
+            &>h1{
+                font-size: 40px;
+                font-family: 'Mochiy Pop P One', sans-serif;
+                color: #eee;
+                display: flex;
+                position: absolute;
+                bottom: 0;
+                padding-bottom: 2rem;
+            }
+        }
+    }
+}
+
+
+
 .top{
     .back-top{
         padding: 7px;
