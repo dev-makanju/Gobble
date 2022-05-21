@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Checkout from '../views/Checkout.vue'
 import MarketPlace from '../views/MarketPlace.vue'
 import Dashboard from '../views/Admin/Dashboard.vue'
 import Customers from '../views/Admin/Customers.vue'
@@ -13,8 +12,7 @@ import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import NotFound from '../views/NotFound.vue'
 import ForgotPassword from '../views/ForgotPassword.vue'
-// import store from '../store'
-// import EventService from '../Events/EventService'
+import store from '../store'
 
 
 Vue.use(VueRouter)
@@ -27,17 +25,6 @@ const routes = [
     component: Home,
     meta:{
       title:"Home",
-      requiresAuth: false,
-      requiresGuest: true,
-    }
-  },
-  {
-    path: '/MarketPlace/checkout',
-    name: 'Checkout',
-    component: Checkout,
-    meta:{
-      title:"checkout",
-      requiresAuth: true,
     }
   },
   {
@@ -46,8 +33,6 @@ const routes = [
     component: MarketPlace,
     meta:{
       title:"marketplace",
-      requiresAuth: false,
-      requiresGuest: true,
     }
   },
   //Admin route with user auth
@@ -154,27 +139,36 @@ const router = new VueRouter({
   routes
 })
 
-// router.beforeEach( async(to , from , next) => {
-//     const user = store.getters.isLoggedIn;
-//     const res = await EventService.getUserEvent();
-//     if(to.matched.some(res => res.meta.requiresAuth)){
-//       if(user){
-//         if(res.status){
-//           const role = res.data.data.role
-//           if(role === "ADMIN"){
-//             return next();
-//           }return next({name:'Home'});
-//         }
-//       }return next({name:'Login'});
-//     }else{
-//       return next();
-//     }
-// });
-
 router.beforeEach((to , from , next) => {
   let documentTitle = `Gobble - ${to.meta.title}`;
   document.title = documentTitle;
   next()
+});
+
+router.beforeEach((to , from , next) => {
+  const user = store.getters.isLoggedIn  
+  if(to.matched.some(res => res.meta.requiresGuest)){
+      if(user){
+          next('/');
+          return;
+      }next();
+  }else{
+      return next()
+  }
+})
+
+router.beforeEach((to , from , next) => {
+    const user = store.getters.isLoggedIn;
+    if(to.matched.some(res => res.meta.requiresAuth)){
+      if(user){
+          const role = JSON.parse(window.sessionStorage.vuex)
+          if(role.auth.role === "ADMIN"){
+            return next();
+          }return next({name:'Home'});
+      }return next({name:'Login'});
+    }else{
+      return next();
+    }
 });
 
 export default router

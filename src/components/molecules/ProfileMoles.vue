@@ -14,11 +14,11 @@
                   <div></div>
                </div>
                <ul>
-                  <div>
+                  <div v-if="(this.$store.state.auth.status == 'loading')">
                      <PuSkeleton class="loader" height="20px"></PuSkeleton>
                      <PuSkeleton class="loader" height="10px" :rounded="true"></PuSkeleton>
                   </div>
-                  <div>
+                  <div v-if="(this.$store.state.auth.status == 'loaded')">
                      <li class="username">{{ this.$store.state.auth.user.name }}</li>
                      <li>Role: <span class="role">{{ this.$store.state.auth.role }}</span></li>
                   </div>
@@ -60,8 +60,8 @@ export default {
       },
       signOut(){
          this.$store.dispatch('logout').auth;
-      }
-   }
+      },
+   },
 }
 </script>
 

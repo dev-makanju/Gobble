@@ -16,6 +16,16 @@
             </router-link>
          </li>
          <li>
+            <router-link class="nav-link" :to="{name:'MarketPlace'}">
+               <div class="navbar icon">
+                  <div class="navbar child">
+                     <font-awesome-icon  icon="shopping-bag"/>
+                  </div>
+                  <div class="navbar child">Marketplace</div>
+               </div>
+            </router-link>
+         </li>
+         <li>
             <router-link class="nav-link" :to="{name:'Order'}">
                <div class="navbar icon">
                   <div class="navbar child">

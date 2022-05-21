@@ -15,6 +15,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import { faRefresh } from '@fortawesome/free-solid-svg-icons'
+import { faLink } from '@fortawesome/free-solid-svg-icons'
 import { faSignOut } from '@fortawesome/free-solid-svg-icons'
 import { faUserEdit } from '@fortawesome/free-solid-svg-icons'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
@@ -30,6 +31,7 @@ import { faBoltLightning } from '@fortawesome/free-solid-svg-icons'
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
 import { faDashboard } from '@fortawesome/free-solid-svg-icons'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import { faShoppingBag } from '@fortawesome/free-solid-svg-icons'
 import { faUserFriends } from '@fortawesome/free-solid-svg-icons'
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
@@ -62,6 +64,8 @@ library.add(faTimes)
 library.add(faCheck)
 library.add(faAngleDown)
 library.add(faHome)
+library.add(faShoppingBag)
+library.add(faLink)
 library.add(faTrashAlt)
 library.add(faEdit)
 library.add(faDashboard)

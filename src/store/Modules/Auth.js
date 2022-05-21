@@ -33,7 +33,7 @@ const mutations = {
 const actions = {
    //USER LOGGED IN
    async userLogin({commit} , data){
-       try{ 
+      try{ 
          commit('STATUS') 
          const response = await eventService.loginEvent(data)
          if(response.status){
@@ -51,16 +51,16 @@ const actions = {
             commit("USER_STATUS");
          }
          return response;
-       }catch(err){
+      }catch(err){
          return err.response;
-       }
+      }
    },
    //USER SIGN UP
    async userSignUp({commit} , data){
       try{
          const res = await eventService.registerEvent(data );
          if(res.status){
-            commit("user__registered");
+            commit("USER_REGISTERED");
          }
          return res
       }catch(err){
@@ -105,6 +105,7 @@ const actions = {
    //LOG USER OUT
    logout({commit}){
       localStorage.removeItem('gobtoken');
+      sessionStorage.clear();
       router.push('/');
       commit('LOGGED_OUT');
       location.reload();

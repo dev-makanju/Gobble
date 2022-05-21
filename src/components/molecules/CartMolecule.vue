@@ -7,11 +7,19 @@
                 </atom-cart-link>
             </li>
         </ul>
+        <div v-if="this.$store.getters.isLoggedIn" class="nav-link-cart">
+                <router-link class="link update-profile" :to="{name:'Dashboard'}">
+                    <div v-show="isAdmin" class="nav-link-cart">
+                        <font-awesome-icon class="fab-icon nav-flat" icon="dashboard"/>
+                       <span class="link update-profile text-nav-dash">Dashboard</span>
+                    </div>
+                </router-link>
+        </div>
         <div v-if="!this.$store.getters.isLoggedIn" class="nav-link-cart">
             <router-link class="nav-log" :to="{name:'Login'}">Sign In</router-link>
         </div>
         <div v-if="this.$store.getters.isLoggedIn" class="nav-link-cart">
-             <ProfileCard/>
+            <ProfileCard/>
         </div>
     </div>
 </template>
@@ -27,10 +35,47 @@
         components:{
             AtomCartLink, AtomIcon, ProfileCard
         },
+        data(){
+            return{
+                isAdmin: null,
+            }
+        },
+        created(){
+            this.checkForAdmin();
+        },
+        methods:{
+            checkForAdmin(){
+                const role = JSON.parse(window.sessionStorage.vuex)
+                console.log(role.auth.role)
+                if(role.auth.role === "ADMIN"){
+                   this.isAdmin = true
+                }else{
+                    this.isAdmin = false
+                }
+            }
+        }
     }
 </script>
 
 <style lang="scss" scoped>
+    .nav-flat{
+        color: #eee;
+        border-radius: 20px;
+        background: #066350;
+    }
+
+    .text-nav-dash{
+        display: none;
+    }
+
+    @media (min-width: 600px){
+        .text-nav-dash{
+           display: block; 
+           color: #066350;
+        }   
+    }
+
+
     .header__nav__links{
         display: flex;
         justify-content: center;

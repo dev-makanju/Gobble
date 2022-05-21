@@ -6,6 +6,7 @@ import cart from '../store/Modules/Cart'
 import customer from '../store/Modules/Customer'
 import payment from '../store/Modules/payment'
 import EventService from '../Events/EventService'
+import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex)
 
@@ -19,7 +20,6 @@ export default new Vuex.Store({
     price:'0',
     productError: null,
   },
-
   mutations: {
     open(state){
       state.isOpen = true;
@@ -54,7 +54,6 @@ export default new Vuex.Store({
       state.productError = true;
     }
   },
-  
   actions: {
     cartUpdated({commit} , payload){
         commit('updateCount' , payload );
@@ -136,5 +135,10 @@ export default new Vuex.Store({
       namespaced: true,
       ...customer
     }
-  }
+  },
+  plugins:[ createPersistedState({
+      paths:['auth.role'],
+      storage: window.sessionStorage,
+    })
+  ]
 });

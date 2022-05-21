@@ -133,7 +133,7 @@ export default {
                         this.loading = false;
                         if(this.$store.state.auth.role === 'ADMIN'){
                             this.$router.push('/dashboard');
-                        }this.$router.push('/');
+                        }this.$router.push({name:'MarketPlace'});
                     }else{
                        this.loading = false;
                        this.error = true;
