@@ -10,6 +10,7 @@ import CreateProduct from '../views/Admin/CreateProduct.vue'
 import Order from '../views/Admin/Order.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
+import Profile from '../views/Profile.vue'
 import NotFound from '../views/NotFound.vue'
 import ForgotPassword from '../views/ForgotPassword.vue'
 import store from '../store'
@@ -33,6 +34,14 @@ const routes = [
     component: MarketPlace,
     meta:{
       title:"marketplace",
+    }
+  },
+  {
+    path: '/Profile',
+    name: 'Profile',
+    component: Profile,
+    meta:{
+      title:"Profile",
     }
   },
   //Admin route with user auth
