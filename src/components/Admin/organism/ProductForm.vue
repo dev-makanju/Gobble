@@ -24,14 +24,14 @@
                         <p>Or</p>
                         <label for="file" v-if="!images.length" class="submit-btn">Select a file</label>
                         <div v-if="images.length" @click="toggleImagePreview(images)" class="submit-btn">Preview</div>
-                        <input type="file" id="file" @change="onInputChange" multiple>
+                        <input type="file" id="file" @change="onInputChange" >
                   </div>
                   <div v-for="(image , index) in images" :key="index">
                      <span style="margin-top: 5px;" v-text="files[index].name"></span><br/>
                      <span style="margin-top: 5px;" v-text="files[index].size"></span>
                   </div>
                   <h2 style="margin-top: 10px;">Product Image</h2>
-                  <p style="margin-top: 10px;">format .jpg .png .jpeg. the image should not be more than 300 * 300px  </p>
+                  <p style="margin-top: 10px;">format Allowed .jpg .png .jpeg. </p>
                </div>
             </div>
             <div class="form-wrapper">

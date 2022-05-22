@@ -11,24 +11,13 @@
                         <img class="cart__image" width="150" height="150" :src="items.image">
                     </div>
                     <div>  
-                        <div style="padding: 5px; margin-left: 4px;">
+                        <div style="padding: 5px; margin-left:4px;width: 200px;">
                             <div>
-                                <p>{{ items.description }}</p>
+                                <p>{{ items.name }}</p>
                                 <p class="" style="margin-top: 4px;color:#065143;"><span> ₦ </span>{{ items.price }}</p>
                             </div>
                             <div class="cart__increment">
                                     <div class="cart__add">
-                                        <div>
-                                        <font-awesome-icon 
-                                            style="cursor:pointer; 
-                                            padding:5px;
-                                            border: 1px solid #065143;
-                                            border-radius: 5px;" 
-                                            @click="items.qty++" icon="plus"/>
-                                        </div>
-                                        <div>
-                                        <p style="padding: 5px;">{{ items.qty }}</p>
-                                        </div>
                                         <div>
                                             <font-awesome-icon 
                                                 style="cursor:pointer;
@@ -37,13 +26,26 @@
                                                 border-radius: 5px;" 
                                                 @click="reduceQty(items.id)" icon="subtract"/>
                                         </div>
+                                        <div>
+                                        <p style="padding: 5px;">{{ items.qty }}</p>
+                                        </div>
+                                        <div>
+                                            <font-awesome-icon 
+                                                style="cursor:pointer; 
+                                                padding:5px;
+                                                border: 1px solid #065143;
+                                                border-radius: 5px;" 
+                                                @click="items.qty++" icon="plus"/>
+                                        </div>
                                     </div>
-                                    <font-awesome-icon  
-                                        style="padding: 5px;
-                                        cursor: pointer;
-                                        float:right;" 
-                                        @click="filterCart(items.id)"
-                                        icon="times"/>
+                                    <div>
+                                        <font-awesome-icon  
+                                            style="padding: 5px;
+                                            cursor: pointer;
+                                            float:right;" 
+                                            @click="filterCart(items.id)"
+                                            icon="times"/>
+                                    </div>
                             </div>
                         </div>
                     </div>

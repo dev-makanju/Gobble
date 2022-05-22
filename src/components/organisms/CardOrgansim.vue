@@ -26,7 +26,9 @@
                     </div>
                     <div class="footer-info">
                         <div v-if="!showButton">
-                            <button @click="addToCart(card)" class="button-btn">Add To Cart</button>
+                            <button @click="addToCart(card)" :class="['button-btn', isAdding ? 'add' : '']">
+                                Add To Cart
+                            </button>
                         </div>
                         <div v-if="showButton" class="edit-wrapper">
                             <div>
@@ -60,6 +62,7 @@
                 isVisible:null,
                 admin: false,
                 showButton: null,
+                isAdding: null
             }
         },
         created(){
@@ -199,10 +202,16 @@
             outline: none ;
             font-size: 16px;
             font-family: 'IM Fell English', serif;
-            cursor: pointer ;
+            cursor: pointer;
             right: 0;
             color: #065143 ;  
             transition: .5s ease;
+            position: relative;
+            
+            &.add{
+                background: #0dc4a2;
+                color: #065143;
+            }
 
             &:hover{
                 background: #065143 ;

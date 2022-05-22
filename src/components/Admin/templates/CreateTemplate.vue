@@ -15,7 +15,7 @@
       </div>
       <div v-show="showPreview" @click="closePreview" class="preview-photo">
          <div class="preview-wrapper" v-for="(image , index) in images" :key="index">
-             <img :src="image" :alt="`Image Uploader ${index}`">
+            <img :src="image" :alt="`Image Uploader ${index}`">
          </div>
       </div>
    </div>

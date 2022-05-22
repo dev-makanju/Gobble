@@ -46,7 +46,6 @@
         methods:{
             checkForAdmin(){
                 const role = JSON.parse(window.sessionStorage.vuex)
-                console.log(role.auth.role)
                 if(role.auth.role === "ADMIN"){
                    this.isAdmin = true
                 }else{

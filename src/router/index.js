@@ -42,6 +42,7 @@ const routes = [
     component: Profile,
     meta:{
       title:"Profile",
+      requiresAuth: true,
     }
   },
   //Admin route with user auth
