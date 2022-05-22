@@ -1,6 +1,6 @@
 <template>
-   <div>
-        <ProfileCard/>
+   <div class="profile-main">
+      <ProfileCard/>
    </div>
 </template>
 
@@ -14,4 +14,11 @@ export default {
       ProfileCard
    }
 }
+
 </script>
+
+<style lang="scss" scoped>
+   .profile-main{
+      height: 110vh;
+   }
+</style>

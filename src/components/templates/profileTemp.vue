@@ -1,4 +1,5 @@
 <template>
+   <div class="profile-main">
    <div class="user-profile">
       <div class="user-profile profile">
          <div class="profile-banner">
@@ -10,41 +11,80 @@
          </div>
       </div>
       <div class="user-profile profile-content">
-          <div class=""></div>
           <div>
+               <div class="icon-edit-profile">
+                  <font-awesome-icon class="fab-icon"  icon="user-edit"/>
+               </div>
                <ul>
                   <li>
-                     <h1>{{ this.$store.state.auth.user.name }}</h1>
-                     <p>Joined: {{ this.$store.state.auth.user.createdAt }}</p>
+                     <h1 v-if="(this.$store.state.auth.status == 'loaded')">{{ this.$store.state.auth.user.name }}</h1>
+                     <PuSkeleton v-if="(this.$store.state.auth.status == 'loading')" class="loader" height="30px"></PuSkeleton>
                   </li>
                   <li>
-                     <h3>{{ this.$store.state.auth.user.email }}</h3>
+                     <span v-if="(this.$store.state.auth.status == 'loaded')"><h3>Joined</h3>{{ this.$store.state.auth.user.createdAt }}</span>
+                     <PuSkeleton v-if="(this.$store.state.auth.status == 'loading')" class="loader" height="30px"></PuSkeleton>
                   </li>
                   <li>
-                     <p>{{ this.$store.state.auth.user.role }}</p>
+                     <span v-if="(this.$store.state.auth.status == 'loaded')"><h3>Email</h3>{{ this.$store.state.auth.user.email }}</span>
+                     <PuSkeleton v-if="(this.$store.state.auth.status == 'loading')" class="loader" height="30px"></PuSkeleton>
                   </li>
                   <li>
-                     <h1>{{ this.$store.state.auth.user.address }}</h1>
+                     <span v-if="(this.$store.state.auth.status == 'loaded')"><h3>Role</h3>{{ this.$store.state.auth.user.role }}</span>
+                     <PuSkeleton v-if="(this.$store.state.auth.status == 'loading')" class="loader" height="30px"></PuSkeleton>
+                  </li>
+                  <li>
+                     <span v-if="(this.$store.state.auth.status == 'loaded')"><h3>Address</h3>{{ this.$store.state.auth.user.address }}</span>
+                     <PuSkeleton v-if="(this.$store.state.auth.status == 'loading')" class="loader" height="30px"></PuSkeleton>
                   </li>
                </ul>
           </div>
       </div>
+   </div>
    </div>
 </template>
 
 <script>
 
 export default {
-
+   name: "Profile"
 }
 
 </script>
 
 <style lang="scss" scoped>
+
+   .icon-edit-profile{
+      display: flex;
+      justify-content: flex-end;
+
+      .fab-icon{
+         color: #065143;
+         border: 1px solid #065143;
+         border-radius: 4px;
+         width: 35px;
+         cursor: pointer;
+
+         @media (max-width: 960px){
+            margin-right: 2rem;
+         }
+      }
+   }
+
    .profile-content{
-      border: 2px solid blue;
-      margin-top: 10%;
+      width: 70%;
+      float: right;
       min-height: 300px;
+      padding: 20px 10px;
+      @media (max-width: 960px){
+         width: 100%;
+         margin-top: 4rem;
+         min-height: 300px;
+         padding: 20px 10px;
+      }
+      div>ul>li{
+         padding: 10px;
+         border-bottom: 1px solid rgb(200, 196, 196);
+      }
    }
 
    .user-profile.profile{
@@ -57,9 +97,7 @@ export default {
       }
 
       .profile-banner-content{
-         height: 60vh;
          width:  100%;
-         border: 1px solid red;
          position: absolute;
 
          .profile-wrapper {
