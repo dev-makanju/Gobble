@@ -28,6 +28,7 @@ const routes = [
       title:"Home",
     }
   },
+  
   {
     path: '/MarketPlace',
     name: 'MarketPlace',
@@ -36,6 +37,7 @@ const routes = [
       title:"marketplace",
     }
   },
+
   {
     path: '/Profile',
     name: 'Profile',
@@ -56,6 +58,7 @@ const routes = [
       requiresGuest: true,
     }
   },
+
   {
     path: '/register',
     name: 'Register',
@@ -66,6 +69,7 @@ const routes = [
       requiresGuest: true,
     }
   },
+
   {
     path: '/dashboard/customers',
     name: 'Customers',
@@ -75,6 +79,7 @@ const routes = [
       requiresAuth: true,
     }  
   },
+
   {
     path: '/dashboard/payment-history',
     name: 'payHistory',
@@ -84,6 +89,7 @@ const routes = [
       requiresAuth: true,
     }  
   },
+
   {
     path: '/dashboard/product',
     name: 'Product',
@@ -93,6 +99,7 @@ const routes = [
       requiresAuth: true,
     }  
   },
+
   {
     path: '/dashboard/create-product',
     name: 'CreateProduct',

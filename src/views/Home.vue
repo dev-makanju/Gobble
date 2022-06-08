@@ -24,11 +24,12 @@ export default{
     bannerOrg,
     banner,
     slider,
-    landingPage,
+    landingPage
   },
   data(){
     return{
-      isReturnCardsRatings:3.7
+      isReturnCardsRatings:3.7,
+      deleteAccount: null,
     }
   }
 }
@@ -37,5 +38,6 @@ export default{
 <style lang="scss" scoped>
     .home{
       margin-bottom: 6rem;
+      position: relative;
     }
 </style>

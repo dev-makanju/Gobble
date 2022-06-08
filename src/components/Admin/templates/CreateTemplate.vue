@@ -14,8 +14,8 @@
          </div>
       </div>
       <div v-show="showPreview" @click="closePreview" class="preview-photo">
-         <div class="preview-wrapper" v-for="(image , index) in images" :key="index">
-            <img :src="image" :alt="`Image Uploader ${index}`">
+         <div class="preview-wrapper">
+            <img :src="image" :alt="`Image Uploader ${image}`">
          </div>
       </div>
    </div>
@@ -33,7 +33,7 @@ export default {
    data(){
       return{
          showPreview: null,
-         images:[],
+         image:'',
       }
    },
    components:{
@@ -44,7 +44,7 @@ export default {
    methods:{
       openPreview(image){
          this.showPreview = true;
-         this.images = image
+         this.image = image
       },
       closePreview(){
          this.showPreview = !this.showPreview

@@ -2,7 +2,9 @@
   <div id="app">
     <div id="nav">
         <!--Header--->
-        <HeaderOrganism v-if="!isNavActive"/>
+        <HeaderOrganism
+        @confirm-delete="confirmDelete" 
+        v-if="!isNavActive"/>
         <router-view/>
         <!---Footer---->
     </div>
@@ -67,6 +69,9 @@ export default {
           this.isNavActive = true;
           return;
         }this.isNavActive = false;
+      },
+      confirmDelete(id){
+         console.log(id)
       }
     },
     watch:{
@@ -129,7 +134,7 @@ ul , li , ol {
   list-style-type: none;
 }
 
-input{
+input , select{
   border: $secondary-color;
   box-sizing: border-box;
   font-family: 'Poppins' , sans-serif;
@@ -137,6 +142,21 @@ input{
   padding: 7px;
   font-size: 16px;
   border-radius: 5px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid #065143;
+  -webkit-text-fill-color: #fff;
+  -webkit-box-shadow: 0 0 0px 1000px #065143 inset;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 .error{

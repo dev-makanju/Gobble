@@ -26,7 +26,6 @@ export default{
 </script>
 
 <style lang="scss" scoped>
-
    .main-banner{
       height: 60vh ;
       background: #065143; 

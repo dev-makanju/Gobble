@@ -13,6 +13,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     product_loading:'',
+    created:'',
     isOpen:null,
     cartCount:0,
     isCartActive:[],
@@ -43,6 +44,9 @@ export default new Vuex.Store({
     IS_LOADING(state){
       state.product_loading = true
     },
+    PRODUCT_CREATED(state){
+      state.created = 'loaded'
+    },
     UPDATE_PRODUCT(state , payload){
       state.product_loading = false; 
       state.products = payload
@@ -62,16 +66,16 @@ export default new Vuex.Store({
         commit('open'); 
     },
     closeCart({commit}){
-        commit('close') 
+      commit('close') 
     },
     addToCart({commit} , payload ){
-        commit('setCartData' , payload)
+      commit('setCartData' , payload)
     },
     setPrice({commit}, payload){
-        commit('setGlobalPrice' , payload );
+      commit('setGlobalPrice' , payload );
     },
     clearCart({commit}){
-        commit('clear')
+      commit('clear')
     },
   
     async getProducts({commit}){
@@ -80,7 +84,6 @@ export default new Vuex.Store({
          commit('IS_LOADING')
          const res = await EventService.getProductEvent();
           if(res.status){
-            console.log(res.data)
             commit("UPDATE_PRODUCT" , res.data.data)
           }
          return res
@@ -115,9 +118,10 @@ export default new Vuex.Store({
     async createProduct({commit} , data){
       try{
         const response = await EventService.createProductEvent(data);
-        if(response.status)
-           commit('PRODUCT_CREATED');
-        return response
+        if(response.status){
+          commit('PRODUCT_CREATED');
+        }
+        return response;
       }catch(err){
         return err.response
       }

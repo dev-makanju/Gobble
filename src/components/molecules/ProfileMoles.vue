@@ -8,9 +8,18 @@
             <font-awesome-icon @click="toggleProfile"  :class="[ showProfile? 'angle active' : 'angle' ]" icon="angle-down"/>
             <div v-if="showProfile" :class="['user', showProfile?'user-profile active':'user-profile' ]">
                <div class="profile-card-wrapper">
+                  <deleteAccount 
+                        @close-modal="closeModal" 
+                        @delete-modal="deleteUserAccount()" 
+                        v-if="showModal" 
+                        :Active="Active"
+                        :modalMessage="message"
+                        />
                   <div class="class-wrapper icon">
                      <div class="thumbnail-wrapper child">
-                        <img class="user-thumbnail" src="@/assets/mobile/3898372_user_people_man_add_icon.png" onerror="this.style.display='none'">
+                        <img class="user-thumbnail" 
+                           src="@/assets/mobile/3898372_user_people_man_add_icon.png" 
+                           onerror="this.style.display='none'">
                      </div>
                      <div style="width: 100%;" class="child">
                         <div v-if="(this.$store.state.auth.status == 'loading')">
@@ -38,7 +47,7 @@
                      </div>
                      <div class="profile-tab">
                         <font-awesome-icon class="fab-icon" icon="trash"/>
-                        <router-link class="link update-profile" :to="{name:'Home'}">Delete Account</router-link>
+                        <span class="link update-profile" @click="confirm()">Delete Account</span>
                      </div>
                      <div @click="signOut" class="profile-tab">
                         <font-awesome-icon class="fab-icon"  icon="sign-out"/>
@@ -54,19 +63,48 @@
 
 <script>
 
+import { mapActions } from 'vuex';
+import deleteAccount from '../Modals/deleteModal.vue'
+
 export default {
    name: 'ProfileCard',
+   components:{
+      deleteAccount
+   },
    data(){
       return{
          showProfile: false,
+         message: '',
+         showModal: null,
+         Active: null,
       }
    },
    methods:{
+      ...mapActions(['deleteAccount']),
       toggleProfile(){
          this.showProfile = !this.showProfile
       },
       signOut(){
          this.$store.dispatch('logout').auth;
+      },
+      confirm(){
+         this.showModal = true
+         this.message = 'Are you sure you want to delete?'
+      },
+      closeModal(){
+         this.showModal = !this.showModal
+      },
+      deleteUserAccount(){
+         this.Active = true;
+         this.deleteAccount().then(res => {
+            if(res.status){
+               this.$store.dispatch('logout');
+            }
+            this.Active = false
+         }).catch(err => {
+            this.Active = false;
+            console.log(err.res);
+         })
       },
    },
 }
@@ -122,6 +160,10 @@ export default {
    font-weight: 300;
 }
 
+.profile-card-wrapper{
+   position: relative;
+}
+
 .update-profile{
    padding: 5px 0px;
    font-weight: 300;
@@ -149,6 +191,7 @@ export default {
    box-shadow: 0px 2px 5px rgba(0, 0,0,.3);
    z-index: 111;
    width: 350px;
+   position: relative;
    min-height: 200px;
    min-width: 300px;
    margin-top: .9rem;

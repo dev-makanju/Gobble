@@ -25,7 +25,8 @@
                autocomplete="off"
                @focus="isUserInput=true"
                @blur="isFocusedUser"
-               v-model.trim="$v.username.$model">
+               v-model.trim="$v.username.$model"
+            >
             <div class="validate-error">
                <span v-if="$v.username.$error">
                     <p v-if="!$v.username.required">username is required</p>
@@ -67,7 +68,8 @@
                id="password" 
                @focus="isPasswordInput=true"
                @blur="isFocusedPass"
-               v-model.trim="$v.password.$model">
+               v-model.trim="$v.password.$model"
+            >
             <div class="validate-error">
                <span v-if="$v.password.$error">
                     <p 
@@ -122,11 +124,11 @@ import { required , minLength , maxLength  ,  email , sameAs }  from 'vuelidate/
 import { mapActions } from 'vuex'
 
 export default {
-   name:"RegMoles",
-   components:{
+    name:"RegMoles",
+    components:{
         Loading
-   },
-   data(){
+    },
+    data(){
         return{
             email:'',
             username:'',

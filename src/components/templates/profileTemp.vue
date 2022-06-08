@@ -52,7 +52,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
    .icon-edit-profile{
       display: flex;
       justify-content: flex-end;

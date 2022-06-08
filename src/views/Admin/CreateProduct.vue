@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="main-wrapper">
         <CreateTemplate/>
     </div>
 </template>
@@ -9,9 +9,9 @@
 import  CreateTemplate from '../../components/Admin/templates/CreateTemplate.vue'
 
 export default {
-   name: "CreateProduct",
-   components:{
-      CreateTemplate
-   }
+    name: "CreateProduct",
+    components:{
+        CreateTemplate
+    }
 }
 </script>

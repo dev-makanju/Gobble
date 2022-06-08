@@ -10,25 +10,28 @@
                v-if="success" 
                :message="successMessage"/>
          </div>
-         <form enctype="multipart/form-data">
+         <form enctype="multipart/form-data"  @submit.prevent="createProductItem">
             <div class="form-wrapper upload">
                <div class="form-control">
                   <div class="click-able" 
-                       @dragenter="OnDragEnter"
-                       @dragleave="OnDragLeave"
-                       @dragover.prevent
-                       @drop="onDrop"
-                       :class="{ dragging: isDragging }">
-                        <font-awesome-icon  icon="upload"/>
-                        <p>Drag Photo Here</p>
-                        <p>Or</p>
-                        <label for="file" v-if="!images.length" class="submit-btn">Select a file</label>
-                        <div v-if="images.length" @click="toggleImagePreview(images)" class="submit-btn">Preview</div>
-                        <input type="file" id="file" @change="onInputChange" >
+                  @dragenter="OnDragEnter"
+                  @dragleave="OnDragLeave"
+                  @dragover.prevent
+                  @drop="onDrop"
+                  :class="{ dragging: isDragging }">
+                     <font-awesome-icon  icon="upload"/>
+                     <p>Drag Photo Here</p>
+                     <p>Or</p>
+                     <label for="file" v-if=" images == '' " class="submit-btn">Select a file</label>
+                     <div v-if="images !== ''" @click="toggleImagePreview(images)" class="submit-btn">Preview</div>
+                     <input type="file" 
+                        id="file" 
+                        @change="onInputChange" 
+                     >
                   </div>
-                  <div v-for="(image , index) in images" :key="index">
-                     <span style="margin-top: 5px;" v-text="files[index].name"></span><br/>
-                     <span style="margin-top: 5px;" v-text="files[index].size"></span>
+                  <div>
+                     <span style="margin-top: 5px;" v-text="files.name"></span><br/>
+                     <span style="margin-top: 5px;" v-text="files.size"></span>
                   </div>
                   <h2 style="margin-top: 10px;">Product Image</h2>
                   <p style="margin-top: 10px;">format Allowed .jpg .png .jpeg. </p>
@@ -40,23 +43,28 @@
                      <input type="text" autocomplete="on" v-model.trim="name">
                </div>
                <div class="form-control">
-                     <label for="">Product Description</label>
-                     <textarea name="" id="" cols="30" v-model.trim="description" rows="10"></textarea>
+                  <label for="">Product Description</label>
+                  <textarea name="" id="" 
+                     cols="30" 
+                     v-model.trim="description" 
+                     rows="10"
+                  ></textarea>
                </div>
                <div class="form-control">
-                     <label for="">Price</label>
-                     <input type="text" autocomplete="on" v-model.trim="price">
+                  <label for="">Price</label>
+                  <input 
+                     type="number"
+                     min="0" 
+                     autocomplete="on" 
+                     v-model.number="price"
+                  >
                </div>
                <div class="form-control">
-                     <label for="">Category</label>
-                     <input type="text" autocomplete="on" v-model.trim="category">
-               </div>
-               <div class="form-control">
-                     <label for="">Rating</label>
-                     <input type="text" autocomplete="on" v-model.trim="rating">
+                  <label for="">Category</label>
+                  <CustomSelect @input="selectedValue" :options="options"/>
                </div>
                <div  class="button">
-                  <button @click.prevent="createProductItem">
+                  <button>
                      <Loader v-if="loading"/>
                      <div class="button__text">
                         Create Product
@@ -72,30 +80,34 @@
 import AppError from '../molecules/ErrorMolecule.vue'
 import Alert from '../molecules/Alert.vue'
 import Loader from '../../molecules/Loading.vue'
+import CustomSelect from '../Customs/CustomSelect.vue'
 import { mapActions } from 'vuex'
 //import Button from '../molecules/Button.vue'
 
 export default {
    name:"ProductForm",
    components:{
-       AppError,
-       Alert,Loader
+      AppError,
+      Alert,
+      Loader,
+      CustomSelect
    },
    data(){
       return{
+         options:['breakfast' , 'launch' , 'dinner'],
          errorMessage:'',
          successMessage:'',
          isDragging: false,
          name:'',
          description:'',
-         price:'',
-         category: '',
-         rating:'',
+         price:0,
+         category: 'breakfast',
+         rating:0,
          dragCount: 0,
-         files:[],//we are sending the file object to the server  
-         images:[], // save image in base 64 for previewing;
+         files: '',//we are sending the file object to the server  
+         images: '', // save image in base 64 for previewing;
          error: false,
-         success: false,
+         success: false ,
          loading: null,
       }
    },
@@ -114,29 +126,27 @@ export default {
       },
       onDrop(e){
          e.preventDefault()
-         e.stopPropagation();
-
-         this.isDragging = false;
-         const files = e.dataTransfer.files;
-         Array.from(files).forEach( file => this.addImage(file));
+         e.stopPropagation()
+         this.isDragging = false
+         const file = e.dataTransfer.files[0]
+         this.addImage(file)
       },
       addImage(file){
-            if(!file.type.match('image.*'))
-               this.error = true;
-               this.errorMessage = `${file.name} is not an image.`
-
-            this.files.push(file);//image has been been save in side for sending to server
-            //now lets convert it to base 64 for image preview
-
-            //const img = new Image(),
-            const reader = new FileReader()
-            reader.onload = (e) => this.images.push(e.target.result)   
-
-            reader.readAsDataURL(file)
+         if(!file.type.match('image.*')){
+            this.error = true;
+            this.errorMessage = `${file.name} is not an image.`
+            return;   
+         }
+         this.files = file.name;
+         const reader = new FileReader()
+         reader.onload = (e) => {
+            this.images = e.target.result
+         };   
+         reader.readAsDataURL(file);
       },
       onInputChange(e){
-         const files = e.target.files;
-         Array.from(files).forEach( file => this.addImage(file));
+         const file = e.target.files[0];
+         this.addImage(file);
       },
       notifyError(){
          this.error = !this.error
@@ -145,42 +155,41 @@ export default {
          this.success = !this.success
       },
       toggleImagePreview(images){
-         console.log(images)
          this.$emit('open' , images);
       },
+      selectedValue(value){
+         this.category = value
+      },
       createProductItem(){
-         if(this.name == '' ||
-            this.description == ''||
-            this.price == '' || 
-            this.category == '' ||
-            this.rating == ''){
-            if(this.files.length === 0){
-               this.error = true;
-               this.errorMessage = 'Oops!, Kindly select an image.'
-               return
-            }   
+         this.success = false
+         if(this.files == ''){
             this.error = true;
-            this.errorMessage = 'Oops!, input fields are required.'
+            this.errorMessage = 'Oops!, Kindly select an image'  
+         }else if(this.name == '' || this.description == ''|| this.price == '' || this.category == ''){
+            this.error = true;
+            this.errorMessage = 'Input fields are required!'
          }else{
+            this.error = false;
             const data = {
-               name: this.name,
-               description: this.description,
-               price: this.price,
+               averageReview: this.rating,
                category: this.category,
+               description: this.description,
                image: this.files,
-               rating: this.rating,
+               name: this.name,
+               price: this.price,
             }
             this.loading = true
             this.createProduct(data).then(res => {
-            if(res.status === 201)
-               console.log(res)
-               this.loading = false
-               this.success = true
-               this.successMessage = res.data.message
-            this.loading = false
-            this.error = true
-            this.errorMessage = res.data.error.message
-            
+               if(res.status){
+                  console.log(res)
+                  this.loading = false
+                  this.success = true
+                  this.successMessage = 'Product created successfully'
+                  this.clear()
+                  return;
+               }this.loading = false
+                this.error = true
+                this.errorMessage = res.data.error.message
             }).catch(err => {
                this.loading = false;
                this.error = true;
@@ -188,6 +197,14 @@ export default {
                console.log(err)
             })
          }
+      },
+      clear(){
+         this.rating = ''
+         this.category = ''
+         this.description = ''
+         this.files = ''
+         this.name = ''
+         this.price = ''
       }
    }
 }

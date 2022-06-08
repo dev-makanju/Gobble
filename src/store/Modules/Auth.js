@@ -7,6 +7,7 @@ const state = {
    user:{},
    role:'',
    status:'',
+   isDeletingUser:'',
 }
 
 const getters = {
@@ -20,6 +21,15 @@ const mutations = {
    STATUS(state){
       state.status = 'loading';
    },
+
+   IS_USER_DELETED(state){
+      state.isDeletingUser = 'deleting'
+   },
+
+   USER_DELETED(state){
+      state.isDeletingUser = 'deleted'
+   },
+
    USER_DATA( state , payload){
       state.token = payload.token
       state.role = payload.userRole
@@ -101,6 +111,19 @@ const actions = {
       }catch(err){
          return err.response
       }
+   },
+   //DELETE USER 
+   async deleteAccount( {commit}){
+      try{
+         commit('IS_USER_DELETED')
+         const response = await eventService.deleteUserEvent();
+         if(response.status){
+            commit('USER_DELETED')
+         }
+         return response
+      }catch(err){
+         return err.response
+      } 
    },
    //LOG USER OUT
    logout({commit}){

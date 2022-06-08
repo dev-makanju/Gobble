@@ -11,7 +11,8 @@
             </div>
             <div class="header-nav">
                 <CartMolecule 
-                    :cartLists="cartLists"/>
+                   :cartLists="cartLists"
+                   @confirm-delete="$emit('confirm-delete')"/>
             </div>
         </div>
     </header>

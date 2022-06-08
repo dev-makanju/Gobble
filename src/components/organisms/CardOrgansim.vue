@@ -26,7 +26,7 @@
                     </div>
                     <div class="footer-info">
                         <div v-if="!showButton">
-                            <button @click="addToCart(card)" :class="['button-btn', isAdding ? 'add' : '']">
+                            <button @click="addToCart(card)" class="button-btn">
                                 Add To Cart
                             </button>
                         </div>
@@ -108,10 +108,9 @@
             },
             deleteProduct(id){
                this.deleteSingleProduct(id).then(res => {
-                   console.log(id)
-                   if(res.status){
-                       //
-                   }
+                    if(res.status){
+                       console.log(res)
+                    }
                }).catch(err => {
                    console.log(err)
                })
@@ -205,12 +204,19 @@
             cursor: pointer;
             right: 0;
             color: #065143 ;  
-            transition: .5s ease;
+            transition: .2s;
             position: relative;
             
             &.add{
                 background: #0dc4a2;
                 color: #065143;
+            }
+
+            &:active{
+                transform: scale(1.1);
+                /* Scaling button to 0.98 to its original size */
+                box-shadow: 3px 2px 15px 7px rgba(0, 0, 0, .2);
+                /* Lowering the shadow */
             }
 
             &:hover{

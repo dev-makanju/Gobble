@@ -3,10 +3,10 @@
         <div class="footer">
             <div class="footer-link">
                 <div class="footer-info">
-                     <AtomText :tag="'h1'" style="color:#eee" :content="'Gobble'"/>
+                    <AtomText :tag="'h1'" style="color:#eee" :content="'Gobble'"/>
                 </div>
                 <div class="footer-info">
-                    <AtomText :tag="'p'" style="color:#eee" :content="'we are always available 24 ours all day.'"/>
+                    <AtomText :tag="'p'" style="color:#eee" :content="'we are always available 24 hours all day.'"/>
                 </div>
                 <a class="footer-info" style="color:#eee;text-decoration:none;" href="#top"  v-smooth-scroll>Back To Top</a>  
             </div>
@@ -30,9 +30,9 @@
             </div>
             <div class="footer-link">
                 <div class="footer-info">
-                     <AtomText :tag="'h3'" style="color:#eee" :content="'Get in touch'"/>
+                    <AtomText :tag="'h3'" style="color:#eee" :content="'Get in touch'"/>
                 </div>
-                 <linksMolecules :urlLists="contact"/>
+                <linksMolecules :urlLists="contact"/>
             </div>
         </div>
     </footer>
@@ -154,6 +154,7 @@
 </script>
 
 <style lang="scss" scoped>
+
 footer{
     background: #065143  ;
     opacity: .9;
@@ -184,4 +185,5 @@ footer{
         }
     }
 }
+
 </style>

@@ -19,7 +19,7 @@
             <router-link class="nav-log" :to="{name:'Login'}">Sign In</router-link>
         </div>
         <div v-if="this.$store.getters.isLoggedIn" class="nav-link-cart">
-            <ProfileCard/>
+            <ProfileCard @confirm-delete="$emit('confirm-delete')"/>
         </div>
     </div>
 </template>

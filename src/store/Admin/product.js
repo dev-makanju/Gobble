@@ -1,28 +1,16 @@
 import EventService from "../../Events/EventService"
 
 const state = {
-
+   status: '',
 }
 
 const mutations = {
-
+   PRODUCT_STATUS(state){
+      state.status = 'loaded'
+   }
 }
 
 const actions = {
-   //CREATE PRODUCT
-   async AdminCreateProduct({ commit } , data){
-      try{
-         commit('PRODUCT_STATUS')
-         const response = await EventService.createProductEvent(data)
-         if(response.status){
-            console.log(response)
-            commit('PRODUCT_STATUS')
-         }
-         return response;
-      }catch(err){
-         return err.response
-      }
-   },
    //GET PRODUCT 
    async fetchAllProduct({ commit }){
       try{
@@ -43,7 +31,6 @@ const actions = {
          commit('PRODUCT_STATUS')
          const response = await EventService.getProductByIdEvent(product_id);
          if(response.status){
-            console.log(response)
             commit('PRODUCT_STATUS');
          }
          return response;
@@ -79,16 +66,10 @@ const actions = {
          return err.response
       }
    },
-      
-}
-
-const modules = {
-
 }
 
 export default {
    state,
    mutations,
    actions,
-   modules
 }

@@ -14,6 +14,7 @@ import { faSubtract } from '@fortawesome/free-solid-svg-icons'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import { faCameraAlt } from '@fortawesome/free-solid-svg-icons'
 import { faRefresh } from '@fortawesome/free-solid-svg-icons'
 import { faLink } from '@fortawesome/free-solid-svg-icons'
 import { faSignOut } from '@fortawesome/free-solid-svg-icons'
@@ -61,6 +62,7 @@ library.add(faCheckCircle)
 library.add(faHeart)
 library.add(faExclamationCircle)
 library.add(faTimes)
+library.add(faCameraAlt)
 library.add(faCheck)
 library.add(faAngleDown)
 library.add(faHome)

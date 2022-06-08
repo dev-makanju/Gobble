@@ -20,7 +20,7 @@ export default {
       return apiClient.post('auth/signup',data);
    },
    passwordResetEvent(data){
-      return apiClient.post('forgotPassword' , data);
+      return apiClient.post('forgotPassword', data);
    },
    getUserEvent(){
       return apiClient.get('me');
@@ -32,8 +32,8 @@ export default {
       return apiClient.post('user/updatePassword' , data )
    },
    //delete your account
-   deleteUserEvent(id){
-      return apiClient.delete('user/deleteAccount' , id)
+   deleteUserEvent(){
+      return apiClient.patch('user/deleteAccount')
    },
    makeUserAdminEvent(data){
       return apiClient.patch('user/makeAdmin' , data)//accepting email
@@ -42,16 +42,15 @@ export default {
       return apiClient.get('users/?page=1&limit=10');
    },
    editUserProfileEvent(data){
-      return apiClient.post('user/editProfile' , data);
+      return apiClient.post('user/editProfile', data);
    },   
-
    //product handler services
    getProductEvent(){
       return apiClient.get('products')
    },
    //write review
    reviewEvent(productId){
-      return apiClient.post(`reviews/${productId}`);
+      return apiClient.post('reviews' , productId );
    },
    getProductReviewsEvent(productId){
       return apiClient.post('reviews/'+productId)
@@ -61,10 +60,10 @@ export default {
       return apiClient.get('mycart');
    },
    deleteCartItem(productId){
-      return apiClient.delete('products/cart/'+productId);
+      return apiClient.delete('products/cart/'+ productId);
    },
    createProductEvent(data){
-      return apiClient.post(`products` , data)
+      return apiClient.post('products', data)
    },
    productQuantityEvent(data){
       return apiClient.post(`products/cart/${data.id}`, data.qty )
@@ -76,7 +75,6 @@ export default {
       return apiClient.patch(`products/${data.id}` , data.product)
    },
    deleteProductEvent(data){
-      console.log(data)
       return apiClient.delete(`products/${data}`)
    },
    //search for a single product
