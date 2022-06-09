@@ -10,7 +10,7 @@
         <div v-if="this.$store.getters.isLoggedIn" class="nav-link-cart">
                 <router-link class="link update-profile" :to="{name:'Dashboard'}">
                     <div v-show="isAdmin" class="nav-link-cart">
-                        <font-awesome-icon class="fab-icon nav-flat" icon="dashboard"/>
+                       <font-awesome-icon class="fab-icon nav-flat" icon="dashboard"/>
                        <span class="link update-profile text-nav-dash">Dashboard</span>
                     </div>
                 </router-link>

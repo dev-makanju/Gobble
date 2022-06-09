@@ -57,9 +57,7 @@ import ErrorAlert from '../molecules/ErrorMolecule.vue'
 import ServiceError from '../molecules/ServiceError.vue'
 import Pagination from '../molecules/pagination.vue'
 import DashboardMixin from '../../../mixins/dashboardMixin'
-
-
-import { mapActions } from 'vuex'
+import {mapGetters} from 'vuex'
 
 export default {
    name: 'ProductTemplate',
@@ -89,15 +87,22 @@ export default {
       this.getAllProduct();
    },
    methods:{
-      ...mapActions(['getProducts']),
       getAllProduct(){
-         this.getProducts().then(res => {
-            if(res.status){
-               this.products = this.$store.state.products
-            }
-         })
+         this.products = this.$store.state.products
       },
    },
+   computed:{
+      ...mapGetters({
+         isLoading: 'returnLoadState' 
+      })
+   },
+   watch:{
+      isLoading: function(){
+         if(!this.$store.state.product_loading) {
+            this.getAllProduct()
+         }
+      }
+   }, 
 }
 
 

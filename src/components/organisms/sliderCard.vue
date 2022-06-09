@@ -3,13 +3,15 @@
       <div class="main-padding" v-for="card in cards" :key="card.id">
          <div class="card-slider">
          <div class="card-slider">
-            <img class="card__image" :src="card.image" :alt="card.description">
+            <PuSkeleton v-if="card.image === '' " class="card__is__loading">
+            </PuSkeleton>
+            <img class="card__image" :src="card.image"  onerror="this.style.display='none'">
          </div>
          <div class="card-slider details">
             <div class="description">
                <h2>₦ {{ card.price }}</h2>
             </div>
-         </div>
+         </div>      
          </div>
       </div>
    </div>
@@ -74,10 +76,16 @@ export default {
          
          .card__image{
             width: 200px;
+            height: 150px;
             object-fit: cover;
             min-height: inherit;
             transition: .5s all ease;
          }  
+
+         .card__is__loading{
+            width: 200px;
+            height: 150px;
+         }
    }
 
    .details{

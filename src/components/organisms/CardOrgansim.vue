@@ -2,10 +2,10 @@
     <div class="card__wrapper">
         <div v-scrollAnimate  v-for="card  in cards" :key="card.id" class="card">
             <div class="card_image_wrapper">
-                <PuSkeleton class="is__loading">
+                <PuSkeleton v-if="card.image === '' " class="is__loading">
                 </PuSkeleton>
-                <div v-if="isVisible" class="card__loaded">
-                   <img class="card__image" :src="card.image" alt=" " onerror="this.style.display='none'">
+                <div class="card__loaded">
+                   <img class="card__image" :src="card.image" alt="" onerror="this.style.display='none'">
                 </div>
             </div>
             <div class="main-card">
@@ -27,7 +27,7 @@
                     <div class="footer-info">
                         <div v-if="!showButton">
                             <button @click="addToCart(card)" class="button-btn">
-                                Add To Cart
+                               Add To Cart
                             </button>
                         </div>
                         <div v-if="showButton" class="edit-wrapper">
@@ -54,8 +54,8 @@
         name:"CardOrganism",
         props:['cards'],
         components:{
-             AtomIcon,
-             AtomStarf
+            AtomIcon,
+            AtomStarf
         },
         data(){
             return{

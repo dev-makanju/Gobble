@@ -37,7 +37,7 @@
         },
         data(){
             return{
-               isReturnCardsRatings:1.0,
+               isReturnCardsRatings:0,
                isCartActive:[],
                isEmpty:null,
             }
@@ -73,7 +73,7 @@
                     const count = this.isCartActive.length
                     this.$store.dispatch('cartUpdated' , count)
                 }
-            },
+            },   
         }
     }
 </script>

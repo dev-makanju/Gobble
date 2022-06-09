@@ -21,6 +21,14 @@ export default new Vuex.Store({
     price:'0',
     productError: null,
   },
+  getters:{
+    productFeed(state){
+      return state.products.slice(0 , 8)
+    },
+    returnLoadState(state){
+      return state.product_loading
+    }
+  },
   mutations: {
     open(state){
       state.isOpen = true;
@@ -63,7 +71,7 @@ export default new Vuex.Store({
         commit('updateCount' , payload );
     },
     openCart({commit}){
-        commit('open'); 
+      commit('open'); 
     },
     closeCart({commit}){
       commit('close') 
@@ -105,12 +113,12 @@ export default new Vuex.Store({
     },
     async deleteSingleProduct({commit} , id){
       try{
-          const res = await EventService.deleteProductEvent(id)
-          if(res.status){
+        const res = await EventService.deleteProductEvent(id)
+        if(res.status){
               commit("PRODUCT_DELETED")
               console.log(res)
-          }
-          return res
+        }
+        return res
       }catch(err){
           return err.response
       }

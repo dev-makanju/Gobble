@@ -46,6 +46,8 @@ export default {
       //get user information when app is created
       this.isMarketRoute();
       this.showNavbar()
+      //dispatch product loader when app is initialize
+      this.$store.dispatch('getProducts')
     },
     methods:{
       ...mapActions(['getUserInfo']),
