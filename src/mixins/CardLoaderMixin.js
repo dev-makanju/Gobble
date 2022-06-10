@@ -6,7 +6,8 @@ export default {
    },
    computed:{
       ...mapGetters({
-         loading: 'returnLoadState' 
+         loading: 'returnLoadState' ,
+         product: 'returnAllProducts',
       })
    },
    watch:{
@@ -18,6 +19,9 @@ export default {
                this.getPostFeeds()
             }
          }
+      },
+      product: function(){
+         this.getAllProduct()
       }
    },
 }

@@ -26,7 +26,7 @@ export default {
       return apiClient.get('me');
    },
    getUserByIdEvent(id){
-      return apiClient.get('user/'+id);
+      return apiClient.get('user/' + id);
    },
    updatePasswordEvent(data){
       return apiClient.post('user/updatePassword' , data )
@@ -42,7 +42,7 @@ export default {
       return apiClient.get('users/?page=1&limit=10');
    },
    editUserProfileEvent(data){
-      return apiClient.post('user/editProfile', data);
+      return apiClient.patch('user/editProfile', data);
    },   
    //product handler services
    getProductEvent(){
@@ -68,14 +68,15 @@ export default {
    productQuantityEvent(data){
       return apiClient.post(`products/cart/${data.id}`, data.qty )
    },
-   getProductByIdEvent(data){
-      return apiClient.get(`products/${data.id}`)
+   getProductByIdEvent(id){
+      return apiClient.get(`products/${id}`)
    },
    editProductEvent(data){
-      return apiClient.patch(`products/${data.id}` , data.product)
+      console.log(data.data)
+      return apiClient.patch(`products/${data.id}` , data.data)
    },
-   deleteProductEvent(data){
-      return apiClient.delete(`products/${data}`)
+   deleteProductEvent(id){
+      return apiClient.delete('products/' + id )
    },
    //search for a single product
    getProductBySearchEvent(data){

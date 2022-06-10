@@ -34,9 +34,9 @@ export default {
       const token = this.$store.state.auth.token
       if(token){
         this.getUserInfo().then(res => {
-           if(res.status){
-            console.log(res.status)
-           }
+          if(res.status){
+            // console.log(res.status)
+          }
         }).catch(err => {
           console.log(err)
         })
@@ -67,7 +67,8 @@ export default {
           this.$route.name === "payHistory" ||
           this.$route.name === "Product" ||
           this.$route.name === "Order"||
-          this.$route.name === "CreateProduct"){
+          this.$route.name === "CreateProduct" ||
+          this.$route.name === "EditProduct"){
           this.isNavActive = true;
           return;
         }this.isNavActive = false;

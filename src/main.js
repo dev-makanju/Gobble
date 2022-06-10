@@ -35,6 +35,7 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import { faShoppingBag } from '@fortawesome/free-solid-svg-icons'
 import { faUserFriends } from '@fortawesome/free-solid-svg-icons'
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 import { faCommentDollar } from '@fortawesome/free-solid-svg-icons'
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
@@ -47,6 +48,7 @@ import axios from 'axios'
 
 library.add(faCartShopping)
 library.add(faPlus)
+library.add(faArrowUp)
 library.add(faBoltLightning)
 library.add(faMoneyBill)
 library.add(faSubtract)

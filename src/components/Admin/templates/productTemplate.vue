@@ -93,7 +93,8 @@ export default {
    },
    computed:{
       ...mapGetters({
-         isLoading: 'returnLoadState' 
+         isLoading: 'returnLoadState',
+         product: 'returnAllProducts',
       })
    },
    watch:{
@@ -101,6 +102,9 @@ export default {
          if(!this.$store.state.product_loading) {
             this.getAllProduct()
          }
+      },
+      product: function(){
+         this.getAllProduct()
       }
    }, 
 }

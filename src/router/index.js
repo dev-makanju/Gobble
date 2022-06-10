@@ -13,8 +13,10 @@ import Register from '../views/Register.vue'
 import Profile from '../views/Profile.vue'
 import NotFound from '../views/NotFound.vue'
 import ForgotPassword from '../views/ForgotPassword.vue'
+import EditProduct from '../views/Admin/EditProduct.vue'
+import ProductDetails from '../views/ProductDetails.vue'
+import OrderDetails from '../views/ProductDetails.vue'
 import store from '../store'
-
 
 Vue.use(VueRouter)
 
@@ -28,16 +30,30 @@ const routes = [
       title:"Home",
     }
   },
-  
   {
     path: '/MarketPlace',
     name: 'MarketPlace',
     component: MarketPlace,
     meta:{
-      title:"marketplace",
+      title:"Marketplace",
     }
   },
-
+  {
+    path: '/MarketPlace/product/:slug',
+    name: 'ProductDetails',
+    component: ProductDetails,
+    meta:{
+      title:"",
+    }
+  },
+  {
+    path:'/Orders',
+    name: 'Order',
+    component: OrderDetails,
+    meta:{
+      title:"Order",
+    }
+  },
   {
     path: '/Profile',
     name: 'Profile',
@@ -99,13 +115,21 @@ const routes = [
       requiresAuth: true,
     }  
   },
-
   {
     path: '/dashboard/create-product',
     name: 'CreateProduct',
     component: CreateProduct,
     meta:{
       title:"create-product",
+      requiresAuth: true,
+    }  
+  },
+  {
+    path: '/dashboard/edit/:id',
+    name: 'EditProduct',
+    component: EditProduct,
+    meta:{
+      title:"Edit",
       requiresAuth: true,
     }  
   },
@@ -157,10 +181,11 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to , from , next) => {
-  let documentTitle = `Gobble - ${to.meta.title}`;
+  let documentTitle = `Gobble - ${to.params.slug ? to.params.slug : to.meta.title}`;
   document.title = documentTitle;
   next()
 });
+
 
 router.beforeEach((to , from , next) => {
   const user = store.getters.isLoggedIn  

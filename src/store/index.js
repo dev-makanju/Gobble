@@ -27,6 +27,9 @@ export default new Vuex.Store({
     },
     returnLoadState(state){
       return state.product_loading
+    },
+    returnAllProducts(state){
+      return state.products
     }
   },
   mutations: {
@@ -64,6 +67,12 @@ export default new Vuex.Store({
     },
     ABORTED_PRODUCT(state){
       state.productError = true;
+    },
+    FILTER_PRODUCT(state , payload){
+      state.products = state.products.filter( result => result.id !== payload)
+    },
+    PRODUCT_LOADED(){
+      //
     }
   },
   actions: {
@@ -100,13 +109,23 @@ export default new Vuex.Store({
          return err.response
       }
     },
-    async editSingleProduct(id){
+    async getProductById({ commit } , id){
+      try {
+          const response = await EventService.getProductByIdEvent(id)
+          if(response.status){
+            commit("PRODUCT_LOADED")
+          }
+          return response;
+      }catch(err){
+        return err.response
+      }
+    },
+    async editSingleProduct({commit} , data){
       try{
-        const res = await EventService.getProductByIdEvent(id);
-        if(res.status){
-           console.log(res)
-        }
-        return res
+        const res = await EventService.editProductEvent(data);
+        if(res.status)
+          commit("PRODUCT_LOADED")
+          return res
       }catch(err){
          return err.response
       }
@@ -115,8 +134,7 @@ export default new Vuex.Store({
       try{
         const res = await EventService.deleteProductEvent(id)
         if(res.status){
-              commit("PRODUCT_DELETED")
-              console.log(res)
+          commit("FILTER_PRODUCT" , id )
         }
         return res
       }catch(err){

@@ -27,7 +27,7 @@
 
         & li{
            list-style-type: none ;
-           padding: 7px ;
+           padding: 7px;
         }
 
         .link{

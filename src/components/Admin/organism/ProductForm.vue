@@ -10,7 +10,7 @@
                v-if="success" 
                :message="successMessage"/>
          </div>
-         <form enctype="multipart/form-data"  @submit.prevent="createProductItem">
+         <form enctype="multipart/form-data">
             <div class="form-wrapper upload">
                <div class="form-control">
                   <div class="click-able" 
@@ -64,12 +64,24 @@
                   <CustomSelect @input="selectedValue" :options="options"/>
                </div>
                <div  class="button">
-                  <button>
-                     <Loader v-if="loading"/>
-                     <div class="button__text">
-                        Create Product
-                     </div>
-                  </button>
+                  <div v-if="!isEditing">
+                     <button @click.prevent="createProductItem">
+                        <Loader v-if="loading"/>
+                        <div class="button__text">
+                           Create Product
+                        </div>
+                     </button>
+                  </div>
+
+                  <!--when user want to edit--->
+                  <div v-else>
+                     <button @click.prevent="updateProductItem">
+                        <Loader v-if="loading"/>
+                        <div class="button__text">
+                           Update Product
+                        </div>
+                     </button>
+                  </div>
                </div>
             </div>
          </form>
@@ -94,25 +106,34 @@ export default {
    },
    data(){
       return{
-         options:['breakfast' , 'launch' , 'dinner'],
-         errorMessage:'',
-         successMessage:'',
+         options: ['breakfast' , 'launch' , 'dinner'],
+         errorMessage: '',
+         successMessage: '',
          isDragging: false,
-         name:'',
-         description:'',
-         price:0,
+         name: '',
+         description: '',
+         price: 0,
          category: 'breakfast',
-         rating:0,
-         dragCount: 0,
+         rating: 0,
+         dragCount:0,
          files: '',//we are sending the file object to the server  
          images: '', // save image in base 64 for previewing;
          error: false,
-         success: false ,
+         success: false,
          loading: null,
+         isEditing: null,
+      }
+   },
+   mounted(){
+      if(this.$route.name === 'EditProduct'){
+         this.isEditing = true;
+         this.getSingleProductById()
+      }else if(this.$route.name === 'CreateProduct'){
+         this.isEditing = false
       }
    },
    methods:{
-      ...mapActions(['createProduct']),
+      ...mapActions(['createProduct' , 'getProductById' , 'editSingleProduct']),
       OnDragEnter(e){
          e.preventDefault();
          this.dragCount++;
@@ -198,6 +219,67 @@ export default {
             })
          }
       },
+      getSingleProductById(){
+         this.error = false;
+         const id = this.$route.params.id
+         this.getProductById(id).then( res => {
+            if(res.status === 200){
+               this.name = res.data.data.name
+               this.description = res.data.data.description
+               this.price = res.data.data.price
+               this.category = res.data.data.category
+               this.rating = res.data.data.averageReview
+               this.files=  res.data.data.image
+            }
+         }).catch(err => {
+            this.error = true;
+            this.errorMessage = 'Oops, bad network!'
+            err
+         });
+      },
+      updateProductItem(){
+         this.success = false
+         if(this.files == ''){
+            this.error = true;
+            this.errorMessage = 'Oops!, Kindly select an image'  
+         }else if(this.name == '' || this.description == ''|| this.price == '' || this.category == ''){
+            this.error = true;
+            this.errorMessage = 'Input fields are required!'
+         }else{
+            this.error = false;
+            const id = this.$route.params.id
+            const product = {
+               averageReview: this.rating,
+               category: this.category,
+               description: this.description,
+               image: this.files,
+               name: this.name,
+               price: this.price,
+            }
+            const data = {
+               id: id,
+               data: product
+            }
+            this.loading = true
+            this.editSingleProduct(data).then(res => {
+               if(res.status){
+                  console.log(res)
+                  this.loading = false
+                  this.success = true
+                  this.successMessage = 'Product updated successfully'
+                  this.$router.push('/dashboard/product')
+                  return;
+               }this.loading = false
+                this.error = true
+                this.errorMessage = res.data.error.message
+            }).catch(err => {
+               this.loading = false;
+               this.error = true;
+               this.errorMessage = 'Product cannot be updated!'
+               console.log(err)
+            })
+         }
+      },
       clear(){
          this.rating = ''
          this.category = ''
@@ -206,6 +288,9 @@ export default {
          this.name = ''
          this.price = ''
       }
+   },
+   watch:{
+      
    }
 }
 

@@ -83,8 +83,8 @@
                 this.$emit('add-to-cart' , value)
             },
             getProductByPage(){
-               const result = this.cards.length / this.page
-               console.log(Math.floor(result));
+            //    const result = this.cards.length / this.page
+            //    console.log(result)
             }
             //totalPage
         },

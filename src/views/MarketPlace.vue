@@ -20,7 +20,9 @@
             />
         </div>
         <div class="top">
-            <a class="back-top" href="#top" v-smooth-scroll>Up</a>
+            <a class="back-top" href="#top" v-smooth-scroll>
+                <font-awesome-icon icon="arrow-up"/>
+            </a>
         </div>
     </div>
 </template>
@@ -122,13 +124,14 @@
 
 .top{
     .back-top{
-        padding: 7px;
+        padding: 5px;
         background: #065143 ;
         width: 40px;
-        border-radius: 50%;
+        border-radius: 4px;
         font-size: 14px;
         font-family: 'Poppins' , sans-serif;
         color: #eee;
+        text-align: center;
         box-shadow: 0px 2px 5px rgba( 0 , 0 , 0 , .3);
         position: fixed;
         z-index: 111;

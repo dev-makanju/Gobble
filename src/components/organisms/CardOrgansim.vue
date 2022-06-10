@@ -1,48 +1,55 @@
 <template>
-    <div class="card__wrapper">
-        <div v-scrollAnimate  v-for="card  in cards" :key="card.id" class="card">
-            <div class="card_image_wrapper">
-                <PuSkeleton v-if="card.image === '' " class="is__loading">
-                </PuSkeleton>
-                <div class="card__loaded">
-                   <img class="card__image" :src="card.image" alt="" onerror="this.style.display='none'">
-                </div>
+<div class="card__wrapper">
+    <div v-scrollAnimate  v-for="card  in cards" :key="card.id" class="card">
+        <div class="card_image_wrapper">
+            <PuSkeleton v-if="card.image === '' " class="is__loading">
+            </PuSkeleton>
+            <div class="card__loaded">
+                <img class="card__image" :src="card.image" alt="" onerror="this.style.display='none'">
             </div>
-            <div class="main-card">
+        </div>
+        <div class="main-card">
+            <div class="rating tab">
                 <div class="rating">
                     <div class="item">
-                       <AtomIcon :content="'heart'" style="color: #065143;"/>
+                        <AtomIcon :content="'heart'" style="color: #065143;"/>
                     </div>
                     <div class="item" style="display:inline-flex;margin-left: 4px; ">
-                       <AtomStarf style="color:gold;font-size: 20px;"/> <p class="padding:2px">{{ card.averageReview }}</p>
+                        <AtomStarf style="color:gold;font-size: 20px;"/> <p class="padding:2px">{{ card.averageReview }}</p>
                     </div>
                 </div>
-                <div class="card__text" style="margin-top: 10px;">
-                    <p>{{ card.name }}</p>
+                <div class="rating">
+                    <router-link class="det-link" :to="{name:'ProductDetails', params:{slug: card.id} }">View</router-link>                    
                 </div>
-                <div class="card__footer">
-                    <div class="footer-info">
-                        <p style="color: #065143;font-size: 18px;">₦ &nbsp;{{ card.price}}.00</p>
+            </div>
+            <div class="card__text" style="margin-top: 10px;">
+                <p>{{ card.name }}</p>
+            </div>
+            <div class="card__footer">
+                <div class="footer-info">
+                    <p style="color: #065143;font-size: 18px;">₦ &nbsp;{{ card.price}}.00</p>
+                </div>
+                <div class="footer-info">
+                    <div v-if="!showButton">
+                        <button @click="addToCart(card)" class="button-btn">
+                           Add To Cart
+                        </button>
                     </div>
-                    <div class="footer-info">
-                        <div v-if="!showButton">
-                            <button @click="addToCart(card)" class="button-btn">
-                               Add To Cart
-                            </button>
+                    <div v-if="showButton" class="edit-wrapper">
+                        <div>
+                            <router-link :to="{name:'EditProduct' , params:{id:card.id}}">
+                               <td style="color:#000" class="icon"><font-awesome-icon icon="circle-check"/></td>
+                            </router-link>
                         </div>
-                        <div v-if="showButton" class="edit-wrapper">
-                            <div>
-                                <td  @click="editProduct(card.id)" class="icon"><font-awesome-icon icon="circle-check"/></td>
-                            </div>
-                            <div>
-                                <td @click="deleteProduct(card.id)" class="icon"><font-awesome-icon icon="trash-alt"/></td>
-                            </div>
+                        <div>
+                            <td @click="deleteProduct(card.id)" class="icon"><font-awesome-icon icon="trash-alt"/></td>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </template>
 
 <script>
@@ -97,23 +104,14 @@
                     this.showButton = false
                 }
             },
-            editProduct(id){
-               this.editSingleProduct(id).then(res => {
-                   if(res.status){
-                       //
-                   }
-               }).catch(err => {
-                   console.log(err)
-               })
-            },
             deleteProduct(id){
-               this.deleteSingleProduct(id).then(res => {
+                this.deleteSingleProduct(id).then(res => {
                     if(res.status){
-                       console.log(res)
+                        //okay done...
                     }
-               }).catch(err => {
+                }).catch(err => {
                    console.log(err)
-               })
+                })
             },
             createObj(image){
                 console.log(typeof image)
@@ -135,6 +133,21 @@
 </script>
 
 <style lang="scss" scoped>
+    .tab{
+        display: flex;
+        justify-content: space-between; 
+    }
+
+    .det-link {
+        text-decoration: underline;
+        color: #3e5752;
+        padding: 7px 10px;
+
+        &:hover{
+            color: #065143;
+        }
+    }
+
     .edit-wrapper{
         display: flex ;
         div{
@@ -196,10 +209,10 @@
 
         .button-btn{
             padding: 7px ;
-            border-radius: 17px ;
+            border-radius: 4px ;
             border: 1px solid #065143 ;
             outline: none ;
-            font-size: 16px;
+            font-size: 14px;
             font-family: 'IM Fell English', serif;
             cursor: pointer;
             right: 0;

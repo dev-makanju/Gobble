@@ -12,8 +12,8 @@
       </div>
       <div class="user-profile profile-content">
           <div>
-               <div class="icon-edit-profile">
-                  <font-awesome-icon class="fab-icon"  icon="user-edit"/>
+               <div v-if="(this.$store.state.auth.status == 'loaded')" class="icon-edit-profile">
+                  <font-awesome-icon style="z-index: 111;" class="fab-icon" @click="$emit('open')" icon="user-edit"/>
                </div>
                <ul>
                   <li>
@@ -21,7 +21,7 @@
                      <PuSkeleton v-if="(this.$store.state.auth.status == 'loading')" class="loader" height="30px"></PuSkeleton>
                   </li>
                   <li>
-                     <span v-if="(this.$store.state.auth.status == 'loaded')"><h3>Joined</h3>{{ this.$store.state.auth.user.createdAt }}</span>
+                     <span v-if="(this.$store.state.auth.status == 'loaded')"><h3>Joined</h3>{{ formatDate(this.$store.state.auth.user.createdAt) }}</span>
                      <PuSkeleton v-if="(this.$store.state.auth.status == 'loading')" class="loader" height="30px"></PuSkeleton>
                   </li>
                   <li>
@@ -46,7 +46,13 @@
 <script>
 
 export default {
-   name: "Profile"
+   name: "Profile",
+   methods:{
+      formatDate(date){
+         const time = new Date(date)
+         return time.getDate()+"/"+time.getMonth()+"/"+time.getFullYear();
+      }
+   }
 }
 
 </script>

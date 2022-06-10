@@ -1,33 +1,38 @@
 <template>
-   <div class="modal">
+   <div  class="modal">
       <div class="modal-content">
-         <form action="">
+         <font-awesome-icon @click="$emit('close')" style="float:right;padding:5px; border: 1px solid #000; border-radius:4px; cursor:pointer; width: 40px;" icon="times"/>
+         <form @submit.prevent="updateUserProfile">
             <div class="flex-center">
                <div class="image-wrapper">
                   <div class="image-picture">
                      <img class="image-picture" 
                         src="@/assets/mobile/3898372_user_people_man_add_icon.png" 
-                        onerror="this.style.display='none'">
+                        onerror="this.style.display='none'"
+                     >
                   </div>
                   <div class="form-control image-holder">
                      <label for="upload">
                         <font-awesome-icon icon="camera-alt" style="font-size: 20px;"/>
                      </label>
-                     <input type="file" id="upload" @on-change="onUpload" autocomplete="off">
+                     <input type="file" id="upload" :class="['error',error?'add':'']" @change="onUpload" autocomplete="off">
                   </div>
                </div>
             </div>
+            <div class="error">
+               {{ message }}
+            </div>
             <div class="form-control">
                <label for="">Username</label>
-               <input type="text" v-model.trim="name" autocomplete="off">
+               <input type="text"  v-model.trim="name" autocomplete="off">
             </div>
             <div class="form-control">
                <label for="">Email</label>
-               <input type="text" v-model.trim="Email" autocomplete="off">
+               <input type="text"  v-model.trim="Email" autocomplete="off">
             </div>
             <div class="form-control">
                <label for="">Address</label>
-               <input type="text" v-model.trim="address" autocomplete="off">
+               <input type="text" id="input" v-model.trim="address" autocomplete="off">
             </div>
             <button class="button-btn">Update Profile</button>
          </form>
@@ -37,18 +42,66 @@
 
 <script>
 
+import { mapActions } from 'vuex'
+
 export default {
    props:["modalMessage","Active"],
+   data(){
+      return {
+        image:"",
+        name: '',
+        Email: "",
+        address:"",
+        imageUrl: "",
+        error: null,
+        message: '',
+      }
+   },
+   mounted(){
+      this.image = this.$store.state.auth.user.image
+      this.name =  this.$store.state.auth.user.name
+      this.Email = this.$store.state.auth.user.email
+      this.address = this.$store.state.auth.user.address
+   },
    methods:{
+      ...mapActions(['updateUser']),
       closeModal(){
          this.$emit("close-modal");
-      }
+      },
+      onUpload(e){
+         console.log(e.target.files[0]);
+      },
+      updateUserProfile(){
+         const data = {  
+            name: this.name, 
+            email : this.Email, 
+            Adress: this.address 
+         }
+         this.updateUser(data).then(res => {
+            this.error = false;
+            if(res.status === 204){
+               console.log(res)
+               this.$emit('close');
+            }else{
+               this.error = true;
+               this.message = 'Oops!,update failed'
+            }
+         }).catch(err => {
+            this.error = true;
+            this.message = 'Oops!!, update failed'
+            err
+         })
+      }, 
    }        
 }
 
 </script>
 
 <style lang="scss" scoped>
+
+.error{
+   text-align: center;
+}
 
 .image-picture:hover ~ .image-holder label{      
    display: block;

@@ -125,6 +125,17 @@ const actions = {
          return err.response
       } 
    },
+   async updateUser({commit} , data){
+      try{
+         const response = await eventService.editUserProfileEvent(data)
+         if(response.status){
+            commit('USER_UPDATED')
+         }
+         return response
+      }catch(err){
+         return err.response
+      } 
+   },
    //LOG USER OUT
    logout({commit}){
       localStorage.removeItem('gobtoken');

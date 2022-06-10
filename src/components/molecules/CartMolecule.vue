@@ -58,9 +58,8 @@
 
 <style lang="scss" scoped>
     .nav-flat{
-        color: #eee;
-        border-radius: 20px;
-        background: #066350;
+        color: #066350;
+        font-size: 20px;
     }
 
     .text-nav-dash{
