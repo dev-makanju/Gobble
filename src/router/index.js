@@ -15,7 +15,7 @@ import NotFound from '../views/NotFound.vue'
 import ForgotPassword from '../views/ForgotPassword.vue'
 import EditProduct from '../views/Admin/EditProduct.vue'
 import ProductDetails from '../views/ProductDetails.vue'
-import OrderDetails from '../views/ProductDetails.vue'
+import OrderPage from '../views/OrderDetails.vue'
 import store from '../store'
 
 Vue.use(VueRouter)
@@ -48,10 +48,11 @@ const routes = [
   },
   {
     path:'/Orders',
-    name: 'Order',
-    component: OrderDetails,
+    name: 'OrderPage',
+    component: OrderPage,
     meta:{
       title:"Order",
+      requiresAuth: true,
     }
   },
   {

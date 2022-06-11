@@ -9,12 +9,12 @@
             <div v-if="showProfile" :class="['user', showProfile?'user-profile active':'user-profile' ]">
                <div class="profile-card-wrapper">
                   <deleteAccount 
-                        @close-modal="closeModal" 
-                        @delete-modal="deleteUserAccount()" 
-                        v-if="showModal" 
-                        :Active="Active"
-                        :modalMessage="message"
-                        />
+                     @close-modal="closeModal" 
+                     @delete-modal="deleteUserAccount()" 
+                     v-if="showModal" 
+                     :Active="Active"
+                     :modalMessage="message"
+                  />
                   <div class="class-wrapper icon">
                      <div class="thumbnail-wrapper child">
                         <img class="user-thumbnail" 
@@ -48,6 +48,10 @@
                      <div class="profile-tab">
                         <font-awesome-icon class="fab-icon" icon="trash"/>
                         <span class="link update-profile" @click="confirm()">Delete Account</span>
+                     </div>
+                     <div class="profile-tab">
+                        <font-awesome-icon class="fab-icon"  icon="user-edit"/>
+                        <router-link class="link update-profile" :to="{name:'OrderPage'}">Order</router-link>
                      </div>
                      <div @click="signOut" class="profile-tab">
                         <font-awesome-icon class="fab-icon"  icon="sign-out"/>

@@ -1,18 +1,20 @@
 <template>
    <div class="slide__wrapper">
       <div class="main-padding" v-for="card in cards" :key="card.id">
+      <router-link :to="{name:'ProductDetails', params:{slug: card.id} }">
          <div class="card-slider">
-         <div class="card-slider">
-            <PuSkeleton v-if="card.image === '' " class="card__is__loading">
-            </PuSkeleton>
-            <img class="card__image" :src="card.image"  onerror="this.style.display='none'">
-         </div>
-         <div class="card-slider details">
-            <div class="description">
-               <h2>₦ {{ card.price }}</h2>
+            <div class="card-slider">
+               <PuSkeleton v-if="card.image === '' " class="card__is__loading">
+               </PuSkeleton>
+               <img class="card__image" :src="card.image"  onerror="this.style.display='none'">
             </div>
-         </div>      
+            <div class="card-slider details">
+               <div class="description">
+                  <h2>₦ {{ card.price }}</h2>
+               </div>
+            </div>      
          </div>
+      </router-link>
       </div>
    </div>
 </template>
