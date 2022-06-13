@@ -48,7 +48,20 @@ const actions = {
          return err.response;
       }
    },
-   async addProduct( {commit} ,data){
+
+   async addProductReview({commit}, data ){
+      try{
+         const response = await EventService.writeReviewEvent( data)
+         if(response.status){
+            commit("GET_REVIEW");
+         }
+         return response;
+      }catch(err){
+         return err.response;
+      }
+   },
+
+   async addProduct({commit} , data ){
       try{
          const response = await EventService.addProductTocart(data)
          if(response.status){

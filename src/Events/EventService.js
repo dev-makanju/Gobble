@@ -49,8 +49,8 @@ export default {
       return apiClient.get('products')
    },
    //write review
-   reviewEvent(productId){
-      return apiClient.post('reviews' , productId );
+   writeReviewEvent(data){
+      return apiClient.post(`reviews/${data.id}` , data.data );
    },
    getProductReviewsEvent(productId){
       return apiClient.get('reviews/'+productId)
