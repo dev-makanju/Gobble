@@ -1,6 +1,6 @@
 <template>
     <div>
-        <font-awesome-icon :icon="content"/>
+        <font-awesome-icon class="icon" :icon="content"/>
     </div>
 </template>
 
@@ -10,3 +10,9 @@
         props:['content'],
     }
 </script>
+
+<style lang="scss" scoped>
+.icon{
+   color: #065143;
+}
+</style>

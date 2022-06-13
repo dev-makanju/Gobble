@@ -118,7 +118,12 @@
                 font-size: 3rem;
                 padding: 20px 0px;
                 font-family: 'Mochiy Pop P One', sans-serif;
+
+                @media (max-width: 400px) {
+                    font-size: 2rem;
+                }
             }
+
 
             p{
                 font-weight: 100;

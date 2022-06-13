@@ -8,12 +8,12 @@
             </li>
         </ul>
         <div v-if="this.$store.getters.isLoggedIn" class="nav-link-cart">
-                <router-link class="link update-profile" :to="{name:'Dashboard'}">
-                    <div v-show="isAdmin" class="nav-link-cart">
-                       <font-awesome-icon class="fab-icon nav-flat" icon="dashboard"/>
-                       <span class="link update-profile text-nav-dash">Dashboard</span>
-                    </div>
-                </router-link>
+            <router-link class="link update-profile" :to="{name:'Dashboard'}">
+                <div v-show="isAdmin" class="nav-link-cart">
+                    <font-awesome-icon class="fab-icon nav-flat" icon="dashboard"/>
+                    <span class="link update-profile text-nav-dash">Dashboard</span>
+                </div>
+            </router-link>
         </div>
         <div v-if="!this.$store.getters.isLoggedIn" class="nav-link-cart">
             <router-link class="nav-log" :to="{name:'Login'}">Sign In</router-link>
@@ -86,7 +86,6 @@
            list-style-type: none ;
            padding: 6px  6px;
            border-radius: 50%;
-           background: #066350 ;
            font-family: 'Poppins' , sans-serif;
            color: #000;
            margin: 0px 7px ;

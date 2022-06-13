@@ -194,7 +194,6 @@ export default {
    border-radius: 2px;
    box-shadow: 0px 2px 5px rgba(0, 0,0,.3);
    z-index: 111;
-   width: 350px;
    position: relative;
    min-height: 200px;
    min-width: 300px;

@@ -70,6 +70,7 @@ export default{
          @media (max-width: 768px ) {
             .banner-wrapper{
                padding: 20px 15px ;
+               width: 95%;
             }
          }
 

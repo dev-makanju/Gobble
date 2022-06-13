@@ -168,6 +168,7 @@ export default {
                         review:this.reviewText
                      }
                      this.reviewCart.push(result);
+                     this.allReviews.push(result)
                   }
                }).catch(err => {
                   err
