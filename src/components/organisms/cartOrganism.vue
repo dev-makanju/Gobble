@@ -1,51 +1,52 @@
 <template>
     <transition name="cart__slider">
         <div v-if="this.$store.state.isOpen"  class="shopping__cart">
+            <h4 v-if="!this.$store.state.cart.cartLoaded" style="text-align: center; color: red;">Loading...</h4>
             <div style="overflow-y:auto; height:80%">
                 <div class="times__icon">
                     <font-awesome-icon class="icon-close" @click="$emit('toggle-cart')" icon="times"/>
                 </div>
-                <div v-if="!isEmpty">
-                <div v-for="items in cartItemsDetails" :key="items.id" class="cart">
+                <div v-if="cartItems.length !== 0">
+                <div v-for="item in cartItems" :key="item.id" class="cart">
                     <div class="cart__wrapper">
-                        <img class="cart__image" width="150" height="150" :src="items.image" onerror="this.style.display='none'">
+                        <img class="cart__image" width="150" height="150" :src="item.image" onerror="this.style.display='none'">
                     </div>
                     <div>  
                         <div style="padding: 5px; margin-left:4px;width: 200px;">
                             <div>
-                                <p>{{ items.name }}</p>
-                                <p class="" style="margin-top: 4px;color:#065143;"><span> ₦ </span>{{ items.price }}</p>
+                                <p>{{ item.product }}</p>
+                                <p class="" style="margin-top: 4px;color:#065143;"><span> ₦ </span>{{ item.totalPrice }}</p>
                             </div>
                             <div class="cart__increment">
-                                    <div class="cart__add">
-                                        <div>
-                                            <font-awesome-icon 
-                                                style="cursor:pointer;
-                                                padding:5px; 
-                                                border: 1px solid #065143; 
-                                                border-radius: 5px;" 
-                                                @click="reduceQty(items.id)" icon="subtract"/>
-                                        </div>
-                                        <div>
-                                        <p style="padding: 5px;">{{ items.qty }}</p>
-                                        </div>
-                                        <div>
-                                            <font-awesome-icon 
-                                                style="cursor:pointer; 
-                                                padding:5px;
-                                                border: 1px solid #065143;
-                                                border-radius: 5px;" 
-                                                @click="items.qty++" icon="plus"/>
-                                        </div>
+                                <div class="cart__add">
+                                    <div>
+                                        <font-awesome-icon 
+                                            style="cursor:pointer;
+                                            padding:5px; 
+                                            border: 1px solid #065143; 
+                                            border-radius: 5px;" 
+                                            @click="reduceQty(item.id)" icon="subtract"/>
                                     </div>
                                     <div>
-                                        <font-awesome-icon  
-                                            style="padding: 5px;
-                                            cursor: pointer;
-                                            float:right;" 
-                                            @click="filterCart(items.id)"
-                                            icon="times"/>
+                                    <p style="padding: 5px;">{{ item.quantity }}</p>
                                     </div>
+                                    <div>
+                                        <font-awesome-icon 
+                                            style="cursor:pointer; 
+                                            padding:5px;
+                                            border: 1px solid #065143;
+                                            border-radius: 5px;" 
+                                            @click="item.qty++" icon="plus"/>
+                                    </div>
+                                </div>
+                                <div>
+                                    <font-awesome-icon  
+                                        style="padding: 5px;
+                                        cursor: pointer;
+                                        float:right;" 
+                                        @click="filterCart(item.id)"
+                                        icon="times"/>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -54,10 +55,10 @@
         <div v-else>
             <h2 class="add-text">Kindly select an item to add to your cart...</h2>
         </div>
-        </div>
+            </div>
 
-         <!---Total purchase--->
-         <div style="background: #eee;height:20%;" class="main_product_cart">
+            <!---Total purchase--->
+            <div style="background: #eee;height:20%;" class="main_product_cart">
             <hr>
                 <div class="purchase">
                     <div>
@@ -80,14 +81,14 @@
                     Pay ₦{{ returnTotalPrice }}
                 </paystack>
             </div>
-        </div>
+           </div>
     </div>
     </transition>
 </template>
 
 <script>
     
-import { mapGetters , mapActions } from "vuex";
+import { mapGetters , mapActions, mapState } from "vuex";
 import paystack from "vue-paystack";
 
     export default {
@@ -100,13 +101,31 @@ import paystack from "vue-paystack";
             return{
                 price:0,
                 shippingFee: 4,
+                cartItems: [],
             }
+        },
+        mounted(){
+           this.getCartItems();
         },
         methods:{
             ...mapActions('payment', ['processPayment']),
-            filterCart(item){
-                this.$emit('filter-cart' , item );
+            ...mapActions('cart', ['getCart']),
+            ...mapState('cart', ['carts' , 'cartLoaded']),
+
+            getCartItems(){
+               this.getCart().then(res => {
+                if(res.status){
+                   this.cartItems = this.$store.state.cart.carts;
+                }
+               }).catch(err => {
+                   err
+               })
             },
+
+            filterCart(item){
+               this.$emit('filter-cart' , item );
+            },
+
             reduceQty(id){
                 const result = this.cartItemsDetails.find(res => res.id === id);
                 if(result.qty !== 1 ){

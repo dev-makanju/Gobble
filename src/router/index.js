@@ -4,7 +4,6 @@ import Home from '../views/Home.vue'
 import MarketPlace from '../views/MarketPlace.vue'
 import Dashboard from '../views/Admin/Dashboard.vue'
 import Customers from '../views/Admin/Customers.vue'
-import payHistory from '../views/Admin/payHistory.vue'
 import Product from '../views/Admin/Product.vue'
 import CreateProduct from '../views/Admin/CreateProduct.vue'
 import Order from '../views/Admin/Order.vue'
@@ -93,16 +92,6 @@ const routes = [
     component: Customers,
     meta:{
       title:"Customers",
-      requiresAuth: true,
-    }  
-  },
-
-  {
-    path: '/dashboard/payment-history',
-    name: 'payHistory',
-    component: payHistory,
-    meta:{
-      title:"payment-history",
       requiresAuth: true,
     }  
   },

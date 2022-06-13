@@ -156,7 +156,10 @@ export default new Vuex.Store({
   modules: {
     auth,
     admin,
-    cart,
+    cart:{
+      namespaced: true,
+      ...cart
+    },
     payment:{
        namespaced: true,
        ...payment

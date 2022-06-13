@@ -5,17 +5,17 @@
             <PuSkeleton v-if="card.image === '' " class="is__loading">
             </PuSkeleton>
             <div class="card__loaded">
-                <img class="card__image" :src="card.image" alt="" onerror="this.style.display='none'">
+               <img class="card__image" :src="card.image" alt="" onerror="this.style.display='none'">
             </div>
         </div>
         <div class="main-card">
             <div class="rating tab">
                 <div class="rating">
                     <div class="item">
-                        <AtomIcon :content="'heart'" style="color: #065143;"/>
+                       <AtomIcon :content="'heart'" style="color: #065143;"/>
                     </div>
                     <div class="item" style="display:inline-flex;margin-left: 4px; ">
-                        <AtomStarf style="color:gold;font-size: 20px;"/> <p class="padding:2px">{{ card.averageReview }}</p>
+                       <AtomStarf style="color:gold;font-size: 20px;"/> <p class="padding:2px">{{ card.averageReview }}</p>
                     </div>
                 </div>
                 <div class="rating">

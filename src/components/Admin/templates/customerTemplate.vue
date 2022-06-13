@@ -87,7 +87,7 @@ import DashboardNavbar from '../organism/DashboardNavbar.vue'
 import DashboardHeader from '../organism/DashboardHeader.vue'
 import Search from '../molecules/SearchMole.vue'
 import Pagination from '../molecules/pagination.vue'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters, mapState } from 'vuex'
 import Loader from '../../molecules/Loading.vue'
 import SuccessAlert from '../molecules/Alert.vue'
 import ErrorAlert from '../molecules/ErrorMolecule.vue' 
@@ -121,19 +121,18 @@ export default {
          message:'',
       }
    },
-   created(){
-     this.getAllCustomer();
+   mounted(){
+      if(this.$store.state.customer.loading){
+         this.getAllRegUser()
+      }else{
+         this.userList = this.$store.state.customer.customers  
+      }
    },
    methods:{
-      ...mapActions('customer',['getAllRegUser' , 'makeUserAdmin' , 'deleteUserById']),
+      ...mapState('customer' , ['']),
+      ...mapActions('customer',['getAllRegUser' , 'makeUserAdmin']),
       getAllCustomer(){
-         this.getAllRegUser().then( res => {
-            if(res.status){
-               this.userList = res.data.data
-            }
-         }).catch(err => {
-            console.log(err);
-         })
+         this.userList = this.$store.state.customer.customers  
       },
       makeAdmin(email , id){
          this.selected = id
@@ -164,6 +163,16 @@ export default {
       },
       notifyAlert(){
          this.success = !this.success
+      }
+   },
+   computed:{
+      ...mapGetters( 'customer',{
+         customers: 'returnCustomers'
+      })
+   },
+   watch:{
+      customers: function(){
+         this.userList = this.$store.state.customer.customers
       }
    }
 }

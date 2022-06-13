@@ -11,7 +11,7 @@
             </div>
             <div class="dashboard__details det">
                <div class="child">
-                  <router-link class="link-det" to="">See Details</router-link>
+                  <router-link class="link-det" :to="{name:'Order'}">See Details</router-link>
                </div>
                <div class="child green icon">
                   <font-awesome-icon  icon="dashboard"/>
@@ -26,11 +26,11 @@
                <h5>Customers</h5>
             </div>
             <div class="dashboard__details">
-               <h1>5,310</h1>
+               <h1>{{ count }}</h1>
             </div>
                <div class="dashboard__details det">
                   <div class="child">
-                        <router-link class="link-det" to="">See Details</router-link>
+                        <router-link class="link-det" :to="{name:'Customers'}">See Details</router-link>
                   </div>
                   <div class="child pink icon">
                         <font-awesome-icon  icon="dashboard"/>
@@ -45,7 +45,7 @@
               <h5>Profits</h5>
           </div>
           <div class="dashboard__details">
-              <h1>1,310</h1>
+              <h1>₦ 1,310</h1>
           </div>
           <div class="dashboard__details det">
               <div class="child">
@@ -64,7 +64,7 @@
               <h5>Earning</h5>
           </div>
           <div class="dashboard__details">
-              <h1>3,310</h1>
+              <h1>₦ 3,310</h1>
           </div>
           <div class="dashboard__details det">
               <div class="child">
@@ -80,9 +80,36 @@
 </template>
 
 <script>
+import { mapActions, mapGetters, mapState } from 'vuex'
 
 export default {
    name: "DashboardSliderOrgs",
+   data(){
+      return{
+         count: 0,
+      }
+   },
+   created(){
+      if(this.$store.state.customer.loading){
+         this.initialliseCustomer()
+      }else{
+         this.count = this.totalUsers()
+      }
+   },
+   methods:{
+      ...mapActions('customer' , ['getAllRegUser']),
+      ...mapGetters('customer' , ['totalUsers']),
+      ...mapState('customer',['loading']),
+      initialliseCustomer(){
+         this.getAllRegUser().then(res => {
+            if(res.status){
+               this.count = this.totalUsers()
+            }
+         }).catch(err => {
+            err
+         });
+      }
+   }
 } 
 </script>
 

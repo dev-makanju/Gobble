@@ -65,16 +65,6 @@
                </div>
             </router-link>
          </li>
-         <li>
-            <router-link class="nav-link" :to="{name:'payHistory'}">
-               <div class="navbar icon">
-                  <div class="navbar child">
-                     <font-awesome-icon  icon="comment-dollar"/>
-                  </div>
-                  <div class="navbar child">Payment</div>
-               </div>
-            </router-link>
-         </li>
       </ul>
    </div>
 </template>

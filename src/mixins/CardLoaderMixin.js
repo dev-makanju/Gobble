@@ -9,7 +9,7 @@ export default {
          loading: 'returnLoadState' ,
          product: 'returnAllProducts',
       })
-   },
+   }, 
    watch:{
       loading: function(){
          if(!this.$store.state.product_loading) {

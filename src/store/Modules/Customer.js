@@ -1,18 +1,29 @@
 import eventService from '../../Events/EventService'
 
 const state = {
-   loading: null,
+   customers: [],
+   loading: true,
    aborted: null,
    editing: null,
    deleting: null,
+}
+
+const getters = {
+   returnCustomers(state){
+      return state.customers
+   },
+   totalUsers(state){
+      return state.customers.length
+   }
 }
 
 const mutations = {
    STATUS(state){
       state.loading = true;
    },
-   USER_STATUS(state){
+   USER_STATUS(state , payload){
       state.loading = false;
+      state.customers = payload
    },
    USER_STATUS_ABORTED(state){
       state.aborted = true
@@ -66,6 +77,7 @@ const modules = {
 
 export default {
    state,
+   getters,
    mutations,
    actions,
    modules

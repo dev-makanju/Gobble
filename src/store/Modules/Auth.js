@@ -1,4 +1,5 @@
 import axios from 'axios'
+import EventService from '../../Events/EventService'
 import eventService from '../../Events/EventService'
 import router from '../../router'
 
@@ -37,7 +38,8 @@ const mutations = {
    },
    USER_STATUS(state){
       state.status = 'loaded'
-   }
+   },
+   RAW(){},
 }
 
 const actions = {
@@ -135,6 +137,18 @@ const actions = {
       }catch(err){
          return err.response
       } 
+   },
+   async getUserInfoById({commit} , data ){
+      try{
+         const response = await EventService.getUserByIdEvent(data)
+         if(response.status){
+            commit('RAW');
+            console.log(response)
+         }
+         return response
+      }catch(err){
+         return err.reponse;
+      }
    },
    //LOG USER OUT
    logout({commit}){

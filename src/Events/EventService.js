@@ -53,14 +53,18 @@ export default {
       return apiClient.post('reviews' , productId );
    },
    getProductReviewsEvent(productId){
-      return apiClient.post('reviews/'+productId)
+      return apiClient.get('reviews/'+productId)
    },
    //Cart System
    getUserCartEvent(){
       return apiClient.get('mycart');
    },
+   //created by me
+   addProductTocart({data}){
+      return apiClient.post(`products/cart/${data.pro_id}`, data.qty);
+   },
    deleteCartItem(productId){
-      return apiClient.delete('products/cart/'+ productId);
+      return apiClient.delete('products/cart/'+productId);
    },
    createProductEvent(data){
       return apiClient.post('products', data)
