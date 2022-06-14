@@ -7,12 +7,14 @@
             </div>
             <div class="header-nav">
                 <ListMolecule 
-                    :urlLists="urlLists"/>
+                    :urlLists="urlLists"
+                />
             </div>
             <div class="header-nav">
                 <CartMolecule 
                    :cartLists="cartLists"
-                   @confirm-delete="$emit('confirm-delete')"/>
+                   @confirm-delete="$emit('confirm-delete')"
+                />
             </div>
         </div>
     </header>
@@ -24,7 +26,7 @@
     import ListMolecule from '../molecules/HeaderMoles/ListMolecules.vue'
     import AtomText from '../atoms/AtomText.vue'
     import CartMolecule from '../molecules/CartMolecule.vue'
-    import { mapState } from 'vuex'
+    import { mapGetters } from 'vuex'
 
     export default {
         name: 'HeaderOrganism',
@@ -73,22 +75,25 @@
                 ]
             }
         },
+        mounted(){
+            this.updateCount()
+        },
         methods:{
             updateCount(){
-                this.cartLists.forEach((element) => {
-                    element.count = this.getCount;
-                });
+                if(this.$store.getters.isLoggedIn){
+                    this.cartLists.forEach((element) => {
+                        element.count = this.count;
+                    });
+                }
             }
         },
         computed:{
-            ...mapState(['cartCount']),
-
-            getCount: function(){
-               return this.$store.state.cartCount
-            }
+            ...mapGetters('cart', {
+               count: 'getCartCount',    
+            }),
         },
         watch:{
-            '$store.state.cartCount': function(){
+            count: function(){
                this.updateCount()
             }
         }

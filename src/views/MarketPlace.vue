@@ -13,7 +13,6 @@
         </div>
         <div :class="[this.$store.state.isOpen ? 'market__section open' : 'market__section cart']">
             <cartOrganism 
-                @filter-cart="removeItem" 
                 :cartItemsDetails="isCartActive" 
                 :isEmpty="isEmpty" 
                 @toggle-cart="toogleCart"
@@ -54,13 +53,9 @@
                     this.isCartActive.push(value); 
                 }else{
                     result.qty++
-                    return
+                    return;
                 }  
             },
-            removeItem(value){
-                this.$emit('remove-from-store' , value)
-                this.isCartActive = this.isCartActive.filter( card => card.id !== value );
-            }
         },
         created(){
            this.isEmpty = true;

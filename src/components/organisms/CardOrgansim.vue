@@ -91,6 +91,9 @@
                 this.isVisible = true
               } , 5000)
             },
+            updateCart(){
+                
+            },
             addToCart(id){
                 const p_id = {
                     pro_id: id,
@@ -98,7 +101,7 @@
                 }
                 if(this.$store.getters.isLoggedIn){
                     this.sending = true;
-                    this.addProduct(p_id).then(res => {
+                    this.addProduct(p_id).then( res => {
                         if(res.status){
                            this.sending = false;
                         }
@@ -113,12 +116,12 @@
             showIsEditing(){
                 if(this.$store.state.auth.role == "ADMIN"){
                     if(this.$route.name == 'Product'){
-                       this.showButton = true
+                       this.showButton = true;
                        return;
                     }
                 }else if(this.$route.name == 'Product'){
-                       this.showButton = true
-                       return;
+                    this.showButton = true;
+                    return;
                 }else {
                     this.showButton = false
                 }

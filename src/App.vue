@@ -41,22 +41,36 @@ export default {
           console.log(err)
         })
       }
+      if(token){
+        this.getCartItems()
+      }
     },
     created(){
       //get user information when app is created
       this.isMarketRoute();
       this.showNavbar()
+
       //dispatch product loader when app is initialize
       this.$store.dispatch('getProducts')
     },
     methods:{
       ...mapActions(['getUserInfo']),
+      ...mapActions('cart', ['getCart']),
       isMarketRoute(){
         if(this.$route.name === "MarketPlace"){
             this.isMarketPlace = true;
             return;
         }
         this.isMarketPlace = false;
+      },
+      getCartItems(){
+        this.getCart().then(res => {
+            if(res.status){
+              //NOT NEDDED
+            }
+        }).catch(err => {
+            err
+        })
       },
       showNavbar(){
         if(this.$route.name === "Login" || 

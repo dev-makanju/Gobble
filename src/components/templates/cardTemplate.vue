@@ -63,7 +63,6 @@
         },
         created(){
             this.isMarketRoute();
-            this.getProductByPage() 
         },
         methods:{
             isMarketRoute(){
@@ -82,11 +81,7 @@
             addToCart(value){
                 this.$emit('add-to-cart' , value)
             },
-            getProductByPage(){
-            //    const result = this.cards.length / this.page
-            //    console.log(result)
-            }
-            //totalPage
+
         },
         computed:{
             itemsCard: function(){

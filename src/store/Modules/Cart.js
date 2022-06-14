@@ -7,11 +7,8 @@ const state = {
 
 const getters = {
    getCartCount(state){
-      return state.carts.length
+      return state.carts.length;
    },
-   filterCart(){
-    
-   }
 }
 
 const mutations = {
@@ -25,7 +22,9 @@ const mutations = {
    FILTER_PRODUCT(state , id){
       state.carts = state.carts.filter(res => res.id !== id)
    },
-   ADDED_PRODUCT(){},
+   ADDED_PRODUCT(state , payload){
+      state.carts.push(payload)
+   },
    GET_REVIEW(){},
 }
 
@@ -83,8 +82,9 @@ const actions = {
       try{
          const response = await EventService.addProductTocart(data)
          if(response.status){
-            commit("ADDED_PRODUCT")
+            commit("ADDED_PRODUCT" , response.data.data)
          }
+         return response;
       }catch(err){
          return err.response;
       }

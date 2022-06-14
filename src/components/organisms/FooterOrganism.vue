@@ -12,21 +12,9 @@
             </div>
             <div class="footer-link">
                 <div class="footer-info">
-                    <AtomText :tag="'h3'" style="color:#eee" :content="'Support'"/>
-                </div>
-                <linksMolecules :urlLists="support"/>
-            </div>
-            <div class="footer-link">
-                <div class="footer-info">
                     <AtomText :tag="'h3'" style="color:#eee" :content="'Our Menu'"/>
                 </div>
                 <linksMolecules :urlLists="menu"/>
-            </div>
-            <div class="footer-link">
-                <div class="footer-info">
-                    <AtomText :tag="'h3'" style="color:#eee" :content="'Useful Link'"/>
-                </div>
-                <linksMolecules :urlLists="links"/>
             </div>
             <div class="footer-link">
                 <div class="footer-info">
@@ -167,9 +155,9 @@ footer{
         display: flex;
         flex-direction: row ;
         flex-wrap: wrap;
-        justify-content: space-between;
         align-items: center;
-        font-size: 13px!important;
+        gap: 2rem;
+        font-size: 12px!important;
 
         
         @media (min-width:768px) {      

@@ -101,7 +101,9 @@ import paystack from "vue-paystack";
                    err
                })
             },
-
+            updateCards(){
+                this.cartItems = this.$store.state.cart.carts
+            },
             filterCart(itemId){
                this.deleteProduct(itemId).then(res => {
                     if(res.status){ 
@@ -126,6 +128,9 @@ import paystack from "vue-paystack";
                     text += possible.charAt(Math.floor(Math.random() * possible.length));
                 return text;
             },
+            ...mapGetters('cart', {
+               count: 'getCartCount',    
+            }),
             returnTotalPrice: function(){
                 let total = 0 
                 const itms = this.cartItemsDetails;
@@ -138,6 +143,9 @@ import paystack from "vue-paystack";
         watch:{
             returnTotalPrice: function(){
                 this.$store.dispatch('setPrice' ,this.returnTotalPrice );
+            },
+            count: function(){
+               this.updateCards()
             }
         }
     }
