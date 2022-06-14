@@ -64,7 +64,10 @@
         methods:{
             getPostFeeds(){
                 this.cards = this.$store.getters.productFeed
-            }
+            },
+            getAllProduct(){
+            //not really needed here
+            },
         }
     }
 </script>

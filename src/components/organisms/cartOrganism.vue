@@ -20,32 +20,12 @@
                             <div class="cart__increment">
                                 <div class="cart__add">
                                     <div>
-                                        <font-awesome-icon 
-                                            style="cursor:pointer;
-                                            padding:5px; 
-                                            border: 1px solid #065143; 
-                                            border-radius: 5px;" 
-                                            @click="reduceQty(item.id)" icon="subtract"/>
-                                    </div>
-                                    <div>
-                                    <p style="padding: 5px;">{{ item.quantity }}</p>
-                                    </div>
-                                    <div>
-                                        <font-awesome-icon 
-                                            style="cursor:pointer; 
-                                            padding:5px;
-                                            border: 1px solid #065143;
-                                            border-radius: 5px;" 
-                                            @click="item.qty++" icon="plus"/>
+                                        <button class="remove" @click="filterCart(item.id)">
+                                            remove
+                                        </button>
                                     </div>
                                 </div>
                                 <div>
-                                    <font-awesome-icon  
-                                        style="padding: 5px;
-                                        cursor: pointer;
-                                        float:right;" 
-                                        @click="filterCart(item.id)"
-                                        icon="times"/>
                                 </div>
                             </div>
                         </div>
@@ -109,31 +89,28 @@ import paystack from "vue-paystack";
         },
         methods:{
             ...mapActions('payment', ['processPayment']),
-            ...mapActions('cart', ['getCart']),
+            ...mapActions('cart', ['getCart' , 'deleteProduct']),
             ...mapState('cart', ['carts' , 'cartLoaded']),
 
             getCartItems(){
                this.getCart().then(res => {
-                if(res.status){
-                   this.cartItems = this.$store.state.cart.carts;
-                }
+                    if(res.status){
+                       this.cartItems = this.$store.state.cart.carts;
+                    }
                }).catch(err => {
                    err
                })
             },
 
-            filterCart(item){
-               this.$emit('filter-cart' , item );
+            filterCart(itemId){
+               this.deleteProduct(itemId).then(res => {
+                    if(res.status){ 
+                       this.cartItems = this.cartItems.filter( det => det.id != itemId);
+                    }
+               }).catch(err => {
+                   err
+               })
             },
-
-            reduceQty(id){
-                const result = this.cartItemsDetails.find(res => res.id === id);
-                if(result.qty !== 1 ){
-                    result.qty--
-                }else{
-                    this.filterCart(result.id)
-                }
-            }
         },
         computed:{
             ...mapGetters('payment',[
@@ -167,6 +144,18 @@ import paystack from "vue-paystack";
 </script>
 
 <style lang="scss" scoped>
+
+.remove{
+    border: 1px solid #065143;
+    background: #065143;
+    border-radius: 4px;
+    color: #eee;
+    padding: 2px;
+    font-size: 12px;
+    font-weight: 400;
+    outline: none;
+    cursor: pointer;
+}
 
 .icon-close{
     padding: 5px;

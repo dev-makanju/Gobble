@@ -20,9 +20,9 @@ import FooterOrganism from './components/organisms/FooterOrganism.vue'
 import { mapActions } from 'vuex'
 
 export default {
-    components:{
-      HeaderOrganism,
-      FooterOrganism,
+    components: {
+        HeaderOrganism,
+        FooterOrganism,
     },  
     data(){
       return{
@@ -96,10 +96,10 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
 
-$primary-color: #70B77E ;
-$secondary-color:#A8B087 ;
-$tertiary-color: #065143 ;
-$error-color: #e74e3c ;
+$primary-color: #70B77E;
+$secondary-color:#A8B087;
+$tertiary-color: #065143;
+$error-color: #e74e3c;
 
 *{
   margin: 0;

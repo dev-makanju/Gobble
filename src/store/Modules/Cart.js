@@ -8,6 +8,9 @@ const state = {
 const getters = {
    getCartCount(state){
       return state.carts.length
+   },
+   filterCart(){
+    
    }
 }
 
@@ -19,6 +22,9 @@ const mutations = {
       state.cartLoaded = true;
       state.carts = payload
    },
+   FILTER_PRODUCT(state , id){
+      state.carts = state.carts.filter(res => res.id !== id)
+   },
    ADDED_PRODUCT(){},
    GET_REVIEW(){},
 }
@@ -29,7 +35,7 @@ const actions = {
          commit("STATUS")
          const response = await EventService.getUserCartEvent();
          if(response.data.status === 'success'){
-            commit('UPDATE_STATUS' , response.data.data)
+            commit('UPDATE_STATUS', response.data.data)
          }
          return response;
       }catch(err){
@@ -61,7 +67,19 @@ const actions = {
       }
    },
 
-   async addProduct({commit} , data ){
+   async deleteProduct({commit}, data ){
+      try{
+         const response = await EventService.deleteCartItem(data)
+         if(response.status){
+            commit("FILTER_PRODUCT" , data);
+         }
+         return response;
+      }catch(err){
+         return err.response;
+      }
+   },
+
+   async addProduct({commit} , data){
       try{
          const response = await EventService.addProductTocart(data)
          if(response.status){

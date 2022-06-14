@@ -1,6 +1,7 @@
 <template>
-<div class="card__wrapper">
-    <div v-scrollAnimate  v-for="card  in cards" :key="card.id" class="card">
+<div class="card-container">
+    <div class="card__wrapper">
+    <div v-scrollAnimate  v-for="card in cards" :key="card.id" class="card">
         <div class="card_image_wrapper">
             <PuSkeleton v-if="card.image === '' " class="is__loading">
             </PuSkeleton>
@@ -31,7 +32,7 @@
                 </div>
                 <div class="footer-info">
                     <div v-if="!showButton">
-                        <button @click="addToCart(card)" class="button-btn">
+                        <button @click="addToCart(card.id)" class="button-btn">
                            Add To Cart
                         </button>
                     </div>
@@ -42,13 +43,14 @@
                             </router-link>
                         </div>
                         <div>
-                            <td @click="deleteProduct(card.id)" class="icon"><font-awesome-icon icon="trash-alt"/></td>
+                            <td @click="deleteProduct(card.id)" :disabled="sending" class="icon"><font-awesome-icon icon="trash-alt"/></td>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 </template>
 
@@ -66,10 +68,12 @@
         },
         data(){
             return{
+                sending: null,
                 isVisible:null,
                 admin: false,
                 showButton: null,
-                isAdding: null
+                isAdding: null,
+                quantity: 1,
             }
         },
         created(){
@@ -79,17 +83,32 @@
         methods:{
             ...mapGetters(['isLoggedIn']),
             ...mapActions(['editSingleProduct' , 'deleteSingleProduct']),
+            ...mapActions('cart', ['addProduct']),
+
             delayImageLoader(){
               this.isVisible = false;
               setTimeout(() => {
                 this.isVisible = true
               } , 5000)
             },
-            addToCart(card){
+            addToCart(id){
+                const p_id = {
+                    pro_id: id,
+                    quantity: this.quantity
+                }
                 if(this.$store.getters.isLoggedIn){
-                    this.$emit('add-to-cart' , card)
-                    return
-                }this.$router.push({name: 'Login'})
+                    this.sending = true;
+                    this.addProduct(p_id).then(res => {
+                        if(res.status){
+                           this.sending = false;
+                        }
+                    }).catch(err => {
+                        this.sending = false;
+                        err
+                    })
+                }else{
+                    this.$router.push({name: 'Login'})
+                }
             },
             showIsEditing(){
                 if(this.$store.state.auth.role == "ADMIN"){
@@ -158,15 +177,16 @@
             }
         }
     }
+
     .card__wrapper{
-        margin: 0px auto ;
-        margin-top: 5rem;
-        display: flex ;
-        flex-direction: row ;
-        flex-wrap: wrap ;
-        gap: 14px;
+        align-content: center;
+        margin-top: 4rem; 
+        display:  flex;
         justify-content: center;
-        align-items: center;
+        flex: 0 0 33.3333%;
+        flex-direction: row;    
+        flex-wrap: wrap;
+        gap: 20px;
 
         @media (max-width: 800px){
           padding: 0px 5px;
@@ -180,7 +200,7 @@
         min-height: 420px;
         border-radius: 5px;
         box-shadow: 0px 2px 30px 1px rgba(0 , 0 , 0 , .1);
-        overflow: hidden;
+        overflow: hidden ;
         transition: .5s ;
 
         @media (max-width: 450px){

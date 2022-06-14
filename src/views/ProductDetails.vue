@@ -11,32 +11,44 @@
       <div class="details__wrap">
             <div v-if="!loading" class="category">
                <p> category <span class="cart">{{ category }}</span></p>
-            </div>
             <h1 v-if="!loading">{{  name }}</h1>
+            </div>
             <p v-if="!loading" style="max-width:300px;">{{ description }}</p>
             <p v-if="!loading">Price: <span style="font-size: 20px; color:#065143;">₦ {{ price }}</span></p>
             <div v-if="!loading" class="cart__increment">
                <div class="cart__add">
-                  <div>
-                     <font-awesome-icon 
-                        style="cursor:pointer;
-                        border: 1px solid #065143; 
-                        padding:5px; 
-                        border-radius: 5px;" 
-                        @click="reduceQty" icon="subtract"
-                     />
+                  <!--Added all details-->
+                  <div class="Add button">
+                     <div>
+                        <font-awesome-icon 
+                           style="cursor:pointer;
+                           border: 1px solid #065143; 
+                           padding:5px; 
+                           border-radius: 5px;" 
+                           @click="reduceQty" icon="subtract"
+                        />
+                     </div>
+                     <!---qty-->
+                     <div>
+                        <p style="padding: 5px;">{{ quantity }}</p>
+                     </div>
+                     <!---add-->
+                     <div>
+                        <font-awesome-icon 
+                           style="cursor: pointer; 
+                           padding: 5px;
+                           border: 1px solid #065143;
+                           border-radius: 5px;" 
+                           @click="quantity++" icon="plus"
+                        />
+                     </div>
                   </div>
-                  <div>
-                  <p style="padding: 5px;">{{ quantity }}</p>
-                  </div>
-                  <div>
-                     <font-awesome-icon 
-                        style="cursor:pointer; 
-                        padding:5px;
-                        border: 1px solid #065143;
-                        border-radius: 5px;" 
-                        @click="quantity++" icon="plus"
-                     />
+                  <div v-if="!loading" class="Add footer-info">
+                     <div v-if="!showButton">
+                        <button @click="addCartProduct(id)" :disabled="sending" class="button-btn">
+                           Add To Cart
+                        </button>
+                     </div>
                   </div>
                </div>
             </div>
@@ -66,15 +78,8 @@
                   <div class="type-review">
                      <h5>Enjoy the taste?, write your review</h5>
                      <textarea name="" v-model.trim="reviewText" id="" cols="30" rows="10" required></textarea>
-                     <button v-show="reviewText" @click="sendReview" class="btn">Send</button>
+                     <button v-show="reviewText !== '' " @click="sendReview" class="btn">Send</button>
                   </div>
-               </div>
-            </div>
-            <div v-if="!loading" class="footer-info">
-               <div v-if="!showButton">
-                  <button @click="addCartProduct(id)" class="button-btn">
-                     Add To Cart
-                  </button>
                </div>
             </div>
       </div>
@@ -95,6 +100,7 @@ export default {
    },
    data(){
       return{
+         sending: null,
          reviewText: '',
          showButton: null,
          name: '',
@@ -103,7 +109,7 @@ export default {
          image:'',
          reviewAvg: '',
          category:'',
-         quantity: 0,
+         quantity: 1,
          allReviews: [],
          reviewCart: [],
          id:'',
@@ -179,16 +185,18 @@ export default {
       addCartProduct(id){
          const p_id = {
             pro_id: id,
-            qty: this.quantity
+            quantity: this.quantity
          }
          if(!this.$store.getters.isLoggedIn){
             this.$router.push({name: 'Login'});
          }else{
+            this.sending = true;
             this.addProduct(p_id).then(res => {
             if(res.status){
-               //
+               this.sending =false;
             }
             }).catcn(err => {
+               this.sending = false;
                err
             })
          }
@@ -227,8 +235,13 @@ export default {
 
 
    .cart__add{
-      display: inline-flex;
+      display: flex;
+      justify-content: space-between;
       padding: 10px 5px;
+
+      .Add.button{
+         display: inline-flex;
+      }
    }
 
    .review-wrapper{

@@ -60,7 +60,7 @@ export default {
       return apiClient.get('mycart');
    },
    //created by me
-   addProductTocart({data}){
+   addProductTocart(data){
       return apiClient.post(`products/cart/${data.pro_id}`, data.qty);
    },
    deleteCartItem(productId){
