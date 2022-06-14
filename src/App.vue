@@ -8,8 +8,8 @@
         <router-view/>
         <!---Footer---->
     </div>
-    <div v-if="!isMarketPlace">
-         <FooterOrganism v-if="!isNavActive"/>
+    <div>
+        <FooterOrganism v-if="!isNavActive"/>
     </div>
   </div>
 </template>
@@ -82,10 +82,13 @@ export default {
           this.$route.name === "Product" ||
           this.$route.name === "Order"||
           this.$route.name === "CreateProduct" ||
-          this.$route.name === "EditProduct"){
+          this.$route.name === "EditProduct")
+        {
           this.isNavActive = true;
           return;
-        }this.isNavActive = false;
+        }else{
+          this.isNavActive = false;
+        }
       },
       confirmDelete(id){
          console.log(id)
