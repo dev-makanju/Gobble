@@ -83,9 +83,8 @@ const actions = {
    async forgotPassword({commit}, data){
       try{
          const res = await eventService.passwordResetEvent(data);
-         console.log(res)
          if(res.status){
-            commit("password__reset")
+            commit("RAW")
          }
          return res
       }catch(err){

@@ -76,7 +76,6 @@ export default {
       return apiClient.get(`products/${id}`)
    },
    editProductEvent(data){
-      console.log(data.data)
       return apiClient.patch(`products/${data.id}` , data.data)
    },
    deleteProductEvent(id){

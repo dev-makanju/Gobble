@@ -5,7 +5,7 @@
                 <img src="https://cdn.pixabay.com/photo/2017/07/16/11/57/fried-2509089_960_720.jpg" alt="">
                 <div class="market-banner-overlay"></div>
                 <div class="market-banner-overlay-text">
-                    <h1>Enjoy the taste that differs.</h1>
+                   <h1>Enjoy the taste that differs.</h1>
                 </div>
             </div>
             <cardTemplate :isFilterCard="isReturnCardsRatings" @add-to-cart="addProductToCart"/>
@@ -18,9 +18,9 @@
                 @toggle-cart="toogleCart"
             />
         </div>
-        <div class="top">
+        <div v-if="!showButton" class="top">
             <a class="back-top" href="#top" v-smooth-scroll>
-                <font-awesome-icon icon="arrow-up"/>
+               <font-awesome-icon icon="arrow-up"/>
             </a>
         </div>
     </div>
@@ -41,7 +41,12 @@
                isReturnCardsRatings:0,
                isCartActive:[],
                isEmpty:null,
+               showButton: null,
+               curPosition: 0,
             }
+        },
+        mounted(){
+            addEventListener("scroll" , this.scrollHandler )
         },
         methods:{
             toogleCart(){
@@ -56,6 +61,15 @@
                     return;
                 }  
             },
+            scrollHandler(){
+                const st = window.pageYOffset || document.documentElement.scrollTop
+                if(st > this.curPosition){
+                    this.showButton = true;
+                }else {
+                    this.showButton = false;
+                }
+                this.curPosition = st
+            }
         },
         created(){
            this.isEmpty = true;

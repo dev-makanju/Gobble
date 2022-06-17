@@ -1,5 +1,5 @@
 <template>
-    <header>
+    <header id="header" :class="[ showHeader ? 'fixed' : 'unfixed']">
         <div class="header">          
             <div class="header-nav">
                 <div id="top"></div>
@@ -21,7 +21,6 @@
 </template>
 
 <script>
-
     import styleObjects from '../molecules/HeaderMoles/ListStyle.js'
     import ListMolecule from '../molecules/HeaderMoles/ListMolecules.vue'
     import AtomText from '../atoms/AtomText.vue'
@@ -48,6 +47,9 @@
                 }
             }
             return{
+                curPosition: 0,
+                top: null,
+                showHeader: null,
                 urlLists:[
                     {
                         compName:'',
@@ -77,6 +79,7 @@
         },
         mounted(){
             this.updateCount()
+            addEventListener("scroll" , this.scrollHandler)
         },
         methods:{
             updateCount(){
@@ -85,6 +88,23 @@
                         element.count = this.count;
                     });
                 }
+            },
+            scrollHandler(){
+                const header = document.getElementById('header') 
+                this.top = false;
+                if(window.scrollY === 0){
+                    this.top = true
+                }
+
+                const st = window.pageYOffset || document.documentElement.scrollTop
+                if(st > this.curPosition){
+                    this.showHeader = true;
+                }else if(this.top == true){
+                    header.className = 'header-top'
+                }else {
+                    this.showHeader = false;
+                }
+                this.curPosition = st
             }
         },
         computed:{
@@ -101,20 +121,34 @@
 </script>
 
 <style lang="scss" scoped>
-header{
-    border-bottom: 1px solid #06514341;
-    .header{
-        width: 90%;
-        max-width: 1440px;
-        margin: 0px auto;
-        display: flex;
-        justify-content: space-between ;
-        align-items: center ;
-        padding: 10px 0px;
 
-        @media (min-width:768px) {              
-            width: 90%;
-        }
+.unfixed{
+    border-bottom: 1px solid #06514341;
+    transform: translateY(-100px);
+}
+
+.fixed{
+    border-bottom: 1px solid #06514341;
+    position: fixed;
+    z-index: 11;
+    right: 0;
+    left: 0;
+    background: #eee;
+    transition: .5s ease;
+    transform: translateY(0px);
+}
+
+.header{
+    width: 90%;
+    max-width: 1440px;
+    margin: 0px auto;
+    display: flex;
+    justify-content: space-between ;
+    align-items: center ;
+    padding: 10px 0px;
+
+    @media (min-width:768px) {              
+        width: 90%;
     }
 }
 </style>
