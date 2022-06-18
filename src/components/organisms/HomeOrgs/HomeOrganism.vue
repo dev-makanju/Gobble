@@ -2,7 +2,7 @@
     <div class="carousel-main">
         <transition-group name="fade" tag="div">
             <div v-for="i in [currentIndex]" :key="i">
-                <img class="img" :src="currentImg.url" alt="">
+                <img class="img" :src="currentImg.url" alt="" onerror="this.style.display='none'">
             </div>
         </transition-group>
         <div  v-for="i in [currentIndex]" :key="i" class="banner__info">

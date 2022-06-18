@@ -1,7 +1,7 @@
 <template>
     <div class="banner">
         <PuSkeleton class="banner__loader">
-        <img class="banner-image" src="@/assets/mobile/a-image.jpg" alt="">
+        <img class="banner-image" src="@/assets/mobile/a-image.jpg" alt="" onerror="this.style.display='none'">
         <div class="banner__overlay"></div>
         <div class="banner__text">
             <h1>Join Our Member and get discount up to 35% </h1>

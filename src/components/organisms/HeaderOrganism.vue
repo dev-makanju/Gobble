@@ -1,5 +1,5 @@
 <template>
-    <header id="header" :class="[ showHeader ? 'fixed' : 'unfixed']">
+    <header id="header" class="fixed">
         <div class="header">          
             <div class="header-nav">
                 <div id="top"></div>
@@ -103,11 +103,13 @@
 
                 const st = window.pageYOffset || document.documentElement.scrollTop
                 if(st > this.curPosition){
-                    this.showHeader = true;
+                    //this.showHeader = true;
+                    header.className = 'fixed'
                 }else if(this.top == true){
-                    header.className = 'header-top'
+                    header.className = 'back-top'
                 }else {
-                    this.showHeader = false;
+                    header.className = 'unfixed'
+                    //this.showHeader = false;
                 }
                 this.curPosition = st
             }
@@ -152,7 +154,7 @@
 .fixed{
     border-bottom: 1px solid #06514341;
     position: fixed;
-    z-index: 11;
+    z-index: 222;
     right: 0;
     left: 0;
     background: #eee;

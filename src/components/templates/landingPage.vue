@@ -205,7 +205,6 @@ export default {
       right: 20px;
       background: #eee;
       width: 270px ;
-      z-index: 1111;
    }
 
    .landing-page-tags.image.before-enter{
