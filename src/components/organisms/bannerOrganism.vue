@@ -29,7 +29,7 @@ export default{
    .main-banner{
       height: 60vh ;
       background: #065143; 
-      position: relative ;    
+      position: relative;    
 
       .background{
          height: 60vh ;

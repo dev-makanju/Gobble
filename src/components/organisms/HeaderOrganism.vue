@@ -17,10 +17,14 @@
                 />
             </div>
         </div>
+         <div class="mobile-search">
+            <Search />
+        </div>
     </header>
 </template>
 
 <script>
+    import Search from '../Modals/PublicSearch.vue'
     import styleObjects from '../molecules/HeaderMoles/ListStyle.js'
     import ListMolecule from '../molecules/HeaderMoles/ListMolecules.vue'
     import AtomText from '../atoms/AtomText.vue'
@@ -33,6 +37,7 @@
             ListMolecule,
             AtomText, 
             CartMolecule,
+            Search
         },
         data(){
             let onClick = () => {
@@ -121,6 +126,23 @@
 </script>
 
 <style lang="scss" scoped>
+
+.mobile-search{
+    display: none;
+    width: 80%;
+    margin: 0px auto;
+    position: absolute;
+    right: 0;
+    left: 0;
+    z-index: 11;
+    @media (max-width: 768px) {
+        display: block;
+    }
+
+    @media (max-width: 450px) {
+        width: 95%;
+    }
+}
 
 .unfixed{
     border-bottom: 1px solid #06514341;

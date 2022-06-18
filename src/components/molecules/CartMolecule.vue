@@ -1,5 +1,6 @@
 <template>
     <div class="header__nav__links">
+        <Search class="desktop-search" />
         <ul class="nav-link-cart" v-for="( cartList , index) in cartLists" :key="index">
             <li>                
                 <atom-cart-link :cartList="cartList">
@@ -28,12 +29,13 @@
     import AtomCartLink from '../atoms/AtomCartLink.vue'
     import ProfileCard from '../molecules/ProfileMoles.vue'
     import AtomIcon from '../atoms/AtomIcon.vue'
+    import Search from '../Modals/PublicSearch.vue'
 
     export default {
         name:"CartMolecule",
         props:['cartLists'],
         components:{
-            AtomCartLink, AtomIcon, ProfileCard
+            AtomCartLink, AtomIcon, ProfileCard , Search
         },
         data(){
             return{
@@ -57,6 +59,13 @@
 </script>
 
 <style lang="scss" scoped>
+    .desktop-search{
+        display: none;
+        @media (min-width: 768px) {
+            display: block;
+        }
+    }
+
     .nav-flat{
         color: #066350;
         font-size: 20px;

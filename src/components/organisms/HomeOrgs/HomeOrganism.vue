@@ -77,6 +77,7 @@
 </script>
 
 <style lang="scss" scoped>
+
     .carousel-main{
         height: 60vh;
         width: 100%;
@@ -110,7 +111,7 @@
             display: flex;
             justify-content: flex-end;
             flex-direction: column;
-            z-index: 11;
+            z-index: 1;
 
             h1{
                 color: #eee;

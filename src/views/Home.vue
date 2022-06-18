@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <HomePage />
+    <HomePage/>
     <slider/>
     <banner/>
     <landingPage/>
