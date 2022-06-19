@@ -71,6 +71,7 @@
     
 import { mapGetters , mapActions, mapState } from "vuex";
 import paystack from "vue-paystack";
+import { toCommas } from '../../Helpers/helper'
 
     export default {
         name:"CartOrganism",
@@ -138,7 +139,7 @@ import paystack from "vue-paystack";
                 itms.forEach( (element) => {
                     total += parseInt(element.totalPrice);     
                 });
-                return total;
+                return toCommas(total);
             },
         },
         watch:{
