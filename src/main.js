@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import vueSmoothScroll from 'vue2-smooth-scroll'
+import Teleport from 'vue2-teleport'
 import  observer from './directives/observerApi'
 import { Skeleton } from 'vue-loading-skeleton';
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -84,6 +85,7 @@ library.add(faStore)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.component('PuSkeleton' , Skeleton)
+Vue.component('Teleport' , Teleport)
 Vue.config.productionTip = false
 Vue.use(Carousel3d);
 Vue.use(vuelidate);

@@ -8483,6 +8483,11 @@
   "resolved" "https://registry.npmjs.org/vue2-smooth-scroll/-/vue2-smooth-scroll-1.6.0.tgz"
   "version" "1.6.0"
 
+"vue2-teleport@^1.0.1":
+  "integrity" "sha512-hbY/Q0x8qXGFxo6h4KU4YYesUcN+uUjliqqC0PoNSgpcbS2QRb3qXi+7XMTgLYs0a8i7o1H6Mu43UV4Vbgkhgw=="
+  "resolved" "https://registry.npmjs.org/vue2-teleport/-/vue2-teleport-1.0.1.tgz"
+  "version" "1.0.1"
+
 "vuelidate@^0.7.7":
   "integrity" "sha512-pT/U2lDI67wkIqI4tum7cMSIfGcAMfB+Phtqh2ttdXURwvHRBJEAQ0tVbUsW9Upg83Q5QH59bnCoXI7A9JDGnA=="
   "resolved" "https://registry.npmjs.org/vuelidate/-/vuelidate-0.7.7.tgz"

@@ -9,12 +9,13 @@
                 <div v-if="cartItems.length !== 0">
                 <div v-for="item in cartItems" :key="item.id" class="cart">
                     <div class="cart__wrapper">
-                        <img class="cart__image" width="150" height="150" :src="item.image" onerror="this.style.display='none'">
+                       <img class="cart__image" width="150" height="150" :src="item.image" onerror="this.style.display='none'">
                     </div>
                     <div>  
                         <div style="padding: 5px; margin-left:4px;width: 200px;">
                             <div>
                                 <p>{{ item.product }}</p>
+                                <p>{{ item.quantity}}  plate</p>
                                 <p class="" style="margin-top: 4px;color:#065143;"><span> ₦ </span>{{ item.totalPrice }}</p>
                             </div>
                             <div class="cart__increment">
@@ -133,9 +134,9 @@ import paystack from "vue-paystack";
             }),
             returnTotalPrice: function(){
                 let total = 0 
-                const itms = this.cartItemsDetails;
+                const itms = this.cartItems;
                 itms.forEach( (element) => {
-                    total += parseInt(element.price) * element.qty;     
+                    total += parseInt(element.totalPrice);     
                 });
                 return total;
             },

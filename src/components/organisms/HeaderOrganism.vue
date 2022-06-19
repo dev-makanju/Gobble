@@ -17,13 +17,15 @@
                 />
             </div>
         </div>
-         <div class="mobile-search">
+        <div class="mobile-search">
             <Search />
         </div>
+        <Loading v-if="this.$store.state.isLoadingSearch"/>
     </header>
 </template>
 
 <script>
+    import Loading from '../Modals/Loader.vue' 
     import Search from '../Modals/PublicSearch.vue'
     import styleObjects from '../molecules/HeaderMoles/ListStyle.js'
     import ListMolecule from '../molecules/HeaderMoles/ListMolecules.vue'
@@ -37,7 +39,8 @@
             ListMolecule,
             AtomText, 
             CartMolecule,
-            Search
+            Search,
+            Loading
         },
         data(){
             let onClick = () => {

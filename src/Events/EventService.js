@@ -83,6 +83,6 @@ export default {
    },
    //search for a single product
    getProductBySearchEvent(data){
-      return apiClient.get('queryProducts' , data)
+      return apiClient.post('queryProducts' , data)
    }, 
 }

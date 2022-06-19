@@ -20,6 +20,8 @@ export default new Vuex.Store({
     products:[],
     price:'0',
     productError: null,
+    isLoadingSearch: null,
+    searchItems: [],
   },
   getters:{
     productFeed(state){
@@ -71,29 +73,38 @@ export default new Vuex.Store({
     FILTER_PRODUCT(state , payload){
       state.products = state.products.filter( result => result.id !== payload)
     },
-    PRODUCT_LOADED(){
-      //
+    PRODUCT_LOADED(){},
+    SEARCH(state){
+       state.isLoadingSearch = true
+    },
+    SEARCH_STATUS(state , payload){
+      state.isLoadingSearch = false
+      state.searchItems = payload.filter(item => item !== null)
+      console.log(state.searchItems);
+    },
+    SEARCH_ERROR(state){
+      state.isLoadingSearch = false
     }
   },
   actions: {
-    cartUpdated({commit} , payload){
-        commit('updateCount' , payload );
-    },
-    openCart({commit}){
-      commit('open'); 
-    },
-    closeCart({commit}){
-      commit('close') 
-    },
-    addToCart({commit} , payload ){
-      commit('setCartData' , payload)
-    },
-    setPrice({commit}, payload){
-      commit('setGlobalPrice' , payload );
-    },
-    clearCart({commit}){
-      commit('clear')
-    },
+      cartUpdated({commit} , payload){
+          commit('updateCount' , payload );
+      },
+      openCart({commit}){
+        commit('open'); 
+      },
+      closeCart({commit}){
+        commit('close') 
+      },
+      addToCart({commit} , payload ){
+        commit('setCartData' , payload)
+      },
+      setPrice({commit}, payload){
+        commit('setGlobalPrice' , payload );
+      },
+      clearCart({commit}){
+        commit('clear')
+      },
   
     async getProducts({commit}){
       try{
@@ -107,6 +118,19 @@ export default new Vuex.Store({
       }catch(err){
          commit("ABORTED_PRODUCT")
          return err.response
+      }
+    },
+    async searchProduct({commit} , query){
+      try{
+        commit("SEARCH")
+        const response = await EventService.getProductBySearchEvent(query)
+        if(response.status){
+          commit("SEARCH_STATUS" , response.data.data)
+        }
+        return response;
+      }catch(err){
+        commit("SEARCH_ERROR")
+        return err.response;
       }
     },
     async getProductById({ commit } , id){

@@ -1,21 +1,25 @@
 <template>
- <div class="review-wrapper">
-      <div v-if="this.$store.state.auth.status == 'loading'">
-         <h4 style="text-align: center; color: red;">Loading...</h4>
-      </div>
+<div>
+   <div v-if="error" class="review-wrapper">
       <div class="details__wrapper">
          <div class="details__wrap wrap">
             <img :src="image">
          </div>
       <div class="details__wrap__information">
       <div class="details__wrap">
-            <div v-if="!loading" class="category">
+            <div class="category">
                <p> category <span class="cart">{{ category }}</span></p>
-            <h1 v-if="!loading">{{  name }}</h1>
+               <h1>{{  name }}</h1>
             </div>
-            <p v-if="!loading" style="max-width:300px;">{{ description }}</p>
-            <p v-if="!loading">Price: <span style="font-size: 20px; color:#065143;">₦ {{ price }}</span></p>
-            <div v-if="!loading" class="cart__increment">
+            <div class="review">
+               Average review: <AtomStarf style="color: orange;"/>
+               <div>
+                 {{ reviewAvg }} 
+               </div>
+            </div>
+            <p style="max-width:300px;">{{ description }}</p>
+            <p>Price: <span style="font-size: 20px; color:#065143;">₦ {{ price }}</span></p>
+            <div class="cart__increment">
                <div class="cart__add">
                   <!--Added all details-->
                   <div class="Add button">
@@ -43,7 +47,7 @@
                         />
                      </div>
                   </div>
-                  <div v-if="!loading" class="Add footer-info">
+                  <div class="Add footer-info">
                      <div v-if="!showButton">
                         <button @click="addCartProduct(id)" :disabled="sending" class="button-btn">
                            Add To Cart
@@ -52,38 +56,14 @@
                   </div>
                </div>
             </div>
-            <div v-if="!loading" class="item" style="display:flex;flex-direction:column;margin-left: 4px; ">
-               <div class="review">
-                  <div class="stars">
-                     <atom-starf style="color:orange;font-size: 34px;"></atom-starf>
-                     <p>
-                        {{ parseFloat(reviewAvg).toFixed(1) }} ({{ allReviews.length > 0 ? allReviews.length : '0' }}) 
-                        review{{ allReviews.length > 0 ? 's' : '' }}
-                     </p>
-                     <p v-if="allReviews.length !== 0" @click="getProReview($route.params.slug)" class="show">show more...</p>
-                  </div> 
-               </div>
-               <div class="review">
-                     <!---reviews-->
-                     <div v-for="review in reviewCart" :key="review.id" v-show="review.review !== null" class="review-container">
-                        <img class="avater" src="@/assets/mobile/3898372_user_people_man_add_icon.png" alt="">
-                        <ul class="review-details">
-                           <h3>{{ review.User.name }}</h3>
-                           <p>{{ review.review }}</p>
-                        </ul>
-                     </div>
-                     <div v-if="allReviews.length == 0">
-                        <p class="text">Be the first to write review</p>
-                     </div>
-                     <div class="type-review">
-                        <h5>Enjoy the taste?, write your review</h5>
-                        <textarea name="" v-model.trim="reviewText" id="" cols="30" rows="10" required></textarea>
-                        <button v-show="reviewText !== ''" @click="sendReview" class="btn">Send</button>
-                     </div>
-               </div>
-            </div>
+            <!--Reviews-->
       </div>
    </div>
+   </div>
+   </div>
+   <div v-else class="review-wrapper error">
+      <h1>4o4</h1> 
+      <p>This dish does not exist on our menu</p>
    </div>
 </div>
 </template>
@@ -94,12 +74,13 @@ import AtomStarf from '../components/atoms/AtomStarRating.vue'
 import { mapActions } from 'vuex';
 
 export default {
-   name:'ProductDetails',
+   name:'ProductSearch',
    components:{
       AtomStarf
    },
    data(){
       return{
+         error: null,
          sending: null,
          reviewText: '',
          showButton: null,
@@ -110,79 +91,19 @@ export default {
          reviewAvg: '',
          category:'',
          quantity: 1,
-         allReviews: [],
-         reviewCart: [],
          id:'',
          loading: null,
       }
    },
    mounted(){
-      this.getProduct();
+      this.searchProduct();
+      addEventListener('load' , () => {
+         this.$router.push('/')
+      });
    },
    methods:{
       ...mapActions(['getProductById']),
-      ...mapActions('cart' , ['addProduct' , 'getProductReview' , 'addProductReview']),
-      getProduct(){
-         this.loading = true;
-         const id = this.$route.params.slug
-         this.getProductById(id).then(res => {
-
-            if(res.status){
-               this.loading = false;
-               this.id = res.data.data.id
-               this.name = res.data.data.name;
-               this.description = res.data.data.description;
-               this.price = res.data.data.price;
-               this.allReviews = res.data.data.Reviews
-               this.image = res.data.data.image;
-               this.reviewAvg = res.data.data.averageReview;
-               this.category = res.data.data.category
-            }
-         }).catch(err => {
-            err
-         })
-      },
-      getProReview(id){
-         this.getProductReview(id).then(res => {
-            if(res.status){
-               this.reviewCart = res.data.data
-            }
-         }).catch(err => {
-            console.log(err)
-         })
-      },
-      sendReview(){
-         const id = this.$route.params.slug
-         const data = {
-            review: this.reviewText
-         }
-         const data_value = {
-            id: id,
-            data: data
-         }
-
-         if(!this.$store.getters.isLoggedIn){
-            this.$router.push({name: 'Login'});
-         }else{
-            if(this.reviewText !== ''){
-               this.addProductReview(data_value).then(res => {
-                  if(res.status){
-                     const userName =  this.$store.state.auth.user.name;
-                     const result = {
-                        User:{
-                           name: userName
-                        },
-                        review:this.reviewText
-                     }
-                     this.reviewCart.push(result);
-                     this.allReviews.push(result)
-                  }
-               }).catch(err => {
-                  err
-               })
-            }
-         }
-      },
+      ...mapActions('cart' , ['addProduct']),
       addCartProduct(id){
          const p_id = {
             pro_id: id,
@@ -196,7 +117,7 @@ export default {
             if(res.status){
                this.sending =false;
             }
-            }).catcn(err => {
+            }).catch(err => {
                this.sending = false;
                err
             })
@@ -208,33 +129,41 @@ export default {
             return;
          }
       },
+      searchProduct(){
+         this.$store.state.searchItems.forEach( item => {
+            if(item !== null){    
+               this.loading = false;
+               this.id = item.id;
+               this.name = item.name;
+               this.description = item.description;
+               this.price = item.price;
+               this.image = item.image;
+               this.reviewAvg = item.averageReview;
+               this.category = item.category;
+            }else{
+               this.error = true
+            }
+         }); 
+      },
    }
 }
 </script>
 
 <style lang="scss" scoped>
    /****Review****/
-   .text{
-      font-size: 12px;
-      font-style: italic;
-      color: rgba(0, 0, 0, 0.309);
-   }
-
-   .show{
-      font-size: 12px;
-      font-style: italic;
-      color: rgba(0, 0, 0, 0.309);
-      cursor: pointer;
-      float: right;
-      transition: .5s ease;
-      margin-left: 30px;
-
-      &:hover{
-         color: #06514386;
+   .error{ 
+      width: 80%;
+      margin: 0px auto;
+      margin-top: 4rem;
+      text-align:  center;
+      & h1{
+         font-size: 50px;
       }
    }
-
-
+   .review{
+      display: inline-flex;
+      width: 100%; 
+   }
    .cart__add{
       display: flex;
       justify-content: space-between;
@@ -375,6 +304,7 @@ export default {
       display: flex;
       flex-direction: column;
       margin: 0px auto;
+      margin-top: 3rem;
       gap: 2rem;
       margin-bottom: 4rem;
       

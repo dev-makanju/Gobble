@@ -8,6 +8,7 @@ import Product from '../views/Admin/Product.vue'
 import CreateProduct from '../views/Admin/CreateProduct.vue'
 import Order from '../views/Admin/Order.vue'
 import Login from '../views/Login.vue'
+import Search from '../views/Search.vue'
 import Register from '../views/Register.vue'
 import Profile from '../views/Profile.vue'
 import NotFound from '../views/NotFound.vue'
@@ -43,6 +44,14 @@ const routes = [
     component: ProductDetails,
     meta:{
       title:"",
+    }
+  },
+  {
+    path: '/Search',
+    name: 'Search',
+    component: Search,
+    meta:{
+      title: "Search",
     }
   },
   {
