@@ -136,7 +136,6 @@ export default {
          }else{
             this.error = false;
             this.$store.state.searchItems.forEach( item => {
-               console.log(item)    
                this.loading = false;
                this.id = item.id;
                this.name = item.name;

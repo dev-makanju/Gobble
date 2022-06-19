@@ -83,7 +83,6 @@ export default new Vuex.Store({
     SEARCH_STATUS(state , payload){
       state.isLoadingSearch = false
       state.searchItems = payload.filter(item => item !== null)
-      console.log(state.searchItems)
     },
     SEARCH_ERROR(state){
       state.isLoadingSearch = false

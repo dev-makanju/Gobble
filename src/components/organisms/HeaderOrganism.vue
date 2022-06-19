@@ -102,14 +102,14 @@
                 this.top = false;
                 if(window.scrollY === 0){
                     this.top = true
-                }
-
-                const st = window.pageYOffset || document.documentElement.scrollTop
-                if(st > this.curPosition){
-                    //this.showHeader = true;
-                    header.className = 'fixed'
-                }else if(this.top == true){
                     header.className = 'back-top'
+                }
+                const st = window.pageYOffset || document.documentElement.scrollTop
+                if(this.top == true){
+                    //this.showHeader = true;
+                    header.className = 'back-top'
+                }else if(st > this.curPosition){
+                    header.className = 'fixed'
                 }else {
                     header.className = 'unfixed'
                     //this.showHeader = false;
@@ -160,6 +160,7 @@
     z-index: 222;
     right: 0;
     left: 0;
+    top: 0;
     background: #eee;
     transition: .5s ease;
     transform: translateY(0px);
