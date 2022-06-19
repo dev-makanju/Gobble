@@ -52,7 +52,7 @@
             <hr>
             <div style="display:flex; justify-content: flex-end; width: 100%; padding: 0px 10px;">
                 <paystack           
-                    :amount="parseInt(returnTotalPrice * 100)"
+                    :amount="parseInt( paystackPrice * 100)"
                     :email="'makurseme@gmail.com'" 
                     :paystackkey="get_paystack_details['PUBLIC_KEY']"
                     :reference="reference"
@@ -143,6 +143,14 @@ import { toCommas , underscoreUrl , convertStr } from '../../Helpers/helper'
             ...mapGetters('cart', {
                count: 'getCartCount',    
             }),
+            paystackPrice: function(){
+                let total = 0 
+                const itms = this.cartItems;
+                itms.forEach( (element) => {
+                    total += parseInt(element.totalPrice);     
+                });
+                return total;
+            },
             returnTotalPrice: function(){
                 let total = 0 
                 const itms = this.cartItems;
