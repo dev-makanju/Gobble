@@ -1,6 +1,6 @@
 <template>
 <div>
-   <div v-if="error" class="review-wrapper">
+   <div v-if="!error" class="review-wrapper">
       <div class="details__wrapper">
          <div class="details__wrap wrap">
             <img :src="image">
@@ -71,7 +71,7 @@
 <script>
 
 import AtomStarf from '../components/atoms/AtomStarRating.vue'
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
    name:'ProductSearch',
@@ -130,8 +130,13 @@ export default {
          }
       },
       searchProduct(){
-         this.$store.state.searchItems.forEach( item => {
-            if(item !== null){    
+         if(this.$store.state.searchItems.length === 0){
+            this.error = true
+            return;
+         }else{
+            this.error = false;
+            this.$store.state.searchItems.forEach( item => {
+               console.log(item)    
                this.loading = false;
                this.id = item.id;
                this.name = item.name;
@@ -140,11 +145,19 @@ export default {
                this.image = item.image;
                this.reviewAvg = item.averageReview;
                this.category = item.category;
-            }else{
-               this.error = true
-            }
-         }); 
+            }); 
+         }
       },
+   },
+   computed:{
+      ...mapGetters({
+         updateSearch: 'returnSearchItems' 
+      }) 
+   },
+   watch:{
+      updateSearch: function(){
+         this.searchProduct()
+      }
    }
 }
 </script>
@@ -156,6 +169,7 @@ export default {
       margin: 0px auto;
       margin-top: 4rem;
       text-align:  center;
+   
       & h1{
          font-size: 50px;
       }

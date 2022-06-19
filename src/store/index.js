@@ -24,6 +24,9 @@ export default new Vuex.Store({
     searchItems: [],
   },
   getters:{
+    returnSearchItems(state){
+      return state.searchItems
+    },
     productFeed(state){
       return state.products.slice(0 , 8)
     },
@@ -80,7 +83,7 @@ export default new Vuex.Store({
     SEARCH_STATUS(state , payload){
       state.isLoadingSearch = false
       state.searchItems = payload.filter(item => item !== null)
-      console.log(state.searchItems);
+      console.log(state.searchItems)
     },
     SEARCH_ERROR(state){
       state.isLoadingSearch = false

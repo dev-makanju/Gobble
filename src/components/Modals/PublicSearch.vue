@@ -26,10 +26,10 @@ export default {
       ...mapActions(['searchProduct']),
       onSubmit(){
          const enteredValue = document.getElementById('search');
-         if(enteredValue.value === ''){
+         if(this.search === ''){
            enteredValue.focus()
            return;
-         }else{
+         } else {
             const data = {
                query: this.search
             }

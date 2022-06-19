@@ -40,7 +40,7 @@
             AtomText, 
             CartMolecule,
             Search,
-            Loading
+            Loading,
         },
         data(){
             let onClick = () => {
@@ -151,7 +151,7 @@
 
 .unfixed{
     border-bottom: 1px solid #06514341;
-    transform: translateY(-100px);
+    transform: translateY(-80px);
 }
 
 .fixed{

@@ -1,5 +1,5 @@
 <template>
- <div class="review-wrapper">
+   <div class="review-wrapper">
       <div v-if="this.$store.state.auth.status == 'loading'">
          <h4 style="text-align: center; color: red;">Loading...</h4>
       </div>

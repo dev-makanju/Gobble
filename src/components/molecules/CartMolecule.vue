@@ -1,6 +1,6 @@
 <template>
     <div class="header__nav__links">
-        <Search class="desktop-search" />
+        <Search class="desktop-search"/>
         <ul class="nav-link-cart" v-for="( cartList , index) in cartLists" :key="index">
             <li>                
                 <atom-cart-link :cartList="cartList">
