@@ -7,26 +7,35 @@
         />
         <CardOrganism 
             v-else
-            :cards="itemsCard" 
+            :cards="paginated" 
             @add-to-cart="addToCart"
         />
-        <div v-if="isMarketPlace" class="button-wrapper">
-            
+        <div class="button-wrapper">
+            <Pagination 
+               :current="this.current"
+               :pageSize="this.pageSize"
+               :cards="this.cards"
+               @paging="updateHandler"
+               @value-subtract="subtractHandler"
+               @value-increased="increasedHandler"
+            />
         </div>
     </div>
 </template>
 
 <script>
 
-    import CardOrganism from '../organisms/CardOrgansim.vue'
-    import CardLoaderMixin from '../../mixins/CardLoaderMixin'
+    import CardOrganism from '../organisms/CardOrgansim.vue';
+    import CardLoaderMixin from '../../mixins/CardLoaderMixin';
+    import Pagination from '../Admin/molecules/pagination.vue'
 
     export default {
         name:"cardTemplate",
         props:['isFilterCard'],
         mixins:[CardLoaderMixin],
         components:{
-            CardOrganism
+            CardOrganism,
+            Pagination
         },
         data(){
             return{
@@ -57,14 +66,25 @@
                     },
                 ],
                 cards:[],
+                paginated:[],
                 isMarketPlace:null,
-                page: 10 ,
+                current: 1,
+                pageSize: 8 ,
             }
         },
         created(){
             this.isMarketRoute();
         },
         methods:{
+            subtractHandler(value){
+                this.current = value
+            },
+            increasedHandler(value){
+               this.current = value
+            },
+            updateHandler(value){
+               this.paginated = value
+            },
             isMarketRoute(){
                 if(this.$route.name === "MarketPlace"){
                     this.isMarketPlace = true;
