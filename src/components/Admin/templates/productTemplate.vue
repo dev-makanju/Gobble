@@ -17,10 +17,10 @@
          <div v-if="!this.$store.state.productError" class="table-parent-container">
             <div class="table-parent-wrapper">
                <div v-if="this.$store.state.product_loading" class="loader-wrapper">
-                   <div v-for="(load  , index ) in loader" :key="index" class="loaders">
-                       <PuSkeleton class="loader" height="50px">
-                       </PuSkeleton>
-                    </div>
+                  <div v-for="(load  , index ) in loader" :key="index" class="loaders">
+                     <PuSkeleton class="loader" height="50px">
+                     </PuSkeleton>
+                  </div>
                </div> 
                <div v-if="!this.$store.state.product_loading" class="order-wrapper">
                   <div>
@@ -36,10 +36,17 @@
                      />
                   </div>
                   <div>
-                     <CardOrganism :isFilterCard="1.0" :cards="products"/>
+                     <CardOrganism :isFilterCard="1.0" :cards="paginated"/>
                   </div>
                   <div>
-                     <Pagination/>
+                     <Pagination
+                        :current="current"
+                        :pageSize="pageSize"
+                        :cards="products"
+                        @paging="updateHandler"
+                        @value-subtract="subtractHandler"
+                        @value-increased="increasedHandler"
+                     />
                   </div>
                </div>
             </div>
@@ -73,6 +80,9 @@ export default {
    },
    data(){
       return{
+         paginated:[],
+         current: 1,
+         pageSize: 9 ,
          products:[],
          loader: 7,
          loading:null,
@@ -83,10 +93,19 @@ export default {
          message:'',
       }
    },
-   created(){
+   mounted(){
       this.getAllProduct();
    },
    methods:{
+      subtractHandler(value){
+         this.current = value
+      },
+      increasedHandler(value){
+         this.current = value
+      },
+      updateHandler(value){ 
+         this.paginated = value
+      },
       getAllProduct(){
          this.products = this.$store.state.products
       },
@@ -99,7 +118,7 @@ export default {
    },
    watch:{
       isLoading: function(){
-         if(!this.$store.state.product_loading) {
+         if(!this.$store.state.product_loading){
             this.getAllProduct()
          }
       },

@@ -82,7 +82,7 @@
             increasedHandler(value){
                this.current = value
             },
-            updateHandler(value){
+            updateHandler(value){ 
                this.paginated = value
             },
             isMarketRoute(){
@@ -101,7 +101,6 @@
             addToCart(value){
                 this.$emit('add-to-cart' , value)
             },
-
         },
         computed:{
             itemsCard: function(){

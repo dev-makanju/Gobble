@@ -30,7 +30,10 @@ export default {
             this.counter++
             this.$emit('value-increased' , this.counter);
          } 
-      }
+      },
+   },
+   created(){
+      this.$emit('paging' , this.paginated)
    },
    computed:{
       indexStart() {

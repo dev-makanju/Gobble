@@ -53,7 +53,7 @@
                               <th class="icon">Admin</th>
                            </thead>
                         <tbody>
-                           <tr v-for="(user , index ) in userList" :key="user._id" >
+                           <tr v-for="(user , index ) in paginated" :key="user._id" >
                               <td>{{ index+1 }}</td>
                               <td>{{ user.name }}</td>
                               <td class="mobile">{{ user.email }}</td>
@@ -72,7 +72,14 @@
                      </table>
                   </div>
                   <div>
-                     <Pagination/>
+                     <Pagination
+                        :current="current"
+                        :pageSize="pageSize"
+                        :cards="userList"
+                        @paging="updateHandler"
+                        @value-subtract="subtractHandler"
+                        @value-increased="increasedHandler"
+                     />
                   </div>
                </div>
             </div>
@@ -109,6 +116,9 @@ export default {
    },
    data(){
       return{
+         paginated:[],
+         current: 1,
+         pageSize: 10,
          loader: 7,
          userList: [],
          selected: null,
@@ -163,7 +173,16 @@ export default {
       },
       notifyAlert(){
          this.success = !this.success
-      }
+      },
+      subtractHandler(value){
+         this.current = value
+      },
+      increasedHandler(value){
+         this.current = value
+      },
+      updateHandler(value){ 
+         this.paginated = value
+      },
    },
    computed:{
       ...mapGetters( 'customer',{

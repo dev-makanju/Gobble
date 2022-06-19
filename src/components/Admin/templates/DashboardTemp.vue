@@ -76,6 +76,7 @@ export default {
             background: #fff ;
             border-right: 2px solid #a9c6c077;
             transition: .5s ease;
+            
 
             @media (max-width: 900px) {
                position: fixed;

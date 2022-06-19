@@ -1,7 +1,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
-   created(){
+   mounted(){
       this.getAllProduct();
    },
    computed:{
