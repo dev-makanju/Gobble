@@ -16,12 +16,12 @@
          </div>
 
          <div v-if="!this.$store.state.customer.aborted" class="table-parent-container">
-            <div v-if="this.$store.state.customer.loading" class="loader-wrapper">
+            <!-- <div v-if="this.$store.state.customer.loading" class="loader-wrapper">
                <div v-for="(load  , index ) in loader" :key="index" class="loaders">
                   <PuSkeleton class="loader" height="50px">
                   </PuSkeleton>
                </div>
-            </div>
+            </div> -->
             <div class="order-wrapper order">
             <div>
                <SuccessAlert 
@@ -105,7 +105,6 @@ import DashboardNavbar from '../organism/DashboardNavbar.vue'
 import DashboardHeader from '../organism/DashboardHeader.vue'
 import Pagination from '../molecules/pagination.vue'
 import Search from '../molecules/SearchMole.vue'
-import { mapActions } from 'vuex'
 import SuccessAlert from '../molecules/Alert.vue'
 import ErrorAlert from '../molecules/ErrorMolecule.vue' 
 import ServiceError from '../molecules/ServiceError.vue'
@@ -129,16 +128,12 @@ export default {
          loader: 7,
       }
    },
-   methods:{
-      ...mapActions([''])
-   }
 }
 
 </script>
 
 <style lang="scss">
    .table-parent-container{
-      height: 100vh;
       display: flex;
       flex-grow: 100%;
 
