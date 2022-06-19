@@ -74,7 +74,7 @@
                     {
                         compName:'Home',
                         linkIcon:'home',
-                        click: homeLog
+                        click: homeLog,
                     },
                     {
                         compName:'MarketPlace',
