@@ -9,7 +9,7 @@
                 <div v-if="cartItems.length !== 0">
                 <div v-for="item in cartItems" :key="item.id" class="cart">
                     <div class="cart__wrapper">
-                       <img class="cart__image" width="150" height="150" :src="item.image" onerror="this.style.display='none'">
+                       <img class="cart__image" width="150" height="150" :src="returnImage(item.product)" onerror="this.style.display='none'">
                     </div>
                     <div>  
                         <div style="padding: 5px; margin-left:4px;width: 200px;">
@@ -71,7 +71,7 @@
     
 import { mapGetters , mapActions, mapState } from "vuex";
 import paystack from "vue-paystack";
-import { toCommas } from '../../Helpers/helper'
+import { toCommas , underscoreUrl , convertStr } from '../../Helpers/helper'
 
     export default {
         name:"CartOrganism",
@@ -105,6 +105,16 @@ import { toCommas } from '../../Helpers/helper'
             },
             updateCards(){
                 this.cartItems = this.$store.state.cart.carts
+            },
+            returnImage(slug){
+                let image;
+                const slugify = underscoreUrl(slug);
+                this.$store.state.products.forEach( item => { 
+                    if(convertStr(item.slug) == slugify){
+                      image = item.image
+                    }
+                });
+                return image;
             },
             filterCart(itemId){
                this.deleteProduct(itemId).then(res => {
