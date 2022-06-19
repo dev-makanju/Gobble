@@ -1,7 +1,7 @@
 <template>
-<div class="card-container">
     <div class="card__wrapper">
     <div v-scrollAnimate  v-for="card in cards" :key="card.id" class="card">
+<div class="card-container">
         <div class="card_image_wrapper">
             <PuSkeleton v-if="card.image === '' " class="is__loading">
             </PuSkeleton>

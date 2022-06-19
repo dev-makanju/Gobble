@@ -74,6 +74,7 @@
 import Loading from '../../molecules/Loading.vue'
 import { required , email }  from 'vuelidate/lib/validators'
 import { mapActions } from 'vuex'
+import {convertStr} from '../../../Helpers/helper'
 
 export default {
    name:"LoginMoles",
@@ -123,7 +124,7 @@ export default {
             this.$v.$touch()
             if(this.$v.$invalid !== true){
                 const data = {
-                   email: this.email,
+                   email: convertStr(this.email),
                    password: this.password, 
                 }
                 this.error = false

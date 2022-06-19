@@ -122,6 +122,7 @@
 import Loading from '../../molecules/Loading.vue'
 import { required , minLength , maxLength  ,  email , sameAs }  from 'vuelidate/lib/validators'
 import { mapActions } from 'vuex'
+import {convertStr} from '../../../Helpers/helper'
 
 export default {
     name:"RegMoles",
@@ -200,7 +201,7 @@ export default {
             this.$v.$touch()
             if(this.$v.$invalid !== true){
                 const data = {
-                   email: this.email,
+                   email: convertStr(this.email),
                    name: this.username, 
                    password: this.password, 
                 }
