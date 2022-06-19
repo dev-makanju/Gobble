@@ -62,7 +62,7 @@
    </div>
    </div>
    <div v-else class="review-wrapper error">
-      <h1>4o4</h1> 
+      <h1>Oops , Not found!</h1> 
       <p>This dish does not exist on our menu</p>
    </div>
 </div>
