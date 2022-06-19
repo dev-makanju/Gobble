@@ -67,7 +67,7 @@
                      <!---reviews-->
                      <div v-for="review in reviewCart" :key="review.id" v-show="review.review !== null" class="review-container">
                         <img class="avater" src="@/assets/mobile/3898372_user_people_man_add_icon.png" alt="">
-                        <ul class="review-details">
+                        <ul class="review-details">   
                            <h3>{{ review.User.name }}</h3>
                            <p>{{ review.review }}</p>
                         </ul>

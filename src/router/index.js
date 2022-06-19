@@ -43,7 +43,7 @@ const routes = [
     name: 'ProductDetails',
     component: ProductDetails,
     meta:{
-      title:"",
+      title:"product",
     }
   },
   {
@@ -180,7 +180,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to , from , next) => {
-  let documentTitle = `Gobble - ${to.params.slug ? to.params.slug : to.meta.title}`;
+  let documentTitle = `Gobble - ${to.meta.title}`;
   document.title = documentTitle;
   next()
 });
