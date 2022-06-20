@@ -211,6 +211,7 @@ export default {
                 this.userSignUp(data).then( res => {
                     if(res.status === 200){
                         this.loading = false;
+                        this.$router.push({name:'Login'})
                         this.success = true;
                         this.messageInfo = res.data.data   
                     }else{
