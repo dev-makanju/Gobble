@@ -2,6 +2,7 @@
    <div class="header-wrapper">
       <div class="dashboard__head">
          <font-awesome-icon  class="mobile-navbar" icon="hamburger" @click='$emit("toggle-navigation")'/>
+         <div id="top"></div>
       </div>
       <div class="dashboard__head">
          <div class="dashboard__header">            <!--search-->

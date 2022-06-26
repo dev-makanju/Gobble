@@ -1,5 +1,6 @@
 <template>
-    <div> 
+    <div>
+        <div id="topp"></div> 
         <CardOrganism
             v-if="this.$store.state.product_loading"
             :cards="fakeCard" 
@@ -77,13 +78,19 @@
         },
         methods:{
             subtractHandler(value){
+                this.scrollToTop()
                 this.current = value
             },
             increasedHandler(value){
+               this.scrollToTop()
                this.current = value
             },
             updateHandler(value){ 
                this.paginated = value
+            },
+            scrollToTop(){    	
+                const el = document.querySelector('#topp');
+                el.scrollIntoView({behavior: 'smooth'});
             },
             isMarketRoute(){
                 if(this.$route.name === "MarketPlace"){
@@ -99,7 +106,7 @@
                this.$store.dispatch('addToCart' , value );
             },
             addToCart(value){
-                this.$emit('add-to-cart' , value)
+               this.$emit('add-to-cart' , value)
             },
         },
         computed:{

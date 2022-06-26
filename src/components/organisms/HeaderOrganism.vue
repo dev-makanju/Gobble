@@ -99,6 +99,9 @@
             },
             scrollHandler(){
                 const header = document.getElementById('header') 
+                if(header === null){
+                    return;
+                }
                 this.top = false;
                 if(window.scrollY === 0){
                     this.top = true

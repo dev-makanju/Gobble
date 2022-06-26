@@ -5,6 +5,7 @@
          <DashboardNavbar @close-nav="closeNavbar"/>
       </div>
       <!--Dashboard main wrapper-->
+      
       <div class="Dashboard__main__container">  
          <div class="Dashboard__main__container header">
             <DashboardHeader @toggle-navigation="isDashboardActive"/>
@@ -36,6 +37,7 @@
                      />
                   </div>
                   <div>
+                     <div id="topp"></div>
                      <CardOrganism :isFilterCard="1.0" :cards="paginated"/>
                   </div>
                   <div>
@@ -47,6 +49,11 @@
                         @value-subtract="subtractHandler"
                         @value-increased="increasedHandler"
                      />
+                  </div>
+                  <div class="top">
+                     <a class="back-top" href="#top" v-smooth-scroll>
+                        <font-awesome-icon icon="arrow-up"/>
+                     </a>
                   </div>
                </div>
             </div>
@@ -99,15 +106,21 @@ export default {
    methods:{
       subtractHandler(value){
          this.current = value
+         this.scrollToTop()
       },
       increasedHandler(value){
          this.current = value
+         this.scrollToTop()
       },
       updateHandler(value){ 
          this.paginated = value
       },
       getAllProduct(){
          this.products = this.$store.state.products
+      },
+      scrollToTop(){    	
+         const el = document.querySelector('#topp');
+         el.scrollIntoView({behavior: 'smooth'});
       },
    },
    computed:{
